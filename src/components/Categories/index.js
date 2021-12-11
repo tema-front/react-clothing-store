@@ -5,7 +5,7 @@ export const Categories = () => {
         {subtitle: '30% off', title: 'for women', id: 'category-women'},
         {subtitle: 'hot deal', title: 'for men', id: 'category-men'},
         {subtitle: 'new arrivals', title: 'for kids', id: 'category-kids'},
-        {subtitle: 'luxirous &amp;&nbsp;trendy', title: 'accesories', id: 'category-accesories'}
+        {subtitle: `luxirous\u00A0\u0026\u00A0trendy`, title: 'accesories', id: 'category-accesories'}
     ]);
 
     const openProductsCategory = (id) => {

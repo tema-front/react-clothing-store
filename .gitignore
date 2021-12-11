@@ -7,6 +7,9 @@
 /src/img
 /src/fonts
 /src/styles/scss
+/public/favicon.ico
+/public/1favicon.ico
+
 
 # testing
 /coverage

@@ -1,11 +1,11 @@
 import { HeaderBottom } from './HeaderBottom';
 import { HeaderTop } from './HeaderTop';
 
-export const Header = ({itsHomePage}) => {
+export const Header = ({isHomePage, isCatalog, isNavigate, title}) => {
     return (
         <header className="header-page">
             <HeaderTop />
-            {itsHomePage && <HeaderBottom />}
+            <HeaderBottom isHomePage={isHomePage} isCatalog={isCatalog} isNavigate={isNavigate} title={title}/>
         </header>
     );
 }

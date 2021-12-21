@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+import { Cart } from '../Cart';
 import { Catalog } from '../Catalog';
 import { HomePage } from '../HomePage';
 import { NotFound } from '../NotFound';
@@ -10,8 +11,12 @@ export const ReactRouter = () => {
         <Routes>
             {/* <Route path='/' redirect='/homepage' element={<HomePage />} /> */}
             <Route path='/home' element={<HomePage />} />
+            <Route path='/catalog' element={<Catalog />}>
+                    <Route path=':pageId' element={<Catalog />}/>
+            </Route>
             <Route path='/profile' element={<Profile />} />
-            <Route path='/catalog' element={<Catalog />} />
+            <Route path='/cart' element={<Cart />} />
+            
 
             <Route path="/" element={<Navigate replace to="/home" />} />
             <Route path='*'  element={<NotFound />} />

@@ -1,0 +1,1 @@
+export const getCartList = (state) => state.stateCart.cartList;

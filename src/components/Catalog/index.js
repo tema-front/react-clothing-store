@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useParams } from "react-router-dom";
-import { useNavigate  } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { requestCardsDatas } from "../../store/cards/action";
 import { getCardsList } from "../../store/cards/selectors";
 import { CatalogSettings } from "../CatalogSettings";
@@ -16,14 +16,17 @@ export const Catalog = () => {
     const cardsList = useSelector(getCardsList);
     const disptach = useDispatch();
     const { pageId } = useParams();
+    const navigate = useNavigate()
     // const navigate = useNavigate();
 
     useEffect(() => {
+        if (pageId > 20) {
+            navigate('/notfound')
+            return
+        }
         if ((cardsList?.[+pageId]) || !pageId) return;
         disptach(requestCardsDatas(+pageId));
     }, [pageId])
-
-    console.log(cardsList);
 
     // useEffect(() => {
     //     navigate('/');

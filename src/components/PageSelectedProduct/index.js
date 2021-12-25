@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation, useParams, useNavigate } from "react-router-dom";
 import { requestCardsDatas } from "../../store/cards/action";
 import { getCardsList, getSelectedCard } from "../../store/cards/selectors";
 import { AdditionalProducts } from "../AdditionalProducts";
@@ -17,6 +17,7 @@ export const PageSelectedProduct = () => {
     let cardInfoProp = useLocation()?.state?.cardInfo;
     const [card, setCard] = useState({});
     const { productId } = useParams();
+    const navigate = useNavigate()
     const selectedCard = useSelector(getSelectedCard);
     const cardsList = useSelector(getCardsList)?.[Math.ceil(+productId / 12)];
     // const selectedCard = useSelector(getSelectedCard(+productId, cardsList))
@@ -36,6 +37,12 @@ export const PageSelectedProduct = () => {
         // cardInfo = cardsList?.productId;
         
     }, [cardInfoProp, selectedCard])
+
+    useEffect(() => {
+        debugger
+        if (productId <= 240) return;
+        navigate('/notfound')
+    }, [productId])
 
     return (
         <>

@@ -1845,8 +1845,8 @@ body {
   font-weight: 300;
   font-style: normal;
   margin: 0 20px 0 0;
-  font-size: 11px;
-  line-height: 13px;
+  font-size: 14px;
+  line-height: 15px;
   color: #000000;
 }
 
@@ -1873,9 +1873,9 @@ body {
   font-family: lato, sans-serif;
   font-weight: 300;
   font-style: normal;
-  font-size: 13px;
+  font-size: 14px;
   line-height: 16px;
-  color: #b1b1b1;
+  color: #858585;
   margin: 15.5px 0 0 0;
 }
 

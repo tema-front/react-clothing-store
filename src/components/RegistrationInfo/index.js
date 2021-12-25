@@ -9,7 +9,7 @@ export const RegistrationInfo = () => {
             <li>Free shipping, returns and exchanges on all orders</li>
             <li>$10 off a purchase on your birthday</li>
             <li>Early access to products</li>
-            <li>Exclusive offers & rewards</li>
+            <li>Exclusive offers {'\u0026'} rewards</li>
         </ul>
     </div>
     );

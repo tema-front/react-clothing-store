@@ -14,7 +14,7 @@ export const CartListItem = ({cards}) => {
         {cards?.map(card => (
             <div className="products-added-item" key={card.id}>
                 <div className="products-added-item-img-wrp">
-                    <img className="products-item-img" src={`https://picsum.photos/id/${card.id + 8}/200/233`} alt="product-item" height="306" width='262' />
+                    <img className="products-item-img" src={`https://picsum.photos/id/${card.id + 8}/262/306`} alt="product-item" height="306" width='262' />
                 </div>
                 {/* <img src="./img/.jpg/main_product_3.jpg" className="products-added-item-img" alt="products-item" height="306"> */}
                 <div className="products-added-item-info">

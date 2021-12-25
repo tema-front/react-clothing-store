@@ -1,7 +1,7 @@
 export const Profile = () => {
     return (
         <div>
-            Profile
+            Profile, Hello, Masha
         </div>
     );
 }

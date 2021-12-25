@@ -1,11 +1,11 @@
-import { ADD_CARD } from "./action"
+import { ADD_CARD, ADD_RANDOM_CARD, ADD_SELECTED_CARD } from "./action"
 // import product_12009 from '../../img/.jpg/products_card/product_12009.jpg'
 // import product_12019 from '../../img/.jpg/products_card/product_12019.jpg'
 // import product_12029 from '../../img/.jpg/products_card/product_12029.jpg'
 // import product_12039 from '../../img/.jpg/products_card/product_12039.jpg'
 // import product_12049 from '../../img/.jpg/products_card/product_12049.jpg'
 // import product_12059 from '../../img/.jpg/products_card/product_12059.jpg'
-// https://picsum.photos/200/200?random=${cardInfo.id}
+// https://picsum.photos/{width}/{heiht}?random=${cardInfo.id}
 const initialState = {
     // cardsList: [
     //     // {page1: [{title: 'jacket', description: '', price: '52', category: '', brand: '', designer: '', size: '', id: product_12009}]},
@@ -17,7 +17,10 @@ const initialState = {
     //     // {title: 'blazer', description: '', price: '70', category: '', brand: '', designer: '', size: '', id: product_12049},
     //     // {title: 'shirt', description: '', price: '36', category: '', brand: '', designer: '', size: '', id: product_12059},
     // ]
-    cardsList: {}
+    cardsList: {},
+    cardsRandomList: [],
+    cardSelected: {}
+
 }
 
 export const cardsReducer = (state = initialState, {type, payload}) => {
@@ -30,6 +33,23 @@ export const cardsReducer = (state = initialState, {type, payload}) => {
                         {title: payload.cardInfo.name, description: payload.cardInfo.body, id: payload.cardInfo.id, price: Math.floor(Math.random() * 100) + 21}
                     ]
                 }
+            }
+        }
+
+        case ADD_RANDOM_CARD: {
+            return {
+                ...state, 
+                cardsRandomList: [...state.cardsRandomList, 
+                    {title: payload.cardInfo.name, description: payload.cardInfo.body, id: payload.cardInfo.id, price: Math.floor(Math.random() * 100) + 21}
+                ]
+            }
+        }
+
+        case ADD_SELECTED_CARD: {
+            const newCardSelected = {title: payload.cardInfo.name, description: payload.cardInfo.body, id: payload.cardInfo.id, price: Math.floor(Math.random() * 100) + 21}
+            return {
+                ...state, 
+                    cardSelected: newCardSelected
             }
         }
 

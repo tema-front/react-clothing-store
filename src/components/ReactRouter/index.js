@@ -3,6 +3,7 @@ import { Cart } from '../Cart';
 import { Catalog } from '../Catalog';
 import { HomePage } from '../HomePage';
 import { NotFound } from '../NotFound';
+import { PageSelectedProduct } from '../PageSelectedProduct';
 import { Profile } from '../Profile';
 
 export const ReactRouter = () => {
@@ -16,7 +17,9 @@ export const ReactRouter = () => {
             </Route>
             <Route path='/profile' element={<Profile />} />
             <Route path='/cart' element={<Cart />} />
-            
+            <Route path='/product' element={<PageSelectedProduct />}>
+                    <Route path=':productId' element={<PageSelectedProduct />}/>
+            </Route>
 
             <Route path="/" element={<Navigate replace to="/home" />} />
             <Route path='*'  element={<NotFound />} />

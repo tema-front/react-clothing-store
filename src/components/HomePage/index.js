@@ -12,7 +12,7 @@ import { Footer } from "../Footer";
 import { getCardsList, getHomeCardsList } from "../../store/cards/selectors";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { requstCardsDatas } from "../../store/cards/action";
+import { requestCardsDatas } from "../../store/cards/action";
 
 export const HomePage = () => {
     // const homeCardsList = useSelector(getHomeCardsList);
@@ -22,9 +22,14 @@ export const HomePage = () => {
 
     useEffect(() => {
         debugger
-        if (cardsList?.[1]) return;
-        dispatch(requstCardsDatas(1));
+        if (cardsList?.[1]?.length === 12) return;
+        dispatch(requestCardsDatas(1));
     }, [])
+
+    const goTopPage = () => {
+        document.body.scrollTop = 0; // For Safari
+        document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+    }
 
     return (
         <>
@@ -38,7 +43,7 @@ export const HomePage = () => {
                 </div>
                 <ProductCard cards={cardsList?.[1]?.slice(0, 6)}/>
             <div className="products-btn-wrap">
-                <Link to={'/catalog/1'} className="products-btn">Browse&nbsp;All&nbsp;Product</Link>
+                <Link to={'/catalog/1'} className="products-btn" onClick={goTopPage}>Browse&nbsp;All&nbsp;Product</Link>
             </div>
             </section>
             <Features />

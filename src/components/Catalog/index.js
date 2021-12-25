@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { useNavigate  } from "react-router-dom";
-import { requstCardsDatas } from "../../store/cards/action";
+import { requestCardsDatas } from "../../store/cards/action";
 import { getCardsList } from "../../store/cards/selectors";
 import { CatalogSettings } from "../CatalogSettings";
 import { Features } from "../Features";
@@ -20,7 +20,7 @@ export const Catalog = () => {
 
     useEffect(() => {
         if ((cardsList?.[+pageId]) || !pageId) return;
-        disptach(requstCardsDatas(+pageId));
+        disptach(requestCardsDatas(+pageId));
     }, [pageId])
 
     console.log(cardsList);
@@ -32,7 +32,7 @@ export const Catalog = () => {
 
     return (
         <>
-        <Header isCatalog={true} isNavigate={true} title={'new arrivals'}/>
+        <Header isCatalog={true} isNavigate={true} title={'catalog'}/>
         <main className="content-catalog">
             <CatalogSettings />  
         <section className="catalog-products products">

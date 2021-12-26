@@ -7,7 +7,6 @@ export const getCartPrice = (state) => {
             price = price + state.stateCart.cartList[key].price;
         }
         return price;
-        console.log(state.stateCart.cartList); 
     }
 
     return 0;

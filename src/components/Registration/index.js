@@ -1,12 +1,13 @@
 import { onAuthStateChanged } from "firebase/auth";
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { singUp, auth } from "../../services/firebase";
+import { offAuth, onAuth } from "../../store/profile/actions";
 
 export const Registration = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [authed, setAuthed] = useState(false)
-
+    const dispatch = useDispatch();
 
     const handleEmail = (event) => {
         setEmail(event.target.value)
@@ -23,14 +24,16 @@ export const Registration = () => {
         } catch (error) {
             console.log(error);
         }
+        setEmail('');
+        setPassword('');
     }
 
     useEffect(() => {
         const subscribe = onAuthStateChanged(auth, (user) => {
             if (user) {
-                setAuthed(true);
+                dispatch(onAuth);
             } else {
-                setAuthed(false);
+                dispatch(offAuth)
             }
         })
         return subscribe;

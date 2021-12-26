@@ -2,10 +2,12 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
 import thunk from 'redux-thunk';
 import { cardsReducer } from './cards/reducer'
 import { cartReducer } from './cart/reducer'
+import { profileReducer } from './profile/reducer';
 
 const rootReducer = combineReducers({
     stateCards: cardsReducer,
-    stateCart: cartReducer
+    stateCart: cartReducer,
+    stateProfile: profileReducer
 })
 
 const composeEnhancert = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

@@ -1,0 +1,1 @@
+export const getAuthed = (state) => state.stateProfile.authed

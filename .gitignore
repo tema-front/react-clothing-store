@@ -12,6 +12,7 @@
 /public/1favicon.ico
 Supplements.txt
 /src/styles/css/style.css.map
+/src/services/firebase.js
 
 
 # testing

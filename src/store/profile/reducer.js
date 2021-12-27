@@ -1,4 +1,4 @@
-import { AUTH_LOGIN, AUTH_LOGOUT } from "./actions"
+import { AUTH_LOGIN, AUTH_LOGOUT, SET_NAME } from "./actions"
 
 const initialState = {
     authed: false,
@@ -18,6 +18,15 @@ export const profileReducer = (state = initialState, { type, payload }) => {
             return {
                 ...state,
                 authed: false
+            }
+        }
+
+        case SET_NAME: {
+            debugger
+            console.log(payload);
+            return {
+                ...state,
+                name: payload
             }
         }
 

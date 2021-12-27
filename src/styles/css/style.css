@@ -750,9 +750,15 @@ body {
 
 .products-item-btn:hover {
   border: 1px solid #000;
+  cursor: pointer;
   color: #000;
   background-color: #fff;
   fill: #000;
+}
+
+.products-item-btn:active {
+  -webkit-transform: scale(105%);
+          transform: scale(105%);
 }
 
 .products-item-btn > svg {
@@ -1751,6 +1757,39 @@ body {
       flex-wrap: nowrap;
   margin: 64px auto 96px auto;
   padding: 0px 17px;
+}
+
+.registration-have-account-txt {
+  font-family: lato, sans-serif;
+  font-weight: 300;
+  font-style: normal;
+  margin: 0 0 20px 0;
+  font-size: 24px;
+  line-height: 29px;
+  color: #000000;
+}
+
+.registration-have-account-btn {
+  font-family: lato, sans-serif;
+  font-weight: 300;
+  font-style: normal;
+  border: none;
+  border-bottom: 2px solid #f16d7f;
+  background-color: transparent;
+  margin: 0 0 0 10px;
+  color: #242424;
+  cursor: pointer;
+  font-size: 24px;
+  line-height: 29px;
+}
+
+.registration-have-account-btn:hover {
+  color: #f16d7f;
+}
+
+.registration-have-account-btn:active {
+  -webkit-transform: scale(105%);
+          transform: scale(105%);
 }
 
 .registration-form-inputs {

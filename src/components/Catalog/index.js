@@ -17,7 +17,6 @@ export const Catalog = () => {
     const disptach = useDispatch();
     const { pageId } = useParams();
     const navigate = useNavigate()
-    // const navigate = useNavigate();
 
     useEffect(() => {
         if (pageId > 20) {
@@ -28,10 +27,9 @@ export const Catalog = () => {
         disptach(requestCardsDatas(+pageId));
     }, [pageId])
 
-    // useEffect(() => {
-    //     navigate('/');
-    //     navigate(`/catalog/${pageId}`);
-    // }, [])
+    useEffect(() => {
+        navigate(`/catalog/1`);
+    }, [])
 
     return (
         <>

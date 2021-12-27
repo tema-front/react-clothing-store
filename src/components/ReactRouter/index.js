@@ -4,7 +4,7 @@ import { Catalog } from '../Catalog';
 import { HomePage } from '../HomePage';
 import { NotFound } from '../NotFound';
 import { PageSelectedProduct } from '../PageSelectedProduct';
-import { Profile } from '../Profile';
+import { PageProfile } from '../PageProfile';
 
 export const ReactRouter = () => {
     return (
@@ -15,7 +15,7 @@ export const ReactRouter = () => {
             <Route path='/catalog' element={<Catalog />}>
                     <Route path=':pageId' element={<Catalog />}/>
             </Route>
-            <Route path='/profile' element={<Profile />} />
+            <Route path='/profile' element={<PageProfile />} />
             <Route path='/cart' element={<Cart />} />
             <Route path='/product' element={<PageSelectedProduct />}>
                     <Route path=':productId' element={<PageSelectedProduct />}/>

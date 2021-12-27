@@ -1,5 +1,5 @@
 
-export const RegistrationInfo = () => {
+export const RegistrationPrivileges = () => {
     return (
     <div class="registration-info">
         <span class="registration-info-title">loyalty has its perks</span>

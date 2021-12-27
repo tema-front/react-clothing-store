@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useLocation, useParams, useNavigate } from "react-router-dom";
-import { requestCardsDatas } from "../../store/cards/action";
+import { addSelectedCard, requestCardsDatas } from "../../store/cards/action";
 import { getCardsList, getSelectedCard } from "../../store/cards/selectors";
 import { AdditionalProducts } from "../AdditionalProducts";
 import { Feedback } from "../Feedback";
@@ -25,7 +25,8 @@ export const PageSelectedProduct = () => {
     useEffect(() => {
         debugger
         if (cardInfoProp) {
-            setCard(cardInfoProp)
+            setCard(cardInfoProp);
+            dispatch(addSelectedCard(cardInfoProp))
         } else if (!Object.keys(card).length) {
             dispatch(requestSelectedCard(+productId));
             setCard(selectedCard);

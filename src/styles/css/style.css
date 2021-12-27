@@ -1067,7 +1067,8 @@ body {
 }
 
 .catalog-filter {
-  display: none;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   background-color: #ffffff;
   padding: 13px 33px;
   width: 100%;
@@ -1076,7 +1077,7 @@ body {
           box-shadow: 6px 4px 35px rgba(0, 0, 0, 0.21);
   position: absolute;
   left: 0;
-  top: -14px;
+  top: -16px;
   z-index: 10;
 }
 

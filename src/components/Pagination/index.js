@@ -64,8 +64,8 @@ debugger
                     {(pageId < lastPage - 3) && 
                         ( 
                             <>
-                            <li className="products-pagination-numbers-list-item products-pagination-numbers-list-item-ellipsis-right">...</li>
-                            <li><Link onClick={goTopPage} className="products-pagination-numbers-list-item" to={`/catalog/${lastPage}`}>{lastPage}</Link></li>
+                            <li key={'toTheEndEllipsis'} className="products-pagination-numbers-list-item products-pagination-numbers-list-item-ellipsis-right">...</li>
+                            <li key={'toTheEnd'}><Link onClick={goTopPage} className="products-pagination-numbers-list-item" to={`/catalog/${lastPage}`}>{lastPage}</Link></li>
                             </>
                         )
                     

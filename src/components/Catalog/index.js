@@ -30,7 +30,7 @@ export const Catalog = () => {
     }, [pageId])
 
     useEffect( async () => {
-        // for (let page = 10; page <= 20; page++) {
+        // for (let page = 1; page <= 20; page++) {
         //     let cardsStart = 12 * page - 12 + 1
         //     // let cardsStart = 12 * page - 12 + 1
 
@@ -49,7 +49,8 @@ export const Catalog = () => {
         //                 title: result.name,
         //                 description: result.body,
         //                 id: result.id,
-        //                 price: Math.floor(Math.random() * 100) + 21
+        //                 price: Math.floor(Math.random() * 100) + 21,
+        //                 category: ['men', 'women', 'kids', 'accesories'][Math.floor(Math.random() * 4)]
         //             })
         
         //         } catch(error) {
@@ -58,7 +59,6 @@ export const Catalog = () => {
         //         }
         //     }
         // }
-    // if (pageId === 1) cardsStart = 1;
 
         navigate(`/catalog/1`);
     }, []);

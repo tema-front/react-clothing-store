@@ -48,10 +48,11 @@ export const cardsReducer = (state = initialState, {type, payload}) => {
         }
 
         case ADD_SELECTED_CARD: {
-            const newCardSelected = {title: payload.cardInfo.name, description: payload.cardInfo.body, id: payload.cardInfo.id, price: Math.floor(Math.random() * 100) + 21}
+            debugger
+            const newCardSelected = payload?.cardInfo
             return {
                 ...state, 
-                    cardSelected: newCardSelected
+                cardSelected: newCardSelected
             }
         }
 

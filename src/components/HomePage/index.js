@@ -18,7 +18,6 @@ import { db } from "../../services/firebase";
 
 export const HomePage = () => {
     const cardsList = useSelector(getCardsList);
-    const [firebaseCardsList, setFirebaseCardsList] = useState([]);
 
     const dispatch = useDispatch();
 

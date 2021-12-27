@@ -20,7 +20,7 @@ const addRandomCard = (cardInfo) => ({
     }
 })
 
-const addSelectedCard = (cardInfo) => ({
+export const addSelectedCard = (cardInfo) => ({
     type: ADD_SELECTED_CARD,
     payload: {
         cardInfo
@@ -65,20 +65,19 @@ export const requestRandomCard = () => async (dispatch) => {
     }
 }
 
-export const requestSelectedCard = (cardId) => async (dispatch) => {
-    debugger
-    try {
-        const request = await fetch(`https://jsonplaceholder.typicode.com/comments/${cardId}`);
-        if (!request.ok) {
-            throw new Error('Error request.ok');
-        }
-        const result = await request.json()
-        dispatch(addSelectedCard(result))
-    } catch(error) {
-        console.log(error);
-        // dispatch()
-    }
-}
+// export const requestSelectedCard = (cardId) => async (dispatch) => {
+//     try {
+//         const request = await fetch(`https://jsonplaceholder.typicode.com/comments/${cardId}`);
+//         if (!request.ok) {
+//             throw new Error('Error request.ok');
+//         }
+//         const result = await request.json()
+//         dispatch(addSelectedCard(result))
+//     } catch(error) {
+//         console.log(error);
+//         // dispatch()
+//     }
+// }
 
 
 
@@ -102,31 +101,21 @@ export const requestCardsDatas = (pageId) => async (dispatch, getState) => {
         }
 }
 
-
-
- const setFirebaseCardsDatas = () => async (dispatch, getState) => {
+export const requestSelectedCard = (cardId) => async (dispatch) => {
     debugger
-    let cardsStart = 13
-    // if (pageId === 1) cardsStart = 1;
-    for (let id = cardsStart; id < cardsStart + 12; id++) {
-
-        try {
-            const request = await fetch(`https://jsonplaceholder.typicode.com/comments/${id}`);
-            if (!request.ok) {
-                throw new Error('Error request.ok');
-            }
-            const result = await request.json()
-            // dispatch(addCard(result, pageId))
-            set(ref(db, `catalog/page2/${result.id - 12}`), {
-                title: result.name,
-                description: result.body,
-                id: result.id,
-                price: Math.floor(Math.random() * 100) + 21
-            })
-
-        } catch(error) {
-            console.log(error);
-            // dispatch()
-        }
+    const pageId = Math.ceil(cardId / 12);
+    const cardSerialNumber = cardId - (Math.floor(cardId / 12) * 12);
+    if (cardId <= 12) cardSerialNumber = cardId;
+    try {
+        debugger
+        const selectedPageDbRef = ref(db, `catalog/page${pageId}/${cardSerialNumber}`);
+        await onValue(selectedPageDbRef, (snapshot) => {
+            debugger
+            const datasSelectedCard = snapshot.val();
+            dispatch(addSelectedCard(datasSelectedCard))
+        })
+    } catch(error) {
+        console.log(error);
+        // dispatch()
     }
 }

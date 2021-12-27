@@ -19,22 +19,24 @@ const initialState = {
     // ]
     cardsList: {},
     cardsRandomList: [],
-    cardSelected: {}
+    cardSelected: {},
+
+
 
 }
 
 export const cardsReducer = (state = initialState, {type, payload}) => {
     switch (type) {
-        case ADD_CARD: {
-            return {
-                ...state, 
-                cardsList: {...state.cardsList, 
-                    [payload.pageId]: [...state.cardsList[payload.pageId] || [],
-                        {title: payload.cardInfo.name, description: payload.cardInfo.body, id: payload.cardInfo.id, price: Math.floor(Math.random() * 100) + 21}
-                    ]
-                }
-            }
-        }
+        // case ADD_CARD: {
+        //     return {
+        //         ...state, 
+        //         cardsList: {...state.cardsList, 
+        //             [payload.pageId]: [...state.cardsList[payload.pageId] || [],
+        //                 {title: payload.cardInfo.name, description: payload.cardInfo.body, id: payload.cardInfo.id, price: Math.floor(Math.random() * 100) + 21}
+        //             ]
+        //         }
+        //     }
+        // }
 
         case ADD_RANDOM_CARD: {
             return {
@@ -52,6 +54,21 @@ export const cardsReducer = (state = initialState, {type, payload}) => {
                     cardSelected: newCardSelected
             }
         }
+
+
+    
+        // FIREBASE
+
+        case ADD_CARD: {
+            debugger
+            return {
+                ...state, 
+                cardsList: {...state.cardsList, 
+                    [payload.pageId]: [...state.cardsList[payload.pageId] || [], ...payload.cardInfo]
+                }
+            }
+        }
+
 
         default: return state;
     }

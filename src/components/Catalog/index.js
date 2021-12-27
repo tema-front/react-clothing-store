@@ -1,7 +1,9 @@
+import { ref, set } from "firebase/database";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { db } from "../../services/firebase";
 import { requestCardsDatas } from "../../store/cards/action";
 import { getCardsList } from "../../store/cards/selectors";
 import { CatalogSettings } from "../CatalogSettings";
@@ -27,9 +29,39 @@ export const Catalog = () => {
         disptach(requestCardsDatas(+pageId));
     }, [pageId])
 
-    useEffect(() => {
+    useEffect( async () => {
+        // for (let page = 10; page <= 20; page++) {
+        //     let cardsStart = 12 * page - 12 + 1
+        //     // let cardsStart = 12 * page - 12 + 1
+
+        //     for (let id = cardsStart; id < cardsStart + 12; id++) {
+        
+        //         try {
+        //             const request = await fetch(`https://jsonplaceholder.typicode.com/comments/${id}`);
+        //             if (!request.ok) {
+        //                 throw new Error('Error request.ok');
+        //             }
+        //             debugger
+        //             const result = await request.json()
+        //             // dispatch(addCard(result, pageId))
+        //             // 1 - 12   13 - 12    25 - 24      37 - 36      49 -48
+        //             set(ref(db, `catalog/page${page}/${id - cardsStart + 1}`), {
+        //                 title: result.name,
+        //                 description: result.body,
+        //                 id: result.id,
+        //                 price: Math.floor(Math.random() * 100) + 21
+        //             })
+        
+        //         } catch(error) {
+        //             console.log(error);
+        //             // dispatch()
+        //         }
+        //     }
+        // }
+    // if (pageId === 1) cardsStart = 1;
+
         navigate(`/catalog/1`);
-    }, [])
+    }, []);
 
     return (
         <>

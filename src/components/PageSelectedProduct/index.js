@@ -23,7 +23,6 @@ export const PageSelectedProduct = () => {
     // const selectedCard = useSelector(getSelectedCard(+productId, cardsList))
     
     useEffect(() => {
-        debugger
         if (cardInfoProp) {
             setCard(cardInfoProp);
             dispatch(addSelectedCard(cardInfoProp))
@@ -40,14 +39,13 @@ export const PageSelectedProduct = () => {
     }, [cardInfoProp, selectedCard])
 
     useEffect(() => {
-        debugger
         if (productId <= 240) return;
         navigate('/notfound')
     }, [productId])
 
     return (
         <>
-        <Header isCatalog={true} title={'card.category will be here'}/>
+        <Header isCatalog={true} title={selectedCard.category}/>
         <main class="content-product">
             {/* <SliderSelectedProduct cardId={cardsList?.[+productId - 1]?.id}/>
             <SelectedProductInfo cardInfo={cardsList?.[+productId - 1]} />

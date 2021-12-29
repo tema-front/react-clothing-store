@@ -1,4 +1,4 @@
-import { ref, set } from "firebase/database";
+import { onValue, ref, set } from "firebase/database";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useParams } from "react-router-dom";
@@ -59,6 +59,44 @@ export const Catalog = () => {
         //         }
         //     }
         // }
+        // debugger
+        // const database = ref(db, `catalog/page1}`);
+        // onValue(database, (snapshot) => {
+        //     debugger
+        //     const datasAdditionalCard = snapshot.val();
+        //     console.log(datasAdditionalCard);
+        //     // if (datasAdditionalCard?.category === selectedCardCategory && i !== 3) {
+        //         // i++;
+        //     // } else {
+        //         // requestRandomCard(selectedCardCategory);
+        //     // }
+        // })
+        // let numberCard = 1;
+        // let newPageId = 1;
+        // for (let i = 1; i <= 20; i ++) {
+        //     const pagesDatabase = ref(db, `catalog/page${i}/`);
+        //     onValue(pagesDatabase, (snapshot) => {
+        //         debugger
+        //         const datasPage = snapshot.val();
+        //         datasPage?.forEach(card => {
+        //             if (numberCard === 13) {
+        //                 newPageId++;
+        //                 numberCard = 1;
+        //             }
+        //             if (card.category === 'accesories') {
+        //                 set(ref(db, `catalog/categoryAccesories/page${newPageId}/${numberCard}`), {
+        //                     title: card.title,
+        //                     description: card.description,
+        //                     id: card.id,
+        //                     price: card.price,
+        //                     category: card.category
+        //                 })
+        //                 numberCard++;
+        //             }
+        //         })
+        //     })
+        // }
+
 
         navigate(`/catalog/1`);
     }, []);

@@ -11,7 +11,7 @@ export const SelectedProductInfo = ({ cardInfo }) => {
     return (
         <section class="product-selected-info">
             <div class="product-selected-info-wrp">
-                <span class="product-selected-category-name">women collection</span>
+                <span class="product-selected-category-name">{cardInfo.category} collection</span>
                 <span class="product-selected-title">{cardInfo?.title}</span>
                 <p class="product-selected-info-txt">{cardInfo?.description}</p>
                 <span class="product-selected-price">${cardInfo?.price}</span>

@@ -39,16 +39,14 @@ export const cardsReducer = (state = initialState, {type, payload}) => {
         // }
 
         case ADD_RANDOM_CARD: {
+            debugger
             return {
                 ...state, 
-                cardsRandomList: [...state.cardsRandomList, 
-                    {title: payload.cardInfo.name, description: payload.cardInfo.body, id: payload.cardInfo.id, price: Math.floor(Math.random() * 100) + 21}
-                ]
+                cardsRandomList: [...state.cardsRandomList, payload.cardInfo]
             }
         }
 
         case ADD_SELECTED_CARD: {
-            debugger
             const newCardSelected = payload?.cardInfo
             return {
                 ...state, 
@@ -61,7 +59,6 @@ export const cardsReducer = (state = initialState, {type, payload}) => {
         // FIREBASE
 
         case ADD_CARD: {
-            debugger
             return {
                 ...state, 
                 cardsList: {...state.cardsList, 

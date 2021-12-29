@@ -9,7 +9,7 @@ export const Categories = () => {
     ]);
 
     const openProductsCategory = (id) => {
-        alert(id)
+        // alert(id)
     }
 
 

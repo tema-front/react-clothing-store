@@ -7,7 +7,6 @@ export const Pagination = ({pageId}) => {
     const lastPage = 20;
 
     useEffect(() => {
-debugger
         let newPaginationNumbers = []
         if (Number(pageId) <= 4) {
             setPaginationMoreThree(false)

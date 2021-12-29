@@ -47,23 +47,23 @@ export const addSelectedCard = (cardInfo) => ({
 //     }
 // }
 
-export const requestRandomCard = () => async (dispatch) => {
-    debugger
-    for (let i = 1; i <= 3; i++) {
-        const randomCardId = Math.floor(Math.random() * (240 - 1) + 1);
-        try {
-            const request = await fetch(`https://jsonplaceholder.typicode.com/comments/${randomCardId}`);
-            if (!request.ok) {
-                throw new Error('Error request.ok');
-            }
-            const result = await request.json()
-            dispatch(addRandomCard(result))
-        } catch(error) {
-            console.log(error);
-            // dispatch()
-        }
-    }
-}
+// export const requestRandomCard = () => async (dispatch) => {
+//     debugger
+//     for (let i = 1; i <= 3; i++) {
+//         const randomCardId = Math.floor(Math.random() * (240 - 1) + 1);
+//         try {
+//             const request = await fetch(`https://jsonplaceholder.typicode.com/comments/${randomCardId}`);
+//             if (!request.ok) {
+//                 throw new Error('Error request.ok');
+//             }
+//             const result = await request.json()
+//             dispatch(addRandomCard(result))
+//         } catch(error) {
+//             console.log(error);
+//             // dispatch()
+//         }
+//     }
+// }
 
 // export const requestSelectedCard = (cardId) => async (dispatch) => {
 //     try {
@@ -84,21 +84,19 @@ export const requestRandomCard = () => async (dispatch) => {
 // FIREBASE
 
 export const requestCardsDatas = (pageId) => async (dispatch, getState) => {
-
-
-        try {
+    try {
+        debugger
+        const catalogDbRef = ref(db, `catalog/page${pageId}`);
+        await onValue(catalogDbRef, (snapshot) => {
             debugger
-            const catalogDbRef = ref(db, `catalog/page${pageId}`);
-            await onValue(catalogDbRef, (snapshot) => {
-                debugger
-                const datas = snapshot.val();
-                const datasArr = Object.values(datas || {})
-                dispatch(addCard(datasArr, pageId))
-            })
-        } catch(error) {
-            console.log(error);
-            // dispatch()
-        }
+            const datas = snapshot.val();
+            const datasArr = Object.values(datas || {})
+            dispatch(addCard(datasArr, pageId))
+        })
+    } catch(error) {
+        console.log(error);
+        // dispatch()
+    }
 }
 
 export const requestSelectedCard = (cardId) => async (dispatch) => {
@@ -108,8 +106,8 @@ export const requestSelectedCard = (cardId) => async (dispatch) => {
     if (cardId <= 12) cardSerialNumber = cardId;
     try {
         debugger
-        const selectedPageDbRef = ref(db, `catalog/page${pageId}/${cardSerialNumber}`);
-        await onValue(selectedPageDbRef, (snapshot) => {
+        const selectedProductDbRef = ref(db, `catalog/page${pageId}/${cardSerialNumber}`);
+        await onValue(selectedProductDbRef, (snapshot) => {
             debugger
             const datasSelectedCard = snapshot.val();
             dispatch(addSelectedCard(datasSelectedCard))
@@ -118,4 +116,27 @@ export const requestSelectedCard = (cardId) => async (dispatch) => {
         console.log(error);
         // dispatch()
     }
+}
+
+export const requestRandomCard = (selectedCardCategory) => async (dispatch) => {
+    for (let i = 1; i <= 3; i++) {
+            let i = 0
+            debugger
+            const randomPageId =  Math.floor(Math.random() * (5 - 1) + 1);
+            const randomCardId = Math.floor(Math.random() * (4 - 1) + 1);
+    
+                const additionalProductDbRef = ref(db, `catalog/category${selectedCardCategory}/page${randomPageId}/${randomCardId}`);
+                onValue(additionalProductDbRef, (snapshot) => {
+                    debugger
+                    const datasAdditionalCard = snapshot.val();
+                    // if (datasAdditionalCard?.category === selectedCardCategory && i !== 3) {
+                        dispatch(addRandomCard(datasAdditionalCard));
+                        // i++;
+                    // } else {
+                        // requestRandomCard(selectedCardCategory);
+                    // }
+                })
+
+    }
+
 }

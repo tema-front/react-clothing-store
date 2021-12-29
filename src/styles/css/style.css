@@ -180,6 +180,81 @@ body {
   margin: 0 33px 0 0;
 }
 
+.menu {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  width: 100%;
+  max-width: 232px;
+  padding: 37px 33px 147px 33px;
+  background-color: #ffffff;
+  position: absolute;
+  top: 74px;
+  right: 0;
+  z-index: 10;
+}
+
+.menu-title {
+  font-family: lato, sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  text-transform: uppercase;
+  font-size: 14px;
+  line-height: 17px;
+  margin: 0 0 24px 0;
+}
+
+.menu-list {
+  list-style-type: none;
+  margin: 24px 0 0 0;
+}
+
+.menu-list-item {
+  font-family: lato, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  text-transform: uppercase;
+  color: #f16d7f;
+  font-size: 14px;
+  line-height: 17px;
+  margin: 14px 0 0 0;
+}
+
+.menu-list-item:first-child {
+  margin: 0;
+}
+
+.menu-list-item:first-child:hover ~ .menu-sublist:nth-child(2) {
+  display: block;
+}
+
+.menu-list-item:nth-child(3):hover ~ .menu-sublist:nth-child(4) {
+  display: block;
+}
+
+.menu-sublist {
+  display: none;
+  list-style-type: none;
+  padding: 11px 0 0 18px;
+}
+
+.menu-sublist-item {
+  font-family: lato, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 14px;
+  line-height: 17px;
+  color: #6f6e6e;
+  margin: 11px 0 0 0;
+}
+
+.menu-sublist-item:first-child {
+  margin: 0;
+}
+
+.menu-sublist:hover {
+  display: block;
+}
+
 .header-homepage-bottom {
   background-color: #f1e4e6;
   display: -webkit-box;
@@ -417,6 +492,11 @@ body {
 }
 
 .category-item:hover {
+  -webkit-transform: scale(103%);
+          transform: scale(103%);
+}
+
+.category-item:active {
   -webkit-filter: brightness(60%);
           filter: brightness(60%);
 }
@@ -509,15 +589,15 @@ body {
   cursor: pointer;
 }
 
-.products-item:hover .products-item-preview > img {
-  -webkit-filter: brightness(60%);
-          filter: brightness(60%);
-}
-
 .products-item:hover .products-item-btn {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+}
+
+.products-item:active .products-item-preview > img {
+  -webkit-filter: brightness(60%);
+          filter: brightness(60%);
 }
 
 .products-item:nth-child(1) {
@@ -737,10 +817,11 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  background-color: transparent;
+  background-color: #ffffff;
+  opacity: 0.5;
+  fill: #000;
+  color: #000;
   padding: 10px 13px;
-  color: white;
-  fill: white;
   border: 1px solid #fff;
   cursor: pointer;
   position: absolute;
@@ -752,6 +833,7 @@ body {
   border: 1px solid #000;
   cursor: pointer;
   color: #000;
+  opacity: 1;
   background-color: #fff;
   fill: #000;
 }

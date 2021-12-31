@@ -41,7 +41,7 @@ export const Catalog = () => {
         //             if (!request.ok) {
         //                 throw new Error('Error request.ok');
         //             }
-        //             debugger
+        //             
         //             const result = await request.json()
         //             // dispatch(addCard(result, pageId))
         //             // 1 - 12   13 - 12    25 - 24      37 - 36      49 -48
@@ -59,10 +59,10 @@ export const Catalog = () => {
         //         }
         //     }
         // }
-        // debugger
+        // 
         // const database = ref(db, `catalog/page1}`);
         // onValue(database, (snapshot) => {
-        //     debugger
+        //     
         //     const datasAdditionalCard = snapshot.val();
         //     console.log(datasAdditionalCard);
         //     // if (datasAdditionalCard?.category === selectedCardCategory && i !== 3) {
@@ -76,7 +76,7 @@ export const Catalog = () => {
         // for (let i = 1; i <= 20; i ++) {
         //     const pagesDatabase = ref(db, `catalog/page${i}/`);
         //     onValue(pagesDatabase, (snapshot) => {
-        //         debugger
+        //         
         //         const datasPage = snapshot.val();
         //         datasPage?.forEach(card => {
         //             if (numberCard === 13) {

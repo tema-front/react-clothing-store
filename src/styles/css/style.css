@@ -542,6 +542,9 @@ body {
 
 .product-selected-img {
   width: 100%;
+  background-size: contain;
+  height: 510px;
+  height: 100%;
 }
 
 .products {

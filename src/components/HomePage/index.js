@@ -32,7 +32,7 @@ export const HomePage = () => {
 
         // const catalogDbRef = ref(db, `catalog/page1`);
         // onValue(catalogDbRef, (snapshot) => {
-        //     debugger
+        //     
         //     const datas = snapshot.val();
         //     const datasArr = Object.values(datas || {})
         //     setFirebaseCardsList([datasArr]);

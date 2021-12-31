@@ -30,7 +30,7 @@ export const PageSelectedProduct = () => {
             dispatch(requestSelectedCard(+productId));
             setCard(selectedCard);
         }
-        // debugger
+        // 
         // console.log(productId);
         // if (cardInfo || cardsList) return
         // dispatch(requestCardsDatas(Math.ceil(+productId / 12)));
@@ -45,7 +45,7 @@ export const PageSelectedProduct = () => {
 
     return (
         <>
-        <Header isCatalog={true} title={selectedCard.category}/>
+        <Header isCatalog={true} title={'product'}/>
         <main class="content-product">
             {/* <SliderSelectedProduct cardId={cardsList?.[+productId - 1]?.id}/>
             <SelectedProductInfo cardInfo={cardsList?.[+productId - 1]} />

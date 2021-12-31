@@ -5,7 +5,7 @@ export const getSelectedCardCategory = (state) => state.stateCards.cardSelected?
 
 
 // export const getSelectedCard = (productId, cardsList) => (state) => {
-//     debugger
+//     
 //     return 
 // }
 

@@ -46,11 +46,11 @@ export const Registration = ({goToLogin}) => {
 
         try {
             await singUp(email, password);
-            // debugger
+            // 
             // const usersDbRef = ref(db, `users/${login}`);
             // onValue(usersDbRef, (snapshot) => {
             //     const datas = snapshot.val();
-            //     debugger
+            //     
             //     dispatch(setName(datas?.name))
             // })
         } catch (error) {
@@ -63,7 +63,7 @@ export const Registration = ({goToLogin}) => {
     }
 
     // const handleLogin = async (event) => {
-    //     debugger
+    //     
     //     event.preventDefault();
     //     const login = email.split('@')[0];
 
@@ -74,7 +74,7 @@ export const Registration = ({goToLogin}) => {
     //         const usersDbRef = ref(db, `users/${login}`);
     //         onValue(usersDbRef, (snapshot) => {
     //             const datas = snapshot.val();
-    //             debugger
+    //             
     //             dispatch(setName(datas?.name))
     //         })
     //     } catch (error) {
@@ -84,12 +84,12 @@ export const Registration = ({goToLogin}) => {
 
 
     // useEffect(() => {
-    //     debugger
+    //     
     //     const login = email.split('@')[0];
     //     const usersDbRef = ref(db, `users/${login}`);
     //     onValue(usersDbRef, (snapshot) => {
     //         const datas = snapshot.val();
-    //         debugger
+    //         
     //         dispatch(setName(datas?.name))
     //     })
     // }, [])

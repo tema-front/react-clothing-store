@@ -39,7 +39,6 @@ export const cardsReducer = (state = initialState, {type, payload}) => {
         // }
 
         case ADD_RANDOM_CARD: {
-            debugger
             return {
                 ...state, 
                 cardsRandomList: [...state.cardsRandomList, payload.cardInfo]

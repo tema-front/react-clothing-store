@@ -28,7 +28,7 @@ export const addSelectedCard = (cardInfo) => ({
 })
 
 // export const requestCardsDatas = (pageId) => async (dispatch, getState) => {
-//     debugger
+//     
 //     let cardsStart = 12 * pageId - 12 + 1
 //     if (pageId === 1) cardsStart = 1;
 //     for (let id = cardsStart; id < cardsStart + 12; id++) {
@@ -48,7 +48,7 @@ export const addSelectedCard = (cardInfo) => ({
 // }
 
 // export const requestRandomCard = () => async (dispatch) => {
-//     debugger
+//     
 //     for (let i = 1; i <= 3; i++) {
 //         const randomCardId = Math.floor(Math.random() * (240 - 1) + 1);
 //         try {
@@ -85,10 +85,10 @@ export const addSelectedCard = (cardInfo) => ({
 
 export const requestCardsDatas = (pageId) => async (dispatch, getState) => {
     try {
-        debugger
+        
         const catalogDbRef = ref(db, `catalog/page${pageId}`);
         await onValue(catalogDbRef, (snapshot) => {
-            debugger
+            
             const datas = snapshot.val();
             const datasArr = Object.values(datas || {})
             dispatch(addCard(datasArr, pageId))
@@ -100,15 +100,15 @@ export const requestCardsDatas = (pageId) => async (dispatch, getState) => {
 }
 
 export const requestSelectedCard = (cardId) => async (dispatch) => {
-    debugger
+    
     const pageId = Math.ceil(cardId / 12);
     const cardSerialNumber = cardId - (Math.floor(cardId / 12) * 12);
     if (cardId <= 12) cardSerialNumber = cardId;
     try {
-        debugger
+        
         const selectedProductDbRef = ref(db, `catalog/page${pageId}/${cardSerialNumber}`);
         await onValue(selectedProductDbRef, (snapshot) => {
-            debugger
+            
             const datasSelectedCard = snapshot.val();
             dispatch(addSelectedCard(datasSelectedCard))
         })
@@ -119,24 +119,40 @@ export const requestSelectedCard = (cardId) => async (dispatch) => {
 }
 
 export const requestRandomCard = (selectedCardCategory) => async (dispatch) => {
-    for (let i = 1; i <= 3; i++) {
-            let i = 0
-            debugger
-            const randomPageId =  Math.floor(Math.random() * (5 - 1) + 1);
+    // for (let i = 1; i <= 3; i++) {
             const randomCardId = Math.floor(Math.random() * (4 - 1) + 1);
     
-                const additionalProductDbRef = ref(db, `catalog/category${selectedCardCategory}/page${randomPageId}/${randomCardId}`);
+                const additionalProductDbRef = ref(db, `catalog/category${selectedCardCategory}/`);
+                // const additionalProductDbRef = ref(db, `catalog/category${selectedCardCategory}/page${randomPageId}/${randomCardId}`);
                 onValue(additionalProductDbRef, (snapshot) => {
-                    debugger
-                    const datasAdditionalCard = snapshot.val();
+                    
+                    let datasAdditionalCard = snapshot.val();
+                    let randomProductId = null;
+                    for (let i = 1; i <= 3; i++) {
+                        let randomPageId =  (Math.floor(Math.random() * (Object.keys(datasAdditionalCard).length - 1) + 1));
+                        randomPageId = `page${randomPageId}`
+                        let newRandomProductId = (Math.floor(Math.random() * (datasAdditionalCard[randomPageId].length - 2) + 1));
+                        if (newRandomProductId === randomProductId) {
+                            i--;
+                            continue;
+                        }
+                        randomProductId = newRandomProductId
+                        console.log(datasAdditionalCard[randomPageId]);
+                        dispatch(addRandomCard(datasAdditionalCard[randomPageId][randomProductId]));
+                    }
                     // if (datasAdditionalCard?.category === selectedCardCategory && i !== 3) {
-                        dispatch(addRandomCard(datasAdditionalCard));
+                        // let randomPageId =  (Math.floor(Math.random() * (Object.keys(datasAdditionalCard).length - 1) + 1));
+                        // randomPageId = `page${randomPageId}`
+                        // // const randomPageId =  (Math.floor(Math.random() * (datasAdditionalCard.length - 1) + 1));
+                        // const randomProductId = (Math.floor(Math.random() * (datasAdditionalCard[randomPageId].length - 2) + 1));
+                        // console.log(datasAdditionalCard[randomPageId]);
+                        // dispatch(addRandomCard(datasAdditionalCard[randomPageId][randomProductId]));
                         // i++;
                     // } else {
                         // requestRandomCard(selectedCardCategory);
                     // }
                 })
 
-    }
+    // }
 
 }

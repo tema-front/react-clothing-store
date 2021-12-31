@@ -12,10 +12,10 @@ export const AdditionalProducts = () => {
     const { pageId } = useParams();
 
     useEffect(() => {
-        debugger
+        
         // отчищать список рандомных карточек!
         // if (additionalCardsList.length || !Object.keys(selectedCard).length) return;
-        if (!Object.keys(selectedCard).length) return;
+        if (!Object.keys(selectedCard).length || additionalCardsList.length) return;
         // dispatch(requestRandomCard(selectedCard?.category)) 
         dispatch(requestRandomCard(selectedCard?.category?.[0]?.toUpperCase() + selectedCard?.category.slice(1)?.toLowerCase())) 
     }, [selectedCard])

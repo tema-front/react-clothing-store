@@ -30,13 +30,13 @@ export const PageProfile = () => {
 
     useEffect(() => {
         const subscribe = onAuthStateChanged(auth, (user) => {
-            debugger
+            
             if (user) {
                 const login = user.email.split('@')[0];
                 const usersDbRef = ref(db, `users/${login}`);
                 onValue(usersDbRef, (snapshot) => {
                     const datas = snapshot.val();
-                    debugger
+                    
                     dispatch(setName(datas?.name))
                 })
                 dispatch(onAuth);

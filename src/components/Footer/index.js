@@ -1,8 +1,12 @@
+import { useState } from "react";
+
 export const Footer = () => {
+    const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
+
     return (
         <footer className="footer-page">
             <section className="footer-wrap">
-                <p className="footer-copyright">&copy; 2021 Brand All Rights Reserved.</p>
+                <p className="footer-copyright">&copy; {currentYear} Brand All Rights Reserved.</p>
                 <div className="footer-page-social">
                     <a href="https://ru-ru.facebook.com/" className="footer-page-social-item" target="_blank">
                         <svg width="9" height="15" viewBox="0 0 9 15" xmlns="http://www.w3.org/2000/svg">

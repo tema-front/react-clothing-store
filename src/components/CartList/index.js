@@ -9,8 +9,7 @@ export const CartList = () => {
 
     return (
         <section className="products-added">
-            {!!cardsListToCart.length ? <CartListItem cards={cardsListToCart} /> : <div>Товаров нет</div>}
-            
+            <CartListItem cards={cardsListToCart} />
             <CartBtns />
         </section>
     );

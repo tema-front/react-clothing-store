@@ -111,7 +111,7 @@ export const Registration = ({goToLogin}) => {
                     <label class="registration-radio-btns-txt" htmlFor="registration-radio-btn-male">Male</label>
                     <input type="radio" class="registration-radio-btns-item" name="registration-radio-btn" id="registration-radio-btn-female" value="female" />
                     <label class="registration-radio-btns-txt" htmlFor="registration-radio-btn-female">Female</label>
-                    <input type="radio" class="registration-radio-btns-item" name="registration-radio-btn" id="registration-radio-btn-other" value="female" />
+                    <input type="radio" class="registration-radio-btns-item" name="registration-radio-btn" id="registration-radio-btn-other" value="other" />
                     <label class="registration-radio-btns-txt" htmlFor="registration-radio-btn-other">Other</label>
                 </div>
             </div>

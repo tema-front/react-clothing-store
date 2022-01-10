@@ -71,6 +71,9 @@ export const Catalog = () => {
         //         // requestRandomCard(selectedCardCategory);
         //     // }
         // })
+
+
+        // создание категорий на firebase
         // let numberCard = 1;
         // let newPageId = 1;
         // for (let i = 1; i <= 20; i ++) {
@@ -97,8 +100,7 @@ export const Catalog = () => {
         //     })
         // }
 
-
-        navigate(`/catalog/1`);
+        if (!pageId) navigate(`/catalog/1`);
     }, []);
 
     return (

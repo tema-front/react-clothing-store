@@ -14,7 +14,7 @@ export const SelectedProductInfo = ({ cardInfo }) => {
                 <span class="product-selected-category-name">{cardInfo.category} collection</span>
                 <span class="product-selected-title">{cardInfo?.title}</span>
                 <p class="product-selected-info-txt">{cardInfo?.description}</p>
-                <span class="product-selected-price">${cardInfo?.price}</span>
+                <span class="product-selected-price">${cardInfo?.price}.00</span>
                 <hr class="product-selected-info-trait" />
                 <div class="product-selected-setting">
                     <nav class="filter-item product-selected-filter-item">

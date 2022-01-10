@@ -1,4 +1,4 @@
-import { ADD_CARD, ADD_RANDOM_CARD, ADD_SELECTED_CARD } from "./action"
+import { ADD_CARD, ADD_RANDOM_CARD, ADD_SELECTED_CARD, CLEAR_RANDOM_LIST } from "./action"
 // import product_12009 from '../../img/.jpg/products_card/product_12009.jpg'
 // import product_12019 from '../../img/.jpg/products_card/product_12019.jpg'
 // import product_12029 from '../../img/.jpg/products_card/product_12029.jpg'
@@ -46,13 +46,19 @@ export const cardsReducer = (state = initialState, {type, payload}) => {
         }
 
         case ADD_SELECTED_CARD: {
-            const newCardSelected = payload?.cardInfo
+            // const newCardSelected = payload?.cardInfo
             return {
                 ...state, 
-                cardSelected: newCardSelected
+                cardSelected: payload?.cardInfo
             }
         }
 
+        case CLEAR_RANDOM_LIST: {
+            return {
+                ...state,
+                cardsRandomList: []
+            }
+        }
 
     
         // FIREBASE

@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom';
-import { requestRandomCard } from '../../store/cards/action';
+import { clearRandomList, requestRandomCard } from '../../store/cards/action';
 import { getAdditionalCardsList, getCardsList, getSelectedCard } from '../../store/cards/selectors';
 import { AdditionalProductsItem } from '../AdditionalProductsItem';
 
@@ -9,16 +9,23 @@ export const AdditionalProducts = () => {
     const dispatch = useDispatch();
     const additionalCardsList = useSelector(getAdditionalCardsList);
     const selectedCard = useSelector(getSelectedCard);
-    const { pageId } = useParams();
+    const { productId } = useParams();
 
     useEffect(() => {
         
         // отчищать список рандомных карточек!
+        // при открытии карточки из рандома, закрывающуюся карточку заменять местами с открывающейся
         // if (additionalCardsList.length || !Object.keys(selectedCard).length) return;
+        // additionalCardsList?.forEach(item => {
+        //     if (item.id === +productId) return
+        //     else dispatch(clearRandomList())
+        // })
+        console.log(additionalCardsList);
         if (!Object.keys(selectedCard).length || additionalCardsList.length) return;
         // dispatch(requestRandomCard(selectedCard?.category)) 
         dispatch(requestRandomCard(selectedCard?.category?.[0]?.toUpperCase() + selectedCard?.category.slice(1)?.toLowerCase())) 
     }, [selectedCard])
+
 
     return (
         <>

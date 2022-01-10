@@ -1,6 +1,8 @@
 export const ADD_CARD_TO_CART = 'CART::ADD_CARD_TO_CART';
 export const REMOVE_CARD_FROM_CART = 'CART::REMOVE_CARD_FROM_CART';
 export const EMPTY_CART = 'CART::EMRTY_CART';
+export const INCREASE_QUANTITY = 'CART::INCREASE_QUANTITY';
+export const DECREASE_QUANTITY = 'CART::DECREASE_QUANTITY';
 
 export const addCardToCart = (cardInfo) => ({
     type: ADD_CARD_TO_CART,
@@ -14,4 +16,14 @@ export const emptyCart = {
 export const removeCardFromCart = (cardId) => ({
     type: REMOVE_CARD_FROM_CART,
     payload: cardId
+})
+
+export const increaseQuantity = (cardInfo) => ({
+    type: INCREASE_QUANTITY,
+    payload: cardInfo
+})
+
+export const decreaseQuantity = (cardInfo) => ({
+    type: DECREASE_QUANTITY,
+    payload: cardInfo
 })

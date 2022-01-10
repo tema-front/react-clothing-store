@@ -4,6 +4,7 @@ import { db } from "../../services/firebase";
 export const ADD_CARD = 'CARDS::ADD_CARD';
 export const ADD_RANDOM_CARD = 'CARDS::ADD_RANDOM_CARD';
 export const ADD_SELECTED_CARD = 'CARDS::ADD_SELECTED_CARD';
+export const CLEAR_RANDOM_LIST = 'CARDS::CLEAR_RANDOM_LIST';
 
 const addCard = (cardInfo, pageId) => ({
     type: ADD_CARD,
@@ -26,6 +27,12 @@ export const addSelectedCard = (cardInfo) => ({
         cardInfo
     }
 })
+
+
+export const clearRandomList = () => ({
+    type: CLEAR_RANDOM_LIST
+})
+
 
 // export const requestCardsDatas = (pageId) => async (dispatch, getState) => {
 //     

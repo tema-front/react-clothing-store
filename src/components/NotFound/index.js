@@ -14,7 +14,7 @@ export const NotFound = () => {
                     <nav className="notfound-ways-return">
                         <ul className="notfound-ways-return-list">
                             <Link className="notfound-ways-return-list-item" to={'/home'}><li>Home</li></Link>
-                            <Link className="notfound-ways-return-list-item" to={'/catalog'}><li>Catalog</li></Link>
+                            <Link className="notfound-ways-return-list-item" to={'/catalog/1'}><li>Catalog</li></Link>
                             <Link className="notfound-ways-return-list-item" to={'/profile'}><li>Profile</li></Link>
                         </ul>
                     </nav>

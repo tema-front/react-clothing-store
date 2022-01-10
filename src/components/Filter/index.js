@@ -32,18 +32,13 @@ export const Filter = () => {
                 <ul className="catalog-filter-list"> 
                     <li className="catalog-filter-list-item">category</li>
                     <ul className="catalog-filter-sublist">
+                        <li className="catalog-filter-sublist-item"><button>Men</button></li>
+                        <li className="catalog-filter-sublist-item"><button>Women</button></li>
+                        <li className="catalog-filter-sublist-item"><button>Kids</button></li>
                         <li className="catalog-filter-sublist-item"><button>Accessories</button></li>
-                        <li className="catalog-filter-sublist-item"><button>Bags</button></li>
-                        <li className="catalog-filter-sublist-item"><button>Denim</button></li>
-                        <li className="catalog-filter-sublist-item"><button>Hoodies & Sweatshirts</button></li>
-                        <li className="catalog-filter-sublist-item"><button>Jackets & Coats</button></li>
-                        <li className="catalog-filter-sublist-item"><button>Polos</button></li>
-                        <li className="catalog-filter-sublist-item"><button>Shirts</button></li>
-                        <li className="catalog-filter-sublist-item"><button>Shoes</button></li>
-                        <li className="catalog-filter-sublist-item"><button>Sweaters & Knits</button></li>
-                        <li className="catalog-filter-sublist-item"><button>T-Shirts</button></li>
-                        <li className="catalog-filter-sublist-item"><button>Tanks</button></li>
                     </ul>
+
+
                     <li className="catalog-filter-list-item">brand</li>
                     <li className="catalog-filter-list-item">desinger</li>
                 </ul>

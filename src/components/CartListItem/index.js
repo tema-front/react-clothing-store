@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux'
-import { removeCardFromCart } from '../../store/cart/actions';
+import { decreaseQuantity, increaseQuantity, removeCardFromCart } from '../../store/cart/actions';
 
 
 export const CartListItem = ({cards}) => {
@@ -7,6 +7,14 @@ export const CartListItem = ({cards}) => {
     
     const handleRemoveCardFromCart = (cardId) => {
         dispatch(removeCardFromCart(cardId))
+    }
+
+    const handleIncreaseQuantity = (cardInfo) => {
+        dispatch(increaseQuantity(cardInfo))
+    }
+
+    const handleDecreaseQuantity = (cardInfo) => {
+        dispatch(decreaseQuantity(cardInfo))
     }
 
     return (
@@ -24,7 +32,16 @@ export const CartListItem = ({cards}) => {
                             <li>Price: <span className="products-added-item-price">${card.price}.00</span></li>
                             <li>Color: Red</li>
                             <li>Size: XL</li>
-                            <li>Quantity:</li>
+                            <li><span>Quantity:</span>
+                                
+                                {card.quantity !== 1 ? 
+                                    <button className="product-cart-quntity-btns" onClick={() => handleDecreaseQuantity(card)}>−</button>
+                                    :    
+                                    <button disabled className="disable product-cart-quntity-btns" onClick={() => handleDecreaseQuantity(card)}>−</button>
+                                }
+                                {card.quantity}
+                                <button className="product-cart-quntity-btns" onClick={() => handleIncreaseQuantity(card)}>+</button>
+                            </li>
                         </ul>
                     </div>
                     <svg onClick={() => handleRemoveCardFromCart(card.id)} className="products-added-item-cross" width="18" height="18" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">

@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export const Menu = ({ onCloseMenu }) => {
 
     const handleCloseMenu = () => {
@@ -11,26 +13,39 @@ export const Menu = ({ onCloseMenu }) => {
             </svg>   
             <span className="menu-title">menu</span>
             <ul className="menu-list">
-                <li className="menu-list-item">catalog</li>
+                <input type="checkbox" id="menu-list-item-catalog" className="menu-list-item-checkbox"/>
+                <label htmlFor="menu-list-item-catalog">
+                    <li className="menu-list-item">catalog</li>
+                </label>
                 <ul className="menu-sublist">
-                    <li className="menu-sublist-item">Men</li>
-                    <li className="menu-sublist-item">Women</li>
-                    <li className="menu-sublist-item">Kids</li>
-                    <li className="menu-sublist-item">Accessories</li>
+                    <li className="menu-sublist-item"><Link to={'/catalog/1'} className="menu-sublist-item-txt"><span>All products</span></Link></li>
+                    <li className="menu-sublist-item"><span className="menu-sublist-item-txt">Men</span></li>
+                    <li className="menu-sublist-item"><span className="menu-sublist-item-txt">Women</span></li>
+                    <li className="menu-sublist-item"><span className="menu-sublist-item-txt">Kids</span></li>
+                    <li className="menu-sublist-item"><span className="menu-sublist-item-txt">Accessories</span></li>
                 </ul>
 
 
-                <li className="menu-list-item">account</li>
+                <input type="checkbox" id="menu-list-item-account" className="menu-list-item-checkbox"/>
+                <label htmlFor="menu-list-item-account">
+                    <li className="menu-list-item">account</li>
+                </label>
                 <ul className="menu-sublist">
-                    <li className="menu-sublist-item">Profile</li>
-                    <li className="menu-sublist-item">Login</li>
-                    <li className="menu-sublist-item">Logout</li>
-                    <li className="menu-sublist-item">Registration</li>
-
+                    <li className="menu-sublist-item"><Link to={'/profile'} className="menu-sublist-item-txt"><span>Profile</span></Link></li>
+                    <li className="menu-sublist-item"><span className="menu-sublist-item-txt">Login</span></li>
+                    <li className="menu-sublist-item"><span className="menu-sublist-item-txt">Logout</span></li>
+                    <li className="menu-sublist-item"><span className="menu-sublist-item-txt">Registration</span></li>
                 </ul>
+                
 
-
-                <li className="menu-list-item">cart</li>
+                <input type="checkbox" id="menu-list-item-cart" className="menu-list-item-checkbox"/>
+                <label htmlFor="menu-list-item-cart">
+                    <li className="menu-list-item">cart</li>
+                </label>
+                <ul className="menu-sublist">
+                    <li className="menu-sublist-item"><Link to={'/cart'} className="menu-sublist-item-txt"><span className="menu-sublist-item-txt">My cart</span></Link></li>
+                    <li className="menu-sublist-item"><span className="menu-sublist-item-txt">Clear shopping cart</span></li>
+                </ul>
             </ul>
         </section>
     );

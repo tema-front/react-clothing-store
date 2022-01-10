@@ -1,11 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { browserHistory} from "react-router";
 
 export const Pagination = ({pageId}) => {
     const [paginationNumbers, setPaginationNumber] = useState([]);
     const [paginationMoreThree, setPaginationMoreThree] = useState(false);
     const lastPage = 20;
+    const listRef = useRef();
     const navigate = useNavigate();
     
 
@@ -33,6 +33,16 @@ export const Pagination = ({pageId}) => {
         document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
     }
 
+    useEffect(() => {
+        debugger
+        if (!paginationNumbers.length) return;
+        if (paginationMoreThree) {
+            listRef.current.children[2].children[0].checked = true
+        } else {
+            listRef.current.children[+pageId - 1].children[0].checked = true
+        }
+    }, [paginationNumbers])
+
     return (
         <div className="products-pagination-wrp">
             <div className="products-pagination">
@@ -49,20 +59,24 @@ export const Pagination = ({pageId}) => {
                     </svg>
                 </button>
                 }
-                <ul className="products-pagination-numbers-list">
+                <ul ref={listRef} className="products-pagination-numbers-list">
                     {paginationMoreThree ? 
                         <>
                         <li key={'BackBegin'} className="products-pagination-numbers-list-item-first">
-                            <Link onClick={() => goTopPage(1)} className="products-pagination-numbers-list-item" to={`/catalog/1`}>1</Link>...
+                            <Link onClick={() => goTopPage(1)} className="products-pagination-numbers-list-item" to={`/catalog/1`}>1...</Link>
                         </li>
                         {paginationNumbers?.map((number, i) => (
-                            <li><Link onClick={() => goTopPage(number)} key={i} className="products-pagination-numbers-list-item" to={`/catalog/${number}`}>{number} </Link> </li>
+                            <li key={i}>
+                                <input type="radio" class="pagination-radio" name="registration-radio-btn" id={`pagination-label-${number}`} value={number} />
+                                <Link onClick={() => goTopPage(number)} to={`/catalog/${number}`} class="pagination-label products-pagination-numbers-list-item">{number}</Link>
+                            </li>
                         ))}
                         </>
                         :
                         paginationNumbers?.map((number, i) => (
-                            <li>
-                                <Link onClick={() => goTopPage(number)} key={i} className="products-pagination-numbers-list-item" to={`/catalog/${number}`}>{number}</Link>
+                            <li key={i}>
+                                <input type="radio" class="pagination-radio" name="registration-radio-btn" id={`pagination-label-${number}`} value={number} />
+                                <Link onClick={() => goTopPage(number)} to={`/catalog/${number}`} class="pagination-label products-pagination-numbers-list-item">{number}</Link>
                             </li>
                         ))
                     }
@@ -70,8 +84,8 @@ export const Pagination = ({pageId}) => {
                     {(pageId < lastPage - 1) &&
                         ( 
                             <>
-                            <li key={'toTheEnd'} className="products-pagination-numbers-list-item-last">...
-                                <Link onClick={() => goTopPage(lastPage)} className="products-pagination-numbers-list-item" to={`/catalog/${lastPage}`}>{lastPage}</Link>
+                            <li key={'toTheEnd'} className="products-pagination-numbers-list-item-last">
+                                <Link onClick={() => goTopPage(lastPage)} className="products-pagination-numbers-list-item" to={`/catalog/${lastPage}`}>...{lastPage}</Link>
                             </li>
                             </>
                         )

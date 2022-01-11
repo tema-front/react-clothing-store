@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 export const Categories = () => {
     const [categories, setCategories] = useState([
@@ -17,10 +18,10 @@ export const Categories = () => {
     return (
         <section className="categories">
             {categories?.map(category => 
-                <div className="category-item" key={category.id} onClick={() => openProductsCategory(category.id)}>
+                <Link to={'/catalog/1'} className="category-item" key={category.id} onClick={() => openProductsCategory(category.id)}>
                     <span className="category-item-subtitle">{category.subtitle}</span>
                     <span className="category-item-title">{category.title}</span>
-                </div>
+                </Link>
             )}
             {/* <div className="category-item">
                 <span className="category-item-subtitle">30% off</span>

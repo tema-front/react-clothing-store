@@ -23,6 +23,7 @@ export const PageSelectedProduct = () => {
     // const selectedCard = useSelector(getSelectedCard(+productId, cardsList))
     
     useEffect(() => {
+        debugger
         if (cardInfoProp) {
             setCard(cardInfoProp);
             dispatch(addSelectedCard(cardInfoProp))

@@ -26,7 +26,6 @@ export const ProductCard = ({cards}) => {
         <div className="products-wrap">
             {cards?.map(item => (
                 <Link to={`/product/${item.id}`} state={{ cardInfo: item }} onClick={goTopPage} className="products-item" key={item.id}>
-                {/* <Link to={{ pathname: `/product/${item.id}`, state: { fromDashboard: true } }} className="products-item" key={item.id}> */}
                     <div className="products-item-preview">
                         <img className="products-item-img" src={`https://picsum.photos/id/${item.id + 8}/360/420`} alt="products-item" height="420" />
                         {/* <img className="products-item-img" src={`https://picsum.photos/id/${item.id + 8}/200/233`} alt="products-item" height="420" /> */}

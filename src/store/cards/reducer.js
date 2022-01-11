@@ -1,4 +1,4 @@
-import { ADD_CARD, ADD_RANDOM_CARD, ADD_SELECTED_CARD, CLEAR_RANDOM_LIST } from "./action"
+import { ADD_CARD, ADD_RANDOM_CARD, ADD_SELECTED_CARD, CLEAN_RANDOM_LIST } from "./action"
 // import product_12009 from '../../img/.jpg/products_card/product_12009.jpg'
 // import product_12019 from '../../img/.jpg/products_card/product_12019.jpg'
 // import product_12029 from '../../img/.jpg/products_card/product_12029.jpg'
@@ -53,7 +53,7 @@ export const cardsReducer = (state = initialState, {type, payload}) => {
             }
         }
 
-        case CLEAR_RANDOM_LIST: {
+        case CLEAN_RANDOM_LIST: {
             return {
                 ...state,
                 cardsRandomList: []

@@ -79,15 +79,15 @@ export const Catalog = () => {
         // for (let i = 1; i <= 20; i ++) {
         //     const pagesDatabase = ref(db, `catalog/page${i}/`);
         //     onValue(pagesDatabase, (snapshot) => {
-        //         
+                
         //         const datasPage = snapshot.val();
         //         datasPage?.forEach(card => {
         //             if (numberCard === 13) {
         //                 newPageId++;
         //                 numberCard = 1;
         //             }
-        //             if (card.category === 'accesories') {
-        //                 set(ref(db, `catalog/categoryAccesories/page${newPageId}/${numberCard}`), {
+        //             if (card.category === 'women') {
+        //                 set(ref(db, `categories/women/page${newPageId}/${numberCard}`), {
         //                     title: card.title,
         //                     description: card.description,
         //                     id: card.id,

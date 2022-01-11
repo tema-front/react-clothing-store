@@ -275,6 +275,15 @@ body {
   cursor: pointer;
 }
 
+.menu-list-item:hover {
+  -webkit-transform: scale(105%);
+          transform: scale(105%);
+}
+
+.menu-list-item:active {
+  color: red;
+}
+
 .menu-list-item-checkbox {
   display: none;
 }
@@ -315,8 +324,17 @@ body {
   cursor: pointer;
 }
 
+.menu-sublist-item-txt:active {
+  color: black;
+}
+
 .menu-sublist-item:first-child {
   margin: 0;
+}
+
+.menu-sublist-item:hover {
+  -webkit-transform: scale(103%);
+          transform: scale(103%);
 }
 
 .header-homepage-bottom {
@@ -324,11 +342,12 @@ body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  height: 764px;
+  max-height: 764px;
+  height: 47vw;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  padding: 0 16px 0 0;
+  padding: 0 8px 0 0;
 }
 
 .header-preview-img-man {
@@ -608,6 +627,7 @@ body {
       -ms-flex-align: center;
           align-items: center;
   background-position: center;
+  text-decoration: none;
   background-repeat: no-repeat;
   cursor: pointer;
 }
@@ -680,9 +700,9 @@ body {
 }
 
 .products-category-item-btn {
-  font-family: sans-serif;
-  font-style: normal;
+  font-family: lato, sans-serif;
   font-weight: 300;
+  font-style: normal;
   font-size: 14px;
   line-height: 17px;
   color: #636363;
@@ -1611,8 +1631,10 @@ body {
   height: 3px;
   background-color: #ef5b70;
   position: absolute;
+  margin: auto;
+  left: 0;
+  right: 0;
   top: 30px;
-  left: 45%;
 }
 
 .product-selected-title {
@@ -2399,8 +2421,8 @@ body {
 
 @media (max-width: 768px) {
   .header-brand-name-title {
-    font-size: 44px;
-    line-height: 44px;
+    font-size: 38px;
+    line-height: 38px;
   }
   .header-brand-name-subtitle {
     font-size: 24px;
@@ -2413,7 +2435,7 @@ body {
     max-width: 386px;
   }
   .header-brand-decor-block {
-    top: -9px;
+    top: -13px;
   }
   .registration {
     margin: 40px auto;
@@ -2709,6 +2731,9 @@ body {
   }
   .product-selected-filter-item {
     margin: 0 0 49px 0;
+  }
+  .product-selected-info-wrp {
+    padding: 36px 8px;
   }
   .others-products-wrap {
     -webkit-box-orient: vertical;

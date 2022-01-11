@@ -4,7 +4,7 @@ import { db } from "../../services/firebase";
 export const ADD_CARD = 'CARDS::ADD_CARD';
 export const ADD_RANDOM_CARD = 'CARDS::ADD_RANDOM_CARD';
 export const ADD_SELECTED_CARD = 'CARDS::ADD_SELECTED_CARD';
-export const CLEAR_RANDOM_LIST = 'CARDS::CLEAR_RANDOM_LIST';
+export const CLEAN_RANDOM_LIST = 'CARDS::CLEAN_RANDOM_LIST';
 
 const addCard = (cardInfo, pageId) => ({
     type: ADD_CARD,
@@ -29,8 +29,8 @@ export const addSelectedCard = (cardInfo) => ({
 })
 
 
-export const clearRandomList = () => ({
-    type: CLEAR_RANDOM_LIST
+export const cleanRandomList = () => ({
+    type: CLEAN_RANDOM_LIST
 })
 
 
@@ -92,7 +92,6 @@ export const clearRandomList = () => ({
 
 export const requestCardsDatas = (pageId) => async (dispatch, getState) => {
     try {
-        
         const catalogDbRef = ref(db, `catalog/page${pageId}`);
         await onValue(catalogDbRef, (snapshot) => {
             
@@ -106,10 +105,25 @@ export const requestCardsDatas = (pageId) => async (dispatch, getState) => {
     }
 }
 
+// export const requestAllCardsDatas = () => async (dispatch, getState) => {
+//     try {
+//         const catalogDbRef = ref(db, `catalog/page${pageId}`);
+//         await onValue(catalogDbRef, (snapshot) => {
+            
+//             const datas = snapshot.val();
+//             const datasArr = Object.values(datas || {})
+//             dispatch(addCard(datasArr, pageId))
+//         })
+//     } catch(error) {
+//         console.log(error);
+//         // dispatch()
+//     }
+// }
+
 export const requestSelectedCard = (cardId) => async (dispatch) => {
     
     const pageId = Math.ceil(cardId / 12);
-    const cardSerialNumber = cardId - (Math.floor(cardId / 12) * 12);
+    let cardSerialNumber = cardId - (Math.floor(cardId / 12) * 12);
     if (cardId <= 12) cardSerialNumber = cardId;
     try {
         
@@ -127,9 +141,9 @@ export const requestSelectedCard = (cardId) => async (dispatch) => {
 
 export const requestRandomCard = (selectedCardCategory) => async (dispatch) => {
     // for (let i = 1; i <= 3; i++) {
-            const randomCardId = Math.floor(Math.random() * (4 - 1) + 1);
+            // const randomCardId = Math.floor(Math.random() * (4 - 1) + 1);
     
-                const additionalProductDbRef = ref(db, `catalog/category${selectedCardCategory}/`);
+                const additionalProductDbRef = ref(db, `categories/${selectedCardCategory}/`);
                 // const additionalProductDbRef = ref(db, `catalog/category${selectedCardCategory}/page${randomPageId}/${randomCardId}`);
                 onValue(additionalProductDbRef, (snapshot) => {
                     

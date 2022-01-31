@@ -13,7 +13,18 @@ export const ReactRouter = () => {
             {/* <Route path='/' redirect='/homepage' element={<HomePage />} /> */}
             <Route path='/home' element={<HomePage />} />
             <Route path='/catalog' element={<Catalog />}>
-                    <Route path=':pageId' element={<Catalog />}/>
+                    <Route path=':pageId' element={<Catalog />} />
+
+                    <Route path=':category' element={<Catalog />}> 
+                        <Route path=':pageId' element={<Catalog />} />
+                        <Route path=':brand' element={<Catalog />}>
+                            <Route path=':pageId' element={<Catalog />} />
+                            <Route path=':designer' element={<Catalog />}>
+                                <Route path=':pageId' element={<Catalog />} />
+                            </Route>
+                        </Route>
+                    </Route>
+
             </Route>
             <Route path='/profile' element={<PageProfile />} />
             <Route path='/cart' element={<Cart />} />

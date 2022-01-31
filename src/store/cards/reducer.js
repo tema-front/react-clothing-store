@@ -1,4 +1,4 @@
-import { ADD_CARD, ADD_RANDOM_CARD, ADD_SELECTED_CARD, CLEAN_RANDOM_LIST } from "./action"
+import { ADD_CARD, ADD_FILTRED_CARD, ADD_RANDOM_CARD, ADD_SELECTED_CARD, ALL_PRODUCTS_LOADED, CLEAN_FILTRED_LIST, CLEAN_RANDOM_LIST } from "./actions"
 // import product_12009 from '../../img/.jpg/products_card/product_12009.jpg'
 // import product_12019 from '../../img/.jpg/products_card/product_12019.jpg'
 // import product_12029 from '../../img/.jpg/products_card/product_12029.jpg'
@@ -20,8 +20,8 @@ const initialState = {
     cardsList: {},
     cardsRandomList: [],
     cardSelected: {},
-
-
+    allCatalogLoaded: false,
+    cardsListFiltred: {}
 
 }
 
@@ -60,15 +60,45 @@ export const cardsReducer = (state = initialState, {type, payload}) => {
             }
         }
 
+        case CLEAN_FILTRED_LIST: {
+            
+            return {
+                ...state, 
+                cardsListFiltred: {}
+            }
+        }
+
     
         // FIREBASE
 
         case ADD_CARD: {
+            if (state.cardsList[payload.pageId]) return state;
+            // if (Object.keys(state.cardsList).length === 19) state.allCatalogLoaded = true;
+            
             return {
                 ...state, 
                 cardsList: {...state.cardsList, 
                     [payload.pageId]: [...state.cardsList[payload.pageId] || [], ...payload.cardInfo]
                 }
+            }
+        }
+
+        case ADD_FILTRED_CARD: {
+            // if (state.cardsListFiltred[payload.pageId]) return state
+            
+            console.log(payload);
+            return {
+                ...state, 
+                cardsListFiltred: {...state.cardsListFiltred, 
+                    [payload.pageId]: [...state.cardsListFiltred[payload.pageId] || [], payload.cardInfo]
+                }
+            }
+        }
+
+        case ALL_PRODUCTS_LOADED: {
+            return {
+                ...state,
+                allCatalogLoaded: true
             }
         }
 

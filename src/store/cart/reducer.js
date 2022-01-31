@@ -8,7 +8,7 @@ export const cartReducer = (state = initialState, { type, payload}) => {
     switch (type) {
         case ADD_CARD_TO_CART: {
             const alreadyHave = state.cartList.find(card => card.id === payload.id)
-            debugger
+            
             if (alreadyHave) return state
 
             return {

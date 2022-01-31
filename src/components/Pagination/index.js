@@ -1,31 +1,53 @@
 import { useEffect, useRef, useState } from "react";
+import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+import { getCardsListFiltred } from "../../store/cards/selectors";
 
 export const Pagination = ({pageId}) => {
     const [paginationNumbers, setPaginationNumber] = useState([]);
     const [paginationMoreThree, setPaginationMoreThree] = useState(false);
-    const lastPage = 20;
+    const cardsListFiltred = useSelector(getCardsListFiltred);
+    const [lastPage, setLastPage] = useState(20);
     const listRef = useRef();
     const navigate = useNavigate();
     
+    useEffect(() => {
+        
+        if (Object.keys(cardsListFiltred).length) {
+            setLastPage(Object.keys(cardsListFiltred).length)
+        } else {
+            setLastPage(20)
+        }
+    }, [cardsListFiltred])
 
     useEffect(() => {
         let newPaginationNumbers = []
-        if (Number(pageId) <= 3) {
-            setPaginationMoreThree(false)
-            for (let i = 1; i <= 4; i++) {
-                newPaginationNumbers.push(i)
+        
+        if (Number(lastPage) >= 4) {
+            if (Number(pageId) <= 3) {
+                newPaginationNumbers = [];
+                setPaginationMoreThree(false)
+                for (let i = 1; i <= 4; i++) {
+                    newPaginationNumbers.push(i)
+                }
+                setPaginationNumber(newPaginationNumbers)
+            } else {
+                setPaginationMoreThree(true)
+                newPaginationNumbers = [];
+                for (let i = Number(pageId) - 1; i <= Number(pageId) + 1; i++) {
+                    if (i > Number(lastPage)) continue
+                    newPaginationNumbers.push(i)
+                }
+                setPaginationNumber(newPaginationNumbers);
             }
-            setPaginationNumber(newPaginationNumbers)
         } else {
-            setPaginationMoreThree(true)
-            for (let i = Number(pageId) - 1; i <= Number(pageId) + 1; i++) {
-                if (i > lastPage) continue
+            newPaginationNumbers = [];
+            for (let i = 1; i <= Number(lastPage); i++) {
                 newPaginationNumbers.push(i)
             }
             setPaginationNumber(newPaginationNumbers);
         }
-    }, [pageId])
+    }, [pageId, lastPage])
 
     const goTopPage = (moveNumber) => {
         if (+moveNumber === +pageId) return;
@@ -34,7 +56,6 @@ export const Pagination = ({pageId}) => {
     }
 
     useEffect(() => {
-        debugger
         if (!paginationNumbers.length) return;
         if (paginationMoreThree) {
             listRef.current.children[2].children[0].checked = true
@@ -81,13 +102,16 @@ export const Pagination = ({pageId}) => {
                         ))
                     }
 
-                    {(pageId < lastPage - 1) &&
+                    {(pageId < lastPage - 2) ?
                         ( 
-                            <>
                             <li key={'toTheEnd'} className="products-pagination-numbers-list-item-last">
                                 <Link onClick={() => goTopPage(lastPage)} className="products-pagination-numbers-list-item" to={`/catalog/${lastPage}`}>...{lastPage}</Link>
                             </li>
-                            </>
+                        )
+                        : ((pageId < lastPage - 1) && (lastPage >= 4) &&
+                            <li key={'toTheEnd'}>
+                                <Link onClick={() => goTopPage(lastPage)} className="products-pagination-numbers-list-item" to={`/catalog/${lastPage}`}>{lastPage}</Link>
+                            </li>  
                         )
                     }
                 </ul>

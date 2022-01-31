@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom';
-import { cleanRandomList, requestRandomCard } from '../../store/cards/action';
+import { cleanRandomList, requestRandomCard } from '../../store/cards/actions';
 import { getAdditionalCardsList, getCardsList, getSelectedCard } from '../../store/cards/selectors';
 import { AdditionalProductsItem } from '../AdditionalProductsItem';
 
@@ -9,8 +9,7 @@ export const AdditionalProducts = () => {
     const dispatch = useDispatch();
     const additionalCardsList = useSelector(getAdditionalCardsList);
     const selectedCard = useSelector(getSelectedCard);
-    const [requestExist, setRequestExist] = useState(false)
-    const [currentSelectedCardId, setCurrentSelectedCardId] = useState(0);
+    const [requestExist, setRequestExist] = useState(false);
     const [mainSelectedCard, setMainSelectedCard] = useState(0);
     const { productId } = useParams();
 
@@ -23,25 +22,24 @@ export const AdditionalProducts = () => {
             //     if (item.id === +productId) return
             //     else dispatch(clearRandomList())
             // })
-        console.log(additionalCardsList);
         if (!Object.keys(selectedCard).length || additionalCardsList.length || requestExist) return;
         // if (!mainSelectedCard) setMainSelectedCard(selectedCard.id);
-        setRequestExist(true)
+        setRequestExist(true);
         // dispatch(requestRandomCard(selectedCard?.category)) 
         dispatch(requestRandomCard(selectedCard?.category?.toLowerCase()));
     }, [selectedCard])
 
 
     useEffect(() => {
-        debugger
+        
         if (Object.keys(selectedCard).length && !mainSelectedCard) setMainSelectedCard(selectedCard.id);
-
-
+        // return (
+        //     setMainSelectedCard(0)
+        // )
     }, [selectedCard])
 
 
     useEffect(() => {
-        debugger
         if (!mainSelectedCard) return;
         if (!additionalCardsList.length) return
 
@@ -55,7 +53,7 @@ export const AdditionalProducts = () => {
 
 
     // useEffect(() => {
-    //     debugger
+    //     
     //     // 1 2 3 
     //     // 10 15 20
     //     setCurrentSelectedCardId(0)
@@ -77,7 +75,6 @@ export const AdditionalProducts = () => {
     // }, [selectedCard, currentSelectedCardId])
 
     useEffect(() => {
-        debugger
         if (additionalCardsList.length) setRequestExist(false);
         // if (!additionalCardsList.length) dispatch(requestRandomCard(selectedCard?.category?.toLowerCase()));
     }, [additionalCardsList])

@@ -22,8 +22,6 @@ export const profileReducer = (state = initialState, { type, payload }) => {
         }
 
         case SET_NAME: {
-            
-            console.log(payload);
             return {
                 ...state,
                 name: payload

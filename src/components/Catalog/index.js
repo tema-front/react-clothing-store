@@ -1,11 +1,12 @@
 import { onValue, ref, set } from "firebase/database";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { db } from "../../services/firebase";
-import { requestCardsDatas } from "../../store/cards/action";
-import { getCardsList } from "../../store/cards/selectors";
+import { allProductsLoaded, cardsFilter, requestAllCardsDatas, requestCardsDatas } from "../../store/cards/actions";
+import { getAllCatalogLoaded, getCardsList, getCardsListFiltred } from "../../store/cards/selectors";
+import { getFilters } from "../../store/filter/selectors";
 import { CatalogSettings } from "../CatalogSettings";
 import { Features } from "../Features";
 import { Feedback } from "../Feedback";
@@ -16,9 +17,13 @@ import { ProductCard } from "../ProductCard";
 
 export const Catalog = () => {
     const cardsList = useSelector(getCardsList);
-    const disptach = useDispatch();
+    const catalogLoaded = useSelector(getAllCatalogLoaded);
+    const filters = useSelector(getFilters);
+    const cardsListFiltred = useSelector(getCardsListFiltred);
+    const dispatch = useDispatch();
     const { pageId } = useParams();
-    const navigate = useNavigate()
+    const params = useParams();
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (pageId > 20) {
@@ -26,13 +31,34 @@ export const Catalog = () => {
             return
         }
         if ((cardsList?.[+pageId]) || !pageId) return;
-        disptach(requestCardsDatas(+pageId));
+        dispatch(requestCardsDatas(+pageId));
     }, [pageId])
 
-    useEffect( async () => {
+    useEffect(() => {
+        if (Object.keys(cardsList).length === 20) dispatch(allProductsLoaded);
+    }, [cardsList])
+
+    useEffect(() => {
+        if ((Object.values(filters)[0] || Object.values(filters)[1] || Object.values(filters)[2]) && !catalogLoaded) {
+            dispatch(requestAllCardsDatas());
+        }
+        // !Object.keys(selectedCard).length
+    }, [filters])
+
+    useEffect(() => {
+        
+        if ((Object.values(filters)[0] || Object.values(filters)[1] || Object.values(filters)[2]) && catalogLoaded) {
+            dispatch(cardsFilter(filters));
+        }
+    }, [catalogLoaded, filters])
+
+
+    useEffect(() => {
+        
+        console.log(params);
+        // создание карточек в firebase
         // for (let page = 1; page <= 20; page++) {
         //     let cardsStart = 12 * page - 12 + 1
-        //     // let cardsStart = 12 * page - 12 + 1
 
         //     for (let id = cardsStart; id < cardsStart + 12; id++) {
         
@@ -41,7 +67,7 @@ export const Catalog = () => {
         //             if (!request.ok) {
         //                 throw new Error('Error request.ok');
         //             }
-        //             
+                    
         //             const result = await request.json()
         //             // dispatch(addCard(result, pageId))
         //             // 1 - 12   13 - 12    25 - 24      37 - 36      49 -48
@@ -50,26 +76,26 @@ export const Catalog = () => {
         //                 description: result.body,
         //                 id: result.id,
         //                 price: Math.floor(Math.random() * 100) + 21,
-        //                 category: ['men', 'women', 'kids', 'accesories'][Math.floor(Math.random() * 4)]
+        //                 category: ['men', 'women', 'kids', 'accessories'][Math.floor(Math.random() * 4)],
+        //                 brand: ['Royal Fashion', 'EcoLime', 'UnionClothing'][Math.floor(Math.random() * 3)],
+        //                 designer: ['Coco Chanel', 'Christian Dior'][Math.floor(Math.random() * 2)]
         //             })
         
         //         } catch(error) {
-        //             console.log(error);
         //             // dispatch()
         //         }
         //     }
         // }
-        // 
+        
         // const database = ref(db, `catalog/page1}`);
         // onValue(database, (snapshot) => {
-        //     
+            
         //     const datasAdditionalCard = snapshot.val();
-        //     console.log(datasAdditionalCard);
-        //     // if (datasAdditionalCard?.category === selectedCardCategory && i !== 3) {
-        //         // i++;
-        //     // } else {
-        //         // requestRandomCard(selectedCardCategory);
-        //     // }
+            // if (datasAdditionalCard?.category === selectedCardCategory && i !== 3) {
+                // i++;
+            // } else {
+                // requestRandomCard(selectedCardCategory);
+            // }
         // })
 
 
@@ -86,13 +112,15 @@ export const Catalog = () => {
         //                 newPageId++;
         //                 numberCard = 1;
         //             }
-        //             if (card.category === 'women') {
-        //                 set(ref(db, `categories/women/page${newPageId}/${numberCard}`), {
+        //             if (card.category === 'accessories') {
+        //                 set(ref(db, `categories/accessories/page${newPageId}/${numberCard}`), {
         //                     title: card.title,
         //                     description: card.description,
         //                     id: card.id,
         //                     price: card.price,
-        //                     category: card.category
+        //                     category: card.category,
+        //                     brand: card.brand,
+        //                     designer: card.designer
         //                 })
         //                 numberCard++;
         //             }
@@ -105,11 +133,12 @@ export const Catalog = () => {
 
     return (
         <>
-        <Header isCatalog={true} isNavigate={true} title={'catalog'}/>
+        <Header isCatalog={true} title={'catalog'}/>
         <main className="content-catalog">
             <CatalogSettings />  
         <section className="catalog-products products">
-            <ProductCard cards={cardsList?.[pageId]} />
+            {(filters.category || filters.brand || filters.designer) ? <ProductCard cards={cardsListFiltred?.[pageId]} /> : <ProductCard cards={cardsList?.[pageId]} />}
+            {/* <ProductCard cards={cardsList?.[pageId]} /> */}
             <Pagination pageId={pageId} />
         </section>
         <Features />

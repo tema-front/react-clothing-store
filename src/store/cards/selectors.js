@@ -1,7 +1,9 @@
 export const getCardsList = (state) => state.stateCards.cardsList;
+export const getCardsListFiltred = (state) => state.stateCards.cardsListFiltred;
 export const getAdditionalCardsList = (state) => state.stateCards.cardsRandomList;
 export const getSelectedCard = (state) => state.stateCards.cardSelected;
 export const getSelectedCardCategory = (state) => state.stateCards.cardSelected?.category;
+export const getAllCatalogLoaded = (state) => state.stateCards.allCatalogLoaded;
 
 
 // export const getSelectedCard = (productId, cardsList) => (state) => {

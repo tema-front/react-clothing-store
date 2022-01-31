@@ -12,9 +12,10 @@ import { Footer } from "../Footer";
 import { getCardsList, getHomeCardsList } from "../../store/cards/selectors";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { requestCardsDatas } from "../../store/cards/action";
+import { cleanFiltredList, requestCardsDatas } from "../../store/cards/actions";
 import { onValue, ref } from "firebase/database";
 import { db } from "../../services/firebase";
+import { cleanFilter } from "../../store/filter/actions";
 
 export const HomePage = () => {
     const cardsList = useSelector(getCardsList);
@@ -43,6 +44,8 @@ export const HomePage = () => {
     const goTopPage = () => {
         document.body.scrollTop = 0; // For Safari
         document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+        dispatch(cleanFiltredList);
+        dispatch(cleanFilter);  
     }
 
     return (

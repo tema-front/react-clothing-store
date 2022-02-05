@@ -102,13 +102,13 @@ export const Pagination = ({pageId}) => {
                         ))
                     }
 
-                    {(pageId < lastPage - 2) ?
+                    {((pageId < lastPage - 2) && (lastPage > 4)) ?
                         ( 
                             <li key={'toTheEnd'} className="products-pagination-numbers-list-item-last">
                                 <Link onClick={() => goTopPage(lastPage)} className="products-pagination-numbers-list-item" to={`/catalog/${lastPage}`}>...{lastPage}</Link>
                             </li>
                         )
-                        : ((pageId < lastPage - 1) && (lastPage >= 4) &&
+                        : ((pageId < lastPage - 1) && (lastPage > 4) &&
                             <li key={'toTheEnd'}>
                                 <Link onClick={() => goTopPage(lastPage)} className="products-pagination-numbers-list-item" to={`/catalog/${lastPage}`}>{lastPage}</Link>
                             </li>  

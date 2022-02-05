@@ -17,12 +17,12 @@ export const ReactRouter = () => {
 
                     <Route path=':category' element={<Catalog />}> 
                         <Route path=':pageId' element={<Catalog />} />
-                        <Route path=':brand' element={<Catalog />}>
+                        {/* <Route path=':brand' element={<Catalog />}>
                             <Route path=':pageId' element={<Catalog />} />
                             <Route path=':designer' element={<Catalog />}>
                                 <Route path=':pageId' element={<Catalog />} />
                             </Route>
-                        </Route>
+                        </Route> */}
                     </Route>
 
             </Route>

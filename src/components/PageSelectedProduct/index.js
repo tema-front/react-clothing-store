@@ -39,6 +39,11 @@ export const PageSelectedProduct = () => {
     }, [cardInfoProp, selectedCard])
 
     useEffect(() => {
+        document.body.scrollTop = 0; // For Safari
+        document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+    }, [])
+
+    useEffect(() => {
         if (productId <= 240) return;
         navigate('/notfound')
     }, [productId])

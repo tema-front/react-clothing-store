@@ -15,13 +15,14 @@ export const Filter = () => {
 
 
     const createURL = (page) => {
+        debugger
         const { category, brand, designer } = filters;
-        const filtredURL = `/catalog/${category || 'category'}/${brand || 'brand'}/${designer || 'designer'}/${page || params.pageId}`;
+        const filtredURL = `/catalog/${category || params.category || 'category'}/${brand || params.brand || 'brand'}/${designer || params.designer || 'designer'}/${page || params.pageId}`;
         return filtredURL;
     }
 
     useEffect(() => {
-        navigate(createURL());
+        // navigate(createURL());
     }, [filters])
 
     const onVisibilityFilter = () => {
@@ -30,7 +31,6 @@ export const Filter = () => {
 
     useEffect(() => {
         if (!visibilityFilter) return;
-        debugger
         const { category, brand, designer } = filters;
         // for (let [i, key] in Object.entries(filters)) {
         //     debugger
@@ -38,12 +38,9 @@ export const Filter = () => {
         // }
         let counter = 0
         for (let key in filters) {
-            debugger
             if (!filters[key]) continue;
             for (let [i, itemList] of Object.entries(filterListRef.current.children)) {
                 // filterListRef.current.children[i].checked = false;
-                debugger
-                console.log((itemList.id.split('-'))[itemList.id.split('-').length - 1]);
                 if ((itemList.id.split('-'))[itemList.id.split('-').length - 1] === key) {
                     itemList.checked = true;
                     for (let itemSublist of filterListRef.current.children[Number(i) + 2].children) {
@@ -79,14 +76,16 @@ export const Filter = () => {
     }, [visibilityFilter, filters])
     
     const handleAddCategory = (category) => {
-        navigate(createURL(1));
+        navigate(`/catalog/1`);
+        // navigate(createURL(1));
         if (category === filters.category) return;
         dispatch(cleanFiltredList);
         dispatch(addCategory(category));
     }
 
     const handleAddBrand = (brand) => {
-        navigate(createURL(1));
+        navigate(`/catalog/1`);
+        // navigate(createURL(1));
         if (brand === filters.brand) return;
         dispatch(cleanFiltredList);
         dispatch(addBrand(brand));
@@ -94,14 +93,15 @@ export const Filter = () => {
     }
 
     const handleAddDesigner = (designer) => {
-        navigate(createURL(1));
+        navigate(`/catalog/1`);
+        // navigate(createURL(1));
         if (designer === filters.designer) return;
         dispatch(cleanFiltredList);
         dispatch(addDesigner(designer));
     }
 
     const handleCleaningFilter = () => {
-        navigate(createURL(1));
+        navigate(`/catalog/1`);
         debugger
         // for (let i = 0; i < filterListRef.current.children.length; i++) {
         for (let [i, itemList] of Object.entries(filterListRef.current.children)) {

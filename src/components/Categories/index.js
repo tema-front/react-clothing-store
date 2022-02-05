@@ -1,9 +1,13 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { addCategory } from "../../store/filter/actions";
+import { getFilters } from "../../store/filter/selectors";
+import { cleanFiltredList } from "../../store/cards/actions";
 
 export const Categories = () => {
+    const filters = useSelector(getFilters);
+    const dispatch = useDispatch();
     const [categories, setCategories] = useState([
         {subtitle: '30% off', title: 'for women', id: 'category-women'},
         {subtitle: 'hot deal', title: 'for men', id: 'category-men'},
@@ -11,16 +15,13 @@ export const Categories = () => {
         {subtitle: `luxirous\u00A0\u0026\u00A0trendy`, title: 'accessories', id: 'category-accesories'}
     ]);
 
-    const dispatch = useDispatch();
-
-    const openProductsCategory = (id) => {
-        // alert(id)
-    }
-
     const handleAddCategory = (category) => {
         document.body.scrollTop = 0; // For Safari
         document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
         // if (category)
+        if (category.split(' ')[1] === filters.category || category === filters.category) return;
+        dispatch(cleanFiltredList);
+
         if (!category.split(' ')[1]) {
             dispatch(addCategory(category));
             return;

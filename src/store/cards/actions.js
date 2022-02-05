@@ -126,14 +126,16 @@ export const requestCardsDatas = (pageId) => async (dispatch, getState) => {
 
 export const cardsFilter = () => (dispatch, getState) => {
 
-        
+        debugger
     const cardsList = Object.values(getState().stateCards.cardsList);
     let filtredList = []
     const { category, brand, designer } = getState().stateFilter.filters;
     for (let i = 0; i < 20; i++) {
         cardsList[i].forEach(card => {
             // if (card.category === category) {
-            if (card.category.includes(category) && card.brand.includes(brand) && card.designer.includes(designer)) {
+            if ((category || brand || designer) && 
+                (card.category === category) || (card.brand === brand) || (card.designer === designer)
+            ) {
                 filtredList = [...filtredList, card]
             }
 

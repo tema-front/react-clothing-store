@@ -9,6 +9,7 @@ export const Registration = ({goToLogin}) => {
     const [password, setPassword] = useState('');
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
+    const [gender, setGender] = useState('');
     const dispatch = useDispatch();
     const [onLogin, setOnLogin] = useState(false);
 
@@ -41,7 +42,10 @@ export const Registration = ({goToLogin}) => {
         const login = email.split('@')[0];
 
         set(ref(db, `users/${login}`), {
-            name: `${firstName} ` + lastName
+            name: `${firstName} ` + lastName,
+            email: email,
+            gender: gender,
+            subscribing: false
         })
 
         try {
@@ -99,6 +103,10 @@ export const Registration = ({goToLogin}) => {
         goToLogin()
     }
 
+    const handleSetGender = (event) => {
+        setGender(event.currentTarget.value);
+    }
+
     return (
         <form class="registration-form-datas">
             <p className="registration-have-account-txt">Already have an accounte? <button onClick={handleGoToLogin} className="registration-have-account-btn">Login</button> </p>
@@ -107,11 +115,11 @@ export const Registration = ({goToLogin}) => {
                 <input onChange={handleFirstName} value={firstName} type="text" class="registration-form-inputs registration-data-name-input registration-data-first-name" placeholder="First Name" />
                 <input onChange={handleLastName} value={lastName} type="text" class="registration-form-inputs registration-data-name-input registration-data-last-name" placeholder="Last Name" />
                 <div class="registration-radio-btns">
-                    <input type="radio" class="registration-radio-btns-item" name="registration-radio-btn" id="registration-radio-btn-male" value="male" />
+                    <input onChange={event => handleSetGender(event)} type="radio" class="registration-radio-btns-item" name="registration-radio-btn" id="registration-radio-btn-male" value="male" />
                     <label class="registration-radio-btns-txt" htmlFor="registration-radio-btn-male">Male</label>
-                    <input type="radio" class="registration-radio-btns-item" name="registration-radio-btn" id="registration-radio-btn-female" value="female" />
+                    <input onChange={event => handleSetGender(event)} type="radio" class="registration-radio-btns-item" name="registration-radio-btn" id="registration-radio-btn-female" value="female" />
                     <label class="registration-radio-btns-txt" htmlFor="registration-radio-btn-female">Female</label>
-                    <input type="radio" class="registration-radio-btns-item" name="registration-radio-btn" id="registration-radio-btn-other" value="other" />
+                    <input onChange={event => handleSetGender(event)} type="radio" class="registration-radio-btns-item" name="registration-radio-btn" id="registration-radio-btn-other" value="other" />
                     <label class="registration-radio-btns-txt" htmlFor="registration-radio-btn-other">Other</label>
                 </div>
             </div>

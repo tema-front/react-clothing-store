@@ -1,10 +1,10 @@
 import { onValue, ref, set } from "firebase/database";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { db } from "../../services/firebase";
-import { allProductsLoaded, cardsFilter, requestAllCardsDatas, requestCardsDatas } from "../../store/cards/actions";
+import { allProductsLoaded, cardsFilter, cleanFiltredList, requestAllCardsDatas, requestCardsDatas } from "../../store/cards/actions";
 import { getAllCatalogLoaded, getCardsList, getCardsListFiltred } from "../../store/cards/selectors";
 import { getFilters } from "../../store/filter/selectors";
 import { CatalogSettings } from "../CatalogSettings";
@@ -34,8 +34,25 @@ export const Catalog = () => {
         dispatch(requestCardsDatas(+pageId));
     }, [pageId])
 
+    // useEffect(() => {
+    //     debugger
+    //     console.log(params);
+    //     console.log(Object.values(params));
+    //     console.log(Object.keys(params));
+
+    //     console.log(filters);
+    //     console.log(Object.values(filters));
+    //     console.log(Object.keys(filters));
+    //     for (let i = 0; i < Object.keys(filters).length; i++) {
+    //         if (!filters[Object.keys(filters)[i]] && (Object.keys(params)[i] !== Object.keys(filters)[i])) {
+    //             console.log(123);
+    //         }
+    //     }
+
+    // }, [])
+
     useEffect(() => {
-        if (Object.keys(cardsList).length === 20) dispatch(allProductsLoaded);
+        if (Object.keys(cardsList).length === 20 && !catalogLoaded) dispatch(allProductsLoaded);
     }, [cardsList])
 
     useEffect(() => {
@@ -45,17 +62,26 @@ export const Catalog = () => {
         // !Object.keys(selectedCard).length
     }, [filters])
 
+
+    // const handleCardsFilter = useCallback(() => {
+    //     debugger
+    //     if ((Object.values(filters)[0] || Object.values(filters)[1] || Object.values(filters)[2]) && catalogLoaded) {
+    //         dispatch(cardsFilter(filters));
+    //     }
+    // }, [catalogLoaded, filters])
+
     useEffect(() => {
-        
-        if ((Object.values(filters)[0] || Object.values(filters)[1] || Object.values(filters)[2]) && catalogLoaded) {
+        debugger
+        //  сделать лучше это 
+
+        // dispatch(cleanFiltredList);
+        if ((!Object.keys(cardsListFiltred).length) && catalogLoaded && (Object.values(filters)[0] || Object.values(filters)[1] || Object.values(filters)[2])) {
             dispatch(cardsFilter(filters));
         }
     }, [catalogLoaded, filters])
 
 
     useEffect(() => {
-        
-        console.log(params);
         // создание карточек в firebase
         // for (let page = 1; page <= 20; page++) {
         //     let cardsStart = 12 * page - 12 + 1
@@ -127,7 +153,7 @@ export const Catalog = () => {
         //         })
         //     })
         // }
-
+        debugger
         if (!pageId) navigate(`/catalog/1`);
     }, []);
 

@@ -15,15 +15,15 @@ export const ProductCard = ({cards}) => {
         // console.log(buttonDisabled);
     }
 
-    const goTopPage = () => {
-        document.body.scrollTop = 0; // For Safari
-        document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-    }
+    // const goTopPage = () => {
+        // document.body.scrollTop = 0; // For Safari
+        // document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+    // }
 
     return (
         <div className="products-wrap">
             {cards?.map(item => (
-                <Link to={`/product/${item.id}`} state={{ cardInfo: item }} onClick={goTopPage} className="products-item" key={item.id}>
+                <Link to={`/product/${item.id}`} state={{ cardInfo: item }} className="products-item" key={item.id}>
                     <div className="products-item-preview">
                         <img className="products-item-img" src={`https://picsum.photos/id/${item.id + 8}/360/420`} alt="products-item" height="420" />
                         {/* <img className="products-item-img" src={`https://picsum.photos/id/${item.id + 8}/200/233`} alt="products-item" height="420" /> */}

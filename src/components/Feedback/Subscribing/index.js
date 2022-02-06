@@ -58,8 +58,8 @@ export const Subscribing = () => {
                         <>
                         <input 
                             className="subscribing-input-email" 
-                            type="email" 
                             placeholder={subscribingEmail}
+                            value={subscribingEmail}
                             disabled
                         />
                         <button onClick={handleUnsubcribing} className="subscribing-btn">Unsubscribe</button>

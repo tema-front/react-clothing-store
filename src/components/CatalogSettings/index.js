@@ -1,5 +1,6 @@
 import { CatalogNavigation } from "../CatalogNavigation";
 import { Filter } from "../Filter";
+import { Search } from "../Search/inde";
 
 export const CatalogSettings = () => {
     return (
@@ -7,6 +8,7 @@ export const CatalogSettings = () => {
             <div className="catalog-settings-wrp">
                 <Filter />
                 <CatalogNavigation />
+                <Search />
             </div>
         </section>
     );

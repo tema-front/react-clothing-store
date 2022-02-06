@@ -3,6 +3,7 @@ import { db } from "../../services/firebase";
 
 export const ADD_CARD = 'CARDS::ADD_CARD';
 export const ADD_FILTRED_CARD = 'CARDS::ADD_FILTRED_CARD';
+export const ADD_SEARCHED_CARD = 'CARDS::ADD_SEARCHED_CARD';
 export const CLEAN_FILTRED_LIST = 'CARDS::CLEAN_FILTRED_LIST';
 export const ADD_RANDOM_CARD = 'CARDS::ADD_RANDOM_CARD';
 export const ADD_SELECTED_CARD = 'CARDS::ADD_SELECTED_CARD';
@@ -19,6 +20,14 @@ const addCard = (cardInfo, pageId) => ({
 
 const addFiltredCard = (cardInfo, pageId) => ({
     type: ADD_FILTRED_CARD,
+    payload: {
+        cardInfo,
+        pageId
+    }
+})
+
+const addSearchedCard = (cardInfo, pageId) => ({
+    type: ADD_SEARCHED_CARD,
     payload: {
         cardInfo,
         pageId
@@ -149,6 +158,34 @@ export const cardsFilter = () => (dispatch, getState) => {
     }
 }
 
+export const cardsSearch = (searchValue) => (dispatch, getState) => {
+    debugger
+    const cardsList = Object.values(getState().stateCards.cardsList);
+    let searchedList = [];
+    for (let i = 0; i < 20; i++) {
+        cardsList[i].forEach(card => {
+            if (
+                // что за говнокод? Надо нормально переписать
+                ((card.description.replace(/\r?\n/g, " ").toLowerCase()).includes(searchValue.toLowerCase())) || 
+                ((card.title.replace(/\r?\n/g, " ").toLowerCase()).includes(searchValue.toLowerCase())) ||
+                ((card.category.toLowerCase()).includes(searchValue.toLowerCase())) ||
+                ((card.brand.toLowerCase()).includes(searchValue.toLowerCase())) ||
+                ((card.designer.toLowerCase()).includes(searchValue.toLowerCase()))
+                ) {
+                searchedList = [...searchedList, card];
+            }
+        })
+    }
+
+    console.log(searchedList);
+    for (let i = 1; i <= Math.ceil(searchedList.length / 12); i++) {
+        for (let j = 0; j < 12; j++) {
+            if (!(searchedList[(i - 1) * 12 + j])) return
+            dispatch(addSearchedCard(searchedList[(i - 1) * 12 + j], i));
+        }
+    }
+}
+
 export const requestAllCardsDatas = () => async (dispatch, getState) => {
     try {
         const catalogDbRef = ref(db, `catalog/`);
@@ -184,13 +221,13 @@ export const requestAllCardsDatas = () => async (dispatch, getState) => {
 // }
 
 export const requestSelectedCard = (cardId) => async (dispatch) => {
-    
+    debugger
     const pageId = Math.ceil(cardId / 12);
     let cardSerialNumber = cardId - (Math.floor(cardId / 12) * 12);
     if (cardId <= 12) cardSerialNumber = cardId;
     try {
         
-        const selectedProductDbRef = ref(db, `catalog/page${pageId}/${cardSerialNumber}`);
+        const selectedProductDbRef = ref(db, `catalog/page${pageId}/${cardSerialNumber || 12}`);
         await onValue(selectedProductDbRef, (snapshot) => {
             
             const datasSelectedCard = snapshot.val();

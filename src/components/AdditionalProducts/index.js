@@ -22,7 +22,7 @@ export const AdditionalProducts = () => {
             //     if (item.id === +productId) return
             //     else dispatch(clearRandomList())
             // })
-        if (!Object.keys(selectedCard).length || additionalCardsList.length || requestExist) return;
+        if (!Object.keys(selectedCard || {}).length || additionalCardsList.length || requestExist) return;
         // if (!mainSelectedCard) setMainSelectedCard(selectedCard.id);
         setRequestExist(true);
         // dispatch(requestRandomCard(selectedCard?.category)) 
@@ -32,7 +32,7 @@ export const AdditionalProducts = () => {
 
     useEffect(() => {
         
-        if (Object.keys(selectedCard).length && !mainSelectedCard) setMainSelectedCard(selectedCard.id);
+        if (Object.keys(selectedCard || {}).length && !mainSelectedCard) setMainSelectedCard(selectedCard.id);
         // return (
         //     setMainSelectedCard(0)
         // )

@@ -1,4 +1,4 @@
-import { ADD_CARD, ADD_FILTRED_CARD, ADD_RANDOM_CARD, ADD_SELECTED_CARD, ALL_PRODUCTS_LOADED, CLEAN_FILTRED_LIST, CLEAN_RANDOM_LIST } from "./actions"
+import { ADD_CARD, ADD_FILTRED_CARD, ADD_RANDOM_CARD, ADD_SEARCHED_CARD, ADD_SELECTED_CARD, ALL_PRODUCTS_LOADED, CLEAN_FILTRED_LIST, CLEAN_RANDOM_LIST } from "./actions"
 // import product_12009 from '../../img/.jpg/products_card/product_12009.jpg'
 // import product_12019 from '../../img/.jpg/products_card/product_12019.jpg'
 // import product_12029 from '../../img/.jpg/products_card/product_12029.jpg'
@@ -21,7 +21,8 @@ const initialState = {
     cardsRandomList: [],
     cardSelected: {},
     allCatalogLoaded: false,
-    cardsListFiltred: {}
+    cardsListFiltred: {},
+    cardsListSearched: {}
 
 }
 
@@ -91,6 +92,15 @@ export const cardsReducer = (state = initialState, {type, payload}) => {
                 ...state, 
                 cardsListFiltred: {...state.cardsListFiltred, 
                     [payload.pageId]: [...state.cardsListFiltred[payload.pageId] || [], payload.cardInfo]
+                }
+            }
+        }
+
+        case ADD_SEARCHED_CARD: {
+            return {
+                ...state, 
+                cardsListSearched: {...state.cardsListSearched, 
+                    [payload.pageId]: [...state.cardsListSearched[payload.pageId] || [], payload.cardInfo]
                 }
             }
         }

@@ -101,8 +101,9 @@ export const Filter = () => {
     }
 
     const handleCleaningFilter = () => {
-        navigate(`/catalog/1`);
+        // navigate(`/catalog/1`);
         debugger
+        // сделать через юзеффект, и отслеживать поиск
         // for (let i = 0; i < filterListRef.current.children.length; i++) {
         for (let [i, itemList] of Object.entries(filterListRef.current.children)) {
             // filterListRef.current.children[i].checked = false;
@@ -110,6 +111,7 @@ export const Filter = () => {
             if ((Number(i) !== 0) && (Number(i + 1) % 3 === 0)) {
                 for (let itemSublist of filterListRef.current.children[i].children) {
                     debugger
+                    if (itemSublist.children[0].checked) navigate(`/catalog/1`);
                     itemSublist.children[0].checked = false;
                 }
             }

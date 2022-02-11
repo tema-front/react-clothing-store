@@ -5,6 +5,7 @@ export const ADD_CARD = 'CARDS::ADD_CARD';
 export const ADD_FILTRED_CARD = 'CARDS::ADD_FILTRED_CARD';
 export const ADD_SEARCHED_CARD = 'CARDS::ADD_SEARCHED_CARD';
 export const CLEAN_FILTRED_LIST = 'CARDS::CLEAN_FILTRED_LIST';
+export const CLEAN_SEARCHED_LIST = 'CARDS::CLEAN_SEARCHED_LIST';
 export const ADD_RANDOM_CARD = 'CARDS::ADD_RANDOM_CARD';
 export const ADD_SELECTED_CARD = 'CARDS::ADD_SELECTED_CARD';
 export const CLEAN_RANDOM_LIST = 'CARDS::CLEAN_RANDOM_LIST';
@@ -55,6 +56,10 @@ export const cleanRandomList = () => ({
 
 export const cleanFiltredList = {
     type: CLEAN_FILTRED_LIST,
+}
+
+export const cleanSearchedList = {
+    type: CLEAN_SEARCHED_LIST,
 }
 
 export const allProductsLoaded = {
@@ -160,6 +165,7 @@ export const cardsFilter = () => (dispatch, getState) => {
 
 export const cardsSearch = (searchValue) => (dispatch, getState) => {
     debugger
+    dispatch(cleanSearchedList);
     const cardsList = Object.values(getState().stateCards.cardsList);
     let searchedList = [];
     for (let i = 0; i < 20; i++) {

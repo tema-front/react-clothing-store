@@ -1,24 +1,25 @@
 import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { getCardsListFiltred } from "../../store/cards/selectors";
+import { getCardsListFiltred, getCardsListSearched } from "../../store/cards/selectors";
 
 export const Pagination = ({pageId}) => {
     const [paginationNumbers, setPaginationNumber] = useState([]);
     const [paginationMoreThree, setPaginationMoreThree] = useState(false);
     const cardsListFiltred = useSelector(getCardsListFiltred);
+    const cardsListSearched = useSelector(getCardsListSearched);
     const [lastPage, setLastPage] = useState(20);
     const listRef = useRef();
     const navigate = useNavigate();
     
     useEffect(() => {
         
-        if (Object.keys(cardsListFiltred).length) {
-            setLastPage(Object.keys(cardsListFiltred).length)
+        if (Object.keys(cardsListFiltred).length || Object.keys(cardsListSearched).length) {
+            setLastPage(Object.keys(cardsListFiltred).length || Object.keys(cardsListSearched).length)
         } else {
             setLastPage(20)
         }
-    }, [cardsListFiltred])
+    }, [cardsListFiltred, cardsListSearched])
 
     useEffect(() => {
         let newPaginationNumbers = []

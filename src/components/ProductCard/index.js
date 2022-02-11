@@ -8,8 +8,8 @@ export const ProductCard = ({cards}) => {
 
     const handleAddProductToCart = (event, cardInfo) => {
         
-        event.preventDefault();
         event.stopPropagation();
+        event.preventDefault();
         dispatch(addCardToCart(cardInfo));
         // setButtonDisabled(true);
         // console.log(buttonDisabled);

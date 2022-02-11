@@ -5,7 +5,7 @@ import { Link, useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { db } from "../../services/firebase";
 import { allProductsLoaded, cardsFilter, cleanFiltredList, requestAllCardsDatas, requestCardsDatas } from "../../store/cards/actions";
-import { getAllCatalogLoaded, getCardsList, getCardsListFiltred } from "../../store/cards/selectors";
+import { getAllCatalogLoaded, getCardsList, getCardsListFiltred, getCardsListSearched } from "../../store/cards/selectors";
 import { getFilters } from "../../store/filter/selectors";
 import { CatalogSettings } from "../CatalogSettings";
 import { Features } from "../Features";
@@ -20,6 +20,7 @@ export const Catalog = () => {
     const catalogLoaded = useSelector(getAllCatalogLoaded);
     const filters = useSelector(getFilters);
     const cardsListFiltred = useSelector(getCardsListFiltred);
+    const cardsListSearched = useSelector(getCardsListSearched);
     const dispatch = useDispatch();
     const { pageId } = useParams();
     const params = useParams();
@@ -80,6 +81,9 @@ export const Catalog = () => {
         }
     }, [catalogLoaded, filters])
 
+    useEffect(() => {
+        console.log(cardsListSearched.length);
+    }, [cardsListSearched])
 
     useEffect(() => {
         // создание карточек в firebase
@@ -163,7 +167,9 @@ export const Catalog = () => {
         <main className="content-catalog">
             <CatalogSettings />  
         <section className="catalog-products products">
-            {(filters.category || filters.brand || filters.designer) ? <ProductCard cards={cardsListFiltred?.[pageId]} /> : <ProductCard cards={cardsList?.[pageId]} />}
+            {((filters.category || filters.brand || filters.designer) && !Object.keys(cardsListSearched).length) ? <ProductCard cards={cardsListFiltred?.[pageId]} /> : 
+                (Object.keys(cardsListSearched).length) ? <ProductCard cards={cardsListSearched?.[pageId]} /> : <ProductCard cards={cardsList?.[pageId]} />
+            }
             {/* <ProductCard cards={cardsList?.[pageId]} /> */}
             <Pagination pageId={pageId} />
         </section>

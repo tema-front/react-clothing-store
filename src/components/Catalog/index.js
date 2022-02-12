@@ -74,7 +74,6 @@ export const Catalog = () => {
     // }, [catalogLoaded, filters])
 
     useEffect(() => {
-        debugger
         //  сделать лучше это 
 
         // dispatch(cleanFiltredList);
@@ -82,10 +81,6 @@ export const Catalog = () => {
             dispatch(cardsFilter(filters));
         }
     }, [catalogLoaded, filters])
-
-    useEffect(() => {
-        console.log(cardsListSearched.length);
-    }, [cardsListSearched])
 
     useEffect(() => {
         // создание карточек в firebase
@@ -159,7 +154,6 @@ export const Catalog = () => {
         //         })
         //     })
         // }
-        debugger
         if (!pageId) navigate(`/catalog/1`);
     }, []);
 

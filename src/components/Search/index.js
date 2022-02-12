@@ -9,18 +9,20 @@ export const Search = () => {
     const catalogLoaded = useSelector(getAllCatalogLoaded);
     const dispatch = useDispatch();
     const searchRef = useRef();
-
+    let timer = useRef()
+    
     const handleSearch = () => {
-        debugger
-        // if (catalogLoaded && searchValue) {
-            dispatch(cleanFiltredList);
-            dispatch(cleanFilter);
+        dispatch(cleanFiltredList);
+        dispatch(cleanFilter);
+        clearTimeout(timer.current);
+        
+        timer.current = setTimeout(() => {
+            debugger
             if (searchValue[searchValue.length - 1] === ' ') {
                 dispatch(cardsSearch(searchValue.slice(0, -1)))
             } else dispatch(cardsSearch(searchValue))
-        // } else {
-            // dispatch(requestAllCardsDatas())
-        // }
+        }, 500)
+
     }
 
     useEffect(() => {
@@ -28,7 +30,6 @@ export const Search = () => {
     })
 
     useEffect(() => {
-        debugger
         if (catalogLoaded && searchValue) handleSearch();
     }, [catalogLoaded])
 
@@ -37,7 +38,6 @@ export const Search = () => {
     }
 
     useEffect(() => {
-        debugger
         if (!searchValue) {
             dispatch(cleanSearchedList);
             dispatch(searchResultTrue);

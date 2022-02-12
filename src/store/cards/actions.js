@@ -150,7 +150,6 @@ export const requestCardsDatas = (pageId) => async (dispatch, getState) => {
 
 export const cardsFilter = () => (dispatch, getState) => {
 
-        debugger
     const cardsList = Object.values(getState().stateCards.cardsList);
     let filtredList = []
     const { category, brand, designer } = getState().stateFilter.filters;
@@ -174,14 +173,12 @@ export const cardsFilter = () => (dispatch, getState) => {
 }
 
 export const cardsSearch = (searchValue) => (dispatch, getState) => {
-    debugger
     dispatch(cleanSearchedList);
     const cardsList = Object.values(getState().stateCards.cardsList);
     let searchedList = [];
     for (let i = 0; i < 20; i++) {
         cardsList[i].forEach(card => {
             // if (card.id === 47) {
-            //     debugger
             //     Boolean((card.title.replace(/\r?\n/g, " ").toLowerCase()).includes(searchValue.toLowerCase()))
             // }
             if (
@@ -246,7 +243,6 @@ export const requestAllCardsDatas = () => async (dispatch, getState) => {
 // }
 
 export const requestSelectedCard = (cardId) => async (dispatch) => {
-    debugger
     const pageId = Math.ceil(cardId / 12);
     let cardSerialNumber = cardId - (Math.floor(cardId / 12) * 12);
     if (cardId <= 12) cardSerialNumber = cardId;

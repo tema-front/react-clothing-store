@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { cardsSearch, cleanFiltredList, cleanSearchedList, nothingFound, requestAllCardsDatas, searchResultTrue } from "../../store/cards/actions";
-import { getAllCatalogLoaded } from "../../store/cards/selectors";
+import { cardsSearch, cleanFiltredList, cleanSearchedList, nothingFound, requestAllCardsDatas, searchDelayEnd, searchDelayStart, searchResultTrue } from "../../store/cards/actions";
+import { getAllCatalogLoaded, getSearchCircular } from "../../store/cards/selectors";
 import { cleanFilter } from "../../store/filter/actions";
 
 export const Search = () => {
@@ -15,9 +15,10 @@ export const Search = () => {
         dispatch(cleanFiltredList);
         dispatch(cleanFilter);
         clearTimeout(timer.current);
-        
+        dispatch(searchDelayStart)
         timer.current = setTimeout(() => {
             debugger
+            dispatch(searchDelayEnd)
             if (searchValue[searchValue.length - 1] === ' ') {
                 dispatch(cardsSearch(searchValue.slice(0, -1)))
             } else dispatch(cardsSearch(searchValue))
@@ -28,6 +29,12 @@ export const Search = () => {
     useEffect(() => {
         searchRef.current.focus();  
     })
+
+    // useEffect(() => {
+    //     if (searchValue)
+    // }, [searchValue])
+
+
 
     useEffect(() => {
         if (catalogLoaded && searchValue) handleSearch();

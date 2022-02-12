@@ -12,6 +12,8 @@ export const CLEAN_RANDOM_LIST = 'CARDS::CLEAN_RANDOM_LIST';
 export const ALL_PRODUCTS_LOADED = 'CARDS::ALL_PRODUCTS_LOADED';
 export const SEARCH_RESULT_TRUE = 'CARDS::SEARCH_RESULT_TRUE';
 export const NOTHING_FOUND = 'CARDS::NOTHING_FOUND';
+export const SEARCH_DELAY_START = 'CARDS::SEARCH_DELAY_START';
+export const SEARCH_DELAY_END = 'CARDS::SEARCH_DELAY_END';
 
 const addCard = (cardInfo, pageId) => ({
     type: ADD_CARD,
@@ -74,6 +76,15 @@ export const nothingFound = {
 
 export const searchResultTrue = {
     type: SEARCH_RESULT_TRUE
+}
+
+
+export const searchDelayStart = {
+    type: SEARCH_DELAY_START
+}
+
+export const searchDelayEnd = {
+    type: SEARCH_DELAY_END
 }
 
 

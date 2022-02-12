@@ -1,3 +1,4 @@
+import LinearProgress from "@material-ui/core/LinearProgress" 
 import { onValue, ref, set } from "firebase/database";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
@@ -5,7 +6,7 @@ import { Link, useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { db } from "../../services/firebase";
 import { allProductsLoaded, cardsFilter, cleanFiltredList, requestAllCardsDatas, requestCardsDatas } from "../../store/cards/actions";
-import { getAllCatalogLoaded, getCardsList, getCardsListFiltred, getCardsListSearched, getSearchStatus } from "../../store/cards/selectors";
+import { getAllCatalogLoaded, getCardsList, getCardsListFiltred, getCardsListSearched, getSearchLinearProgress, getSearchStatus } from "../../store/cards/selectors";
 import { getFilters } from "../../store/filter/selectors";
 import { CatalogSettings } from "../CatalogSettings";
 import { Features } from "../Features";
@@ -23,6 +24,7 @@ export const Catalog = () => {
     const cardsListFiltred = useSelector(getCardsListFiltred);
     const cardsListSearched = useSelector(getCardsListSearched);
     const nothingFound = useSelector(getSearchStatus);
+    const searchLinearProgress = useSelector(getSearchLinearProgress);
     const dispatch = useDispatch();
     const { pageId } = useParams();
     const params = useParams();
@@ -163,6 +165,7 @@ export const Catalog = () => {
         <main className="content-catalog">
             <CatalogSettings />  
         <section className="catalog-products products">
+            {searchLinearProgress && <LinearProgress className="search-linear-progress" color="secondary" />}
             {((filters.category || filters.brand || filters.designer) && !Object.keys(cardsListSearched).length) ? <ProductCard cards={cardsListFiltred?.[pageId]} /> : 
                 (Object.keys(cardsListSearched).length && !nothingFound) ? <ProductCard cards={cardsListSearched?.[pageId]} /> : 
                 nothingFound ? 
@@ -174,6 +177,7 @@ export const Catalog = () => {
                 : 
                 <ProductCard cards={cardsList?.[pageId]} />
             }
+
             {/* <ProductCard cards={cardsList?.[pageId]} /> */}
             <Pagination pageId={pageId} />
         </section>

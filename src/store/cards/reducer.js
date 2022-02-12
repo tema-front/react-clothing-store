@@ -1,4 +1,4 @@
-import { ADD_CARD, ADD_FILTRED_CARD, ADD_RANDOM_CARD, ADD_SEARCHED_CARD, ADD_SELECTED_CARD, ALL_PRODUCTS_LOADED, CLEAN_FILTRED_LIST, CLEAN_RANDOM_LIST, CLEAN_SEARCHED_LIST, NOTHING_FOUND, SEARCH_RESULT_TRUE } from "./actions"
+import { ADD_CARD, ADD_FILTRED_CARD, ADD_RANDOM_CARD, ADD_SEARCHED_CARD, ADD_SELECTED_CARD, ALL_PRODUCTS_LOADED, CLEAN_FILTRED_LIST, CLEAN_RANDOM_LIST, CLEAN_SEARCHED_LIST, NOTHING_FOUND, SEARCH_DELAY_END, SEARCH_DELAY_START, SEARCH_RESULT_TRUE } from "./actions"
 // import product_12009 from '../../img/.jpg/products_card/product_12009.jpg'
 // import product_12019 from '../../img/.jpg/products_card/product_12019.jpg'
 // import product_12029 from '../../img/.jpg/products_card/product_12029.jpg'
@@ -19,6 +19,7 @@ const initialState = {
     // ]
     allCatalogLoaded: false,
     nothingFound: false,
+    searchLinearProgress: false,
     cardsList: {},
     cardsRandomList: [],
     cardSelected: {},
@@ -89,6 +90,20 @@ export const cardsReducer = (state = initialState, {type, payload}) => {
             return {
                 ...state, 
                 nothingFound: false
+            }
+        }
+
+        case SEARCH_DELAY_START: {
+            return {
+                ...state, 
+                searchLinearProgress: true
+            }
+        }
+
+        case SEARCH_DELAY_END: {
+            return {
+                ...state, 
+                searchLinearProgress: false
             }
         }
 

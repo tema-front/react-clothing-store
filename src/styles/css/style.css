@@ -1432,6 +1432,10 @@ body {
   color: #f16d7f;
 }
 
+.search-linear-progress {
+  margin: -24px 0 20px 0;
+}
+
 .txt-italics {
   font-style: italic;
 }

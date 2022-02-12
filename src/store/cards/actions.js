@@ -10,6 +10,8 @@ export const ADD_RANDOM_CARD = 'CARDS::ADD_RANDOM_CARD';
 export const ADD_SELECTED_CARD = 'CARDS::ADD_SELECTED_CARD';
 export const CLEAN_RANDOM_LIST = 'CARDS::CLEAN_RANDOM_LIST';
 export const ALL_PRODUCTS_LOADED = 'CARDS::ALL_PRODUCTS_LOADED';
+export const SEARCH_RESULT_TRUE = 'CARDS::SEARCH_RESULT_TRUE';
+export const NOTHING_FOUND = 'CARDS::NOTHING_FOUND';
 
 const addCard = (cardInfo, pageId) => ({
     type: ADD_CARD,
@@ -64,6 +66,14 @@ export const cleanSearchedList = {
 
 export const allProductsLoaded = {
     type: ALL_PRODUCTS_LOADED
+}
+
+export const nothingFound = {
+    type: NOTHING_FOUND
+}
+
+export const searchResultTrue = {
+    type: SEARCH_RESULT_TRUE
 }
 
 
@@ -170,6 +180,10 @@ export const cardsSearch = (searchValue) => (dispatch, getState) => {
     let searchedList = [];
     for (let i = 0; i < 20; i++) {
         cardsList[i].forEach(card => {
+            // if (card.id === 47) {
+            //     debugger
+            //     Boolean((card.title.replace(/\r?\n/g, " ").toLowerCase()).includes(searchValue.toLowerCase()))
+            // }
             if (
                 // что за говнокод? Надо нормально переписать
                 ((card.description.replace(/\r?\n/g, " ").toLowerCase()).includes(searchValue.toLowerCase())) || 
@@ -183,7 +197,12 @@ export const cardsSearch = (searchValue) => (dispatch, getState) => {
         })
     }
 
-    console.log(searchedList);
+    if (!searchedList.length) {
+        dispatch(nothingFound)
+    } else {
+        dispatch(searchResultTrue)
+    }
+
     for (let i = 1; i <= Math.ceil(searchedList.length / 12); i++) {
         for (let j = 0; j < 12; j++) {
             if (!(searchedList[(i - 1) * 12 + j])) return

@@ -23,7 +23,6 @@ export const Subscribing = () => {
 
     useEffect(() => {
         const subscribe = onAuthStateChanged(auth, (user) => {
-            debugger
             if (user) {
                 const login = user.email.split('@')[0];
                 const usersDbRef = ref(db, `users/${login}`);

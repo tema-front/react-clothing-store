@@ -5,7 +5,7 @@ import { Link, useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { db } from "../../services/firebase";
 import { allProductsLoaded, cardsFilter, cleanFiltredList, requestAllCardsDatas, requestCardsDatas } from "../../store/cards/actions";
-import { getAllCatalogLoaded, getCardsList, getCardsListFiltred, getCardsListSearched } from "../../store/cards/selectors";
+import { getAllCatalogLoaded, getCardsList, getCardsListFiltred, getCardsListSearched, getSearchStatus } from "../../store/cards/selectors";
 import { getFilters } from "../../store/filter/selectors";
 import { CatalogSettings } from "../CatalogSettings";
 import { Features } from "../Features";
@@ -13,6 +13,7 @@ import { Feedback } from "../Feedback";
 import { Footer } from "../Footer";
 import { Header } from "../Header";
 import { Pagination } from "../Pagination";
+import nothingFoundImg from '../../img/.png/nothing-found.png'
 import { ProductCard } from "../ProductCard";
 
 export const Catalog = () => {
@@ -21,6 +22,7 @@ export const Catalog = () => {
     const filters = useSelector(getFilters);
     const cardsListFiltred = useSelector(getCardsListFiltred);
     const cardsListSearched = useSelector(getCardsListSearched);
+    const nothingFound = useSelector(getSearchStatus);
     const dispatch = useDispatch();
     const { pageId } = useParams();
     const params = useParams();
@@ -168,7 +170,15 @@ export const Catalog = () => {
             <CatalogSettings />  
         <section className="catalog-products products">
             {((filters.category || filters.brand || filters.designer) && !Object.keys(cardsListSearched).length) ? <ProductCard cards={cardsListFiltred?.[pageId]} /> : 
-                (Object.keys(cardsListSearched).length) ? <ProductCard cards={cardsListSearched?.[pageId]} /> : <ProductCard cards={cardsList?.[pageId]} />
+                (Object.keys(cardsListSearched).length && !nothingFound) ? <ProductCard cards={cardsListSearched?.[pageId]} /> : 
+                nothingFound ? 
+                    <section className="nothing-found-wrp">
+                        <h3 className="nothing-found-title">Oops!</h3>
+                        <span className="nothing-found-txt">Nothing found. We couldn't find what you're looking for.</span>
+                        <img className="nothing-found-img" src={nothingFoundImg} alt='SearchNotFound' height='452'></img>
+                    </section> 
+                : 
+                <ProductCard cards={cardsList?.[pageId]} />
             }
             {/* <ProductCard cards={cardsList?.[pageId]} /> */}
             <Pagination pageId={pageId} />

@@ -1,4 +1,4 @@
-import { ADD_CARD, ADD_FILTRED_CARD, ADD_RANDOM_CARD, ADD_SEARCHED_CARD, ADD_SELECTED_CARD, ALL_PRODUCTS_LOADED, CLEAN_FILTRED_LIST, CLEAN_RANDOM_LIST, CLEAN_SEARCHED_LIST } from "./actions"
+import { ADD_CARD, ADD_FILTRED_CARD, ADD_RANDOM_CARD, ADD_SEARCHED_CARD, ADD_SELECTED_CARD, ALL_PRODUCTS_LOADED, CLEAN_FILTRED_LIST, CLEAN_RANDOM_LIST, CLEAN_SEARCHED_LIST, NOTHING_FOUND, SEARCH_RESULT_TRUE } from "./actions"
 // import product_12009 from '../../img/.jpg/products_card/product_12009.jpg'
 // import product_12019 from '../../img/.jpg/products_card/product_12019.jpg'
 // import product_12029 from '../../img/.jpg/products_card/product_12029.jpg'
@@ -17,10 +17,11 @@ const initialState = {
     //     // {title: 'blazer', description: '', price: '70', category: '', brand: '', designer: '', size: '', id: product_12049},
     //     // {title: 'shirt', description: '', price: '36', category: '', brand: '', designer: '', size: '', id: product_12059},
     // ]
+    allCatalogLoaded: false,
+    nothingFound: false,
     cardsList: {},
     cardsRandomList: [],
     cardSelected: {},
-    allCatalogLoaded: false,
     cardsListFiltred: {},
     cardsListSearched: {}
 
@@ -74,6 +75,20 @@ export const cardsReducer = (state = initialState, {type, payload}) => {
             return {
                 ...state, 
                 cardsListSearched: {}
+            }
+        }
+
+        case NOTHING_FOUND: {
+            return {
+                ...state, 
+                nothingFound: true
+            }
+        }
+
+        case SEARCH_RESULT_TRUE: {
+            return {
+                ...state, 
+                nothingFound: false
             }
         }
 

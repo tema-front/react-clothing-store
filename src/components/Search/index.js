@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { cardsSearch, cleanFiltredList, cleanSearchedList, requestAllCardsDatas } from "../../store/cards/actions";
+import { cardsSearch, cleanFiltredList, cleanSearchedList, nothingFound, requestAllCardsDatas, searchResultTrue } from "../../store/cards/actions";
 import { getAllCatalogLoaded } from "../../store/cards/selectors";
 import { cleanFilter } from "../../store/filter/actions";
 
@@ -14,8 +14,10 @@ export const Search = () => {
         debugger
         // if (catalogLoaded && searchValue) {
             dispatch(cleanFiltredList);
-            dispatch(cleanFilter);  
-            dispatch(cardsSearch(searchValue))
+            dispatch(cleanFilter);
+            if (searchValue[searchValue.length - 1] === ' ') {
+                dispatch(cardsSearch(searchValue.slice(0, -1)))
+            } else dispatch(cardsSearch(searchValue))
         // } else {
             // dispatch(requestAllCardsDatas())
         // }
@@ -27,7 +29,7 @@ export const Search = () => {
 
     useEffect(() => {
         debugger
-        if (catalogLoaded && searchValue) dispatch(cardsSearch(searchValue));
+        if (catalogLoaded && searchValue) handleSearch();
     }, [catalogLoaded])
 
     const handleSearchValue = (event) => {
@@ -35,8 +37,12 @@ export const Search = () => {
     }
 
     useEffect(() => {
-        if (!searchValue) return
         debugger
+        if (!searchValue) {
+            dispatch(cleanSearchedList);
+            dispatch(searchResultTrue);
+            return
+        }
         if (catalogLoaded && searchValue) handleSearch();
         if (!catalogLoaded && searchValue) dispatch(requestAllCardsDatas())
             
@@ -44,6 +50,7 @@ export const Search = () => {
 
     const handleClearSearch = () => {
         setSearchValue('');
+        dispatch(searchResultTrue);
         dispatch(cleanSearchedList);
     }
 

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import CircularProgress from "@material-ui/core/CircularProgress" 
 import { useSelector } from "react-redux";
 
 import { Categories } from "../Categories";
@@ -59,6 +60,7 @@ export const HomePage = () => {
                     <p className="products-txt">Shop for items based on what we featured in this week</p>
                 </div>
                 {/* <ProductCard cards={firebaseCardsList?.[1]?.slice(0, 6)}/> */}
+                {!cardsList?.[1] && <div className="circular-progress-wrp"><CircularProgress color="secondary" size={100} className="circular-progress" /></div>}
                 <ProductCard cards={cardsList?.[1]?.slice(0, 6)}/>
             <div className="products-btn-wrap">
                 <Link to={'/catalog/1'} className="products-btn" onClick={goTopPage}>Browse&nbsp;All&nbsp;Product</Link>

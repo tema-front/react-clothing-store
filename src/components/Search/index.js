@@ -1,15 +1,18 @@
 import { useEffect, useRef, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { cardsSearch, cleanFiltredList, cleanSearchedList, nothingFound, requestAllCardsDatas, searchDelayEnd, searchDelayStart, searchResultTrue } from "../../store/cards/actions";
-import { getAllCatalogLoaded, getSearchCircular } from "../../store/cards/selectors";
+import { getAllCatalogLoaded, getCardsListSearched, getSearchCircular } from "../../store/cards/selectors";
 import { cleanFilter } from "../../store/filter/actions";
 
 export const Search = () => {
     const [searchValue, setSearchValue] = useState('');
+    const cardsListSearched = useRef(useSelector(getCardsListSearched))
     const catalogLoaded = useSelector(getAllCatalogLoaded);
     const dispatch = useDispatch();
     const searchRef = useRef();
-    let timer = useRef()
+    const navigate = useNavigate();
+    let timer = useRef();
     
     const handleSearch = () => {
         dispatch(cleanFiltredList);
@@ -18,6 +21,7 @@ export const Search = () => {
         dispatch(searchDelayStart)
         timer.current = setTimeout(() => {
             debugger
+            navigate(`/catalog/1`);
             dispatch(searchDelayEnd)
             if (searchValue[searchValue.length - 1] === ' ') {
                 dispatch(cardsSearch(searchValue.slice(0, -1)))
@@ -29,6 +33,17 @@ export const Search = () => {
     useEffect(() => {
         searchRef.current.focus();  
     })
+
+    useEffect(() => {
+        if (!searchValue) {
+            dispatch(searchResultTrue);
+            dispatch(cleanSearchedList);
+        }  
+    }, [cardsListSearched])
+
+
+
+
 
     // useEffect(() => {
     //     if (searchValue)
@@ -45,9 +60,13 @@ export const Search = () => {
     }
 
     useEffect(() => {
+        debugger
         if (!searchValue) {
-            dispatch(cleanSearchedList);
             dispatch(searchResultTrue);
+            dispatch(cleanSearchedList);
+            clearTimeout(timer.current);
+            dispatch(searchDelayEnd)
+
             return
         }
         if (catalogLoaded && searchValue) handleSearch();

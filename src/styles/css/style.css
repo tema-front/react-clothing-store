@@ -1436,6 +1436,22 @@ body {
   margin: -24px 0 20px 0;
 }
 
+.circular-progress {
+  width: 100px;
+  height: 100px;
+}
+
+.circular-progress-wrp {
+  max-width: 1140px;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
 .txt-italics {
   font-style: italic;
 }
@@ -1970,6 +1986,61 @@ body {
   cursor: pointer;
 }
 
+.product-selected-btn-done {
+  position: relative;
+  padding: 0 23.5px;
+  height: 43.5px;
+  margin: 0 auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+  background-color: transparent;
+  border: 1px solid #ff6a6a;
+  color: #f26376;
+  fill: #f26376;
+  cursor: not-allowed;
+  width: 184.94px;
+  position: relative;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+
+.product-selected-btn-done > svg:nth-child(2) {
+  fill: green;
+  position: absolute;
+  top: 8px;
+  left: 34px;
+}
+
+.product-selected-btn-done > span {
+  margin: 0 0 0 35px;
+}
+
+.product-selected-btn-done-cross {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  cursor: pointer;
+  fill: #575757;
+  top: -14px;
+  right: -14px;
+  padding: 8px;
+}
+
+.product-selected-btn-done-cross:hover {
+  fill: black;
+}
+
+.product-selected-btn-done-cross:active {
+  -webkit-transform: scale(125%);
+          transform: scale(125%);
+}
+
 .product-selected-btn:hover {
   color: #fff;
   fill: #fff;
@@ -2166,6 +2237,7 @@ body {
   font-family: lato, sans-serif;
   font-weight: 300;
   font-style: normal;
+  text-decoration: none;
   font-size: 14px;
   line-height: 17px;
   text-transform: uppercase;

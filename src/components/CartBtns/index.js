@@ -12,8 +12,8 @@ export const CartBtns = () => {
     return (
         <div className="products-added-btns">
             <button onClick={handleEmptyCart} className="products-added-btn products-btn-clear-cart">clear shopping cart</button>
-            <Link to={'/catalog/1'}>
-                <button className="products-added-btn products-btn-catalog">continue shopping</button>
+            <Link className="products-added-btn products-btn-catalog" to={'/catalog/1'}>continue shopping
+                {/* <button className="products-added-btn products-btn-catalog">continue shopping</button> */}
             </Link>
         </div>
     );

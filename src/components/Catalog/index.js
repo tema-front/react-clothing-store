@@ -16,6 +16,7 @@ import { Header } from "../Header";
 import { Pagination } from "../Pagination";
 import nothingFoundImg from '../../img/.png/nothing-found.png'
 import { ProductCard } from "../ProductCard";
+import { CircularProgress } from "@material-ui/core";
 
 export const Catalog = () => {
     const cardsList = useSelector(getCardsList);
@@ -166,16 +167,28 @@ export const Catalog = () => {
             <CatalogSettings />  
         <section className="catalog-products products">
             {searchLinearProgress && <LinearProgress className="search-linear-progress" color="secondary" />}
-            {((filters.category || filters.brand || filters.designer) && !Object.keys(cardsListSearched).length) ? <ProductCard cards={cardsListFiltred?.[pageId]} /> : 
-                (Object.keys(cardsListSearched).length && !nothingFound) ? <ProductCard cards={cardsListSearched?.[pageId]} /> : 
+            {((filters.category || filters.brand || filters.designer) && !Object.keys(cardsListSearched).length) ? 
+                <>
+                    {!cardsListFiltred?.[pageId] && <div className="circular-progress-wrp"><CircularProgress color="secondary" size={100} className="circular-progress" /></div>}
+                    <ProductCard cards={cardsListFiltred?.[pageId]} />
+                </> : 
+                (Object.keys(cardsListSearched).length && !nothingFound) ? 
+                    <>
+                        {!cardsListSearched?.[pageId] && <div className="circular-progress-wrp"><CircularProgress color="secondary" size={100} className="circular-progress" /></div>}
+                        <ProductCard cards={cardsListSearched?.[pageId]} /> 
+                    </>
+                    : 
                 nothingFound ? 
                     <section className="nothing-found-wrp">
                         <h3 className="nothing-found-title">Oops!</h3>
                         <span className="nothing-found-txt">Nothing found. We couldn't find what you're looking for.</span>
                         <img className="nothing-found-img" src={nothingFoundImg} alt='SearchNotFound' height='452'></img>
                     </section> 
-                : 
-                <ProductCard cards={cardsList?.[pageId]} />
+                :
+                <>
+                    {!cardsList?.[pageId] && <div className="circular-progress-wrp"><CircularProgress color="secondary" size={100} className="circular-progress" /></div>}
+                    <ProductCard cards={cardsList?.[pageId]} />
+                </> 
             }
 
             {/* <ProductCard cards={cardsList?.[pageId]} /> */}

@@ -1,3 +1,4 @@
+import { CircularProgress } from '@material-ui/core';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom';
@@ -84,6 +85,7 @@ export const AdditionalProducts = () => {
         <>
         <section class="others-products">
             <span className='others-products-title'>You may also like</span>
+                    {!additionalCardsList.length && <div className="circular-progress-wrp"><CircularProgress color="secondary" size={100} className="circular-progress" /></div>}
             <AdditionalProductsItem cards={additionalCardsList} />
         </section>
         </>

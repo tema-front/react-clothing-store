@@ -1489,6 +1489,10 @@ body {
   padding: 0 16px;
 }
 
+.filter-disable {
+  display: none;
+}
+
 .catalog-filter {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;

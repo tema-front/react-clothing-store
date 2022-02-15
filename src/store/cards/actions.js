@@ -164,14 +164,25 @@ export const cardsFilter = () => (dispatch, getState) => {
     const cardsList = Object.values(getState().stateCards.cardsList);
     let filtredList = []
     const { category, brand, designer } = getState().stateFilter.filters;
+    debugger
     for (let i = 0; i < 20; i++) {
         cardsList[i].forEach(card => {
             // if (card.category === category) {
+            let rexExp = new RegExp(`\\b${category}\\b`)
+            console.log('women'.match(rexExp));
             if ((category || brand || designer) && 
-                (card.category === category) || (card.brand === brand) || (card.designer === designer)
+                (card.category.match(rexExp)) && (card.brand.includes(brand)) && (card.designer.includes(designer))
             ) {
                 filtredList = [...filtredList, card]
             }
+
+
+            // Общий
+            // if ((category || brand || designer) && 
+            //     (card.category === category) || (card.brand === brand) || (card.designer === designer)
+            // ) {
+            //     filtredList = [...filtredList, card]
+            // }
 
         })
     }

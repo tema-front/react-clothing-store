@@ -124,7 +124,6 @@ export const cardsReducer = (state = initialState, {type, payload}) => {
 
         case ADD_FILTRED_CARD: {
             // if (state.cardsListFiltred[payload.pageId]) return state
-            debugger
             return {
                 ...state, 
                 cardsListFiltred: {...state.cardsListFiltred, 

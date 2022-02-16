@@ -18,14 +18,14 @@ export const Search = () => {
     let timer = useRef();
     
     const handleSearch = () => {
-        // dispatch(cleanFiltredList);
-        // dispatch(cleanFilter);
         clearTimeout(timer.current);
         dispatch(searchDelayStart)
         console.log(Filter);
         timer.current = setTimeout(() => {
             debugger
             navigate(`/catalog/1`);
+            dispatch(cleanFiltredList);
+            dispatch(cleanFilter);
             dispatch(searchDelayEnd);
             // handleCleaningFilter();
             if (searchValue[searchValue.length - 1] === ' ') {
@@ -92,8 +92,13 @@ export const Search = () => {
 
     const handleClearSearch = () => {
         setSearchValue('');
+        // ПОПРОБУЙ СДЕЛАТЬ ФИЛЬТР, ПОТОМ ПОИСК, ПОТОМ CLEAN SEARCH
         dispatch(searchResultTrue);
         dispatch(cleanSearchedList);
+        clearTimeout(timer.current);
+        dispatch(searchDelayEnd)
+        dispatch(cleanFiltredList);
+        dispatch(cleanFilter);  
     }
 
     return (

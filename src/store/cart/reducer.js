@@ -1,7 +1,8 @@
-import { ADD_CARD_TO_CART, CHANGE_COLOR, CHANGE_SIZE, DECREASE_QUANTITY, EMPTY_CART, INCREASE_QUANTITY, REMOVE_CARD_FROM_CART } from "./actions";
+import { ADD_CARD_TO_CART, CHANGE_COLOR, CHANGE_SIZE, DECREASE_QUANTITY, EMPTY_CART, INCREASE_QUANTITY, RECIEVE_DELIVERY_PRICE, REMOVE_CARD_FROM_CART, RESET_DELIVERY_PRICE, RESIEVE_DELIVERY_PRICE } from "./actions";
 
 const initialState = {
-    cartList: []
+    cartList: [],
+    deliveryPrice: 0
 }
 
 export const cartReducer = (state = initialState, { type, payload}) => {
@@ -11,7 +12,7 @@ export const cartReducer = (state = initialState, { type, payload}) => {
 
             return {
                 ...state,
-                cartList: [...state.cartList, {...payload.cardInfo, color: payload.color, size: payload.size, quantity: payload.quantity || 1}]
+                cartList: [...state.cartList, {...payload.cardInfo, color: payload.color || 'Black', size: payload.size || 'S', quantity: payload.quantity || 1}]
             }
         }
 
@@ -68,6 +69,20 @@ export const cartReducer = (state = initialState, { type, payload}) => {
             return {
                 ...state,
                 cartList: newCartList
+            }
+        }
+
+        case RECIEVE_DELIVERY_PRICE: {
+            return {
+                ...state,
+                deliveryPrice: Math.ceil(Math.random() * 35) + 15
+            }
+        }
+
+        case RESET_DELIVERY_PRICE: {
+            return {
+                ...state,
+                deliveryPrice: 0
             }
         }
     

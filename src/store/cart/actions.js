@@ -5,6 +5,8 @@ export const INCREASE_QUANTITY = 'CART::INCREASE_QUANTITY';
 export const DECREASE_QUANTITY = 'CART::DECREASE_QUANTITY';
 export const CHANGE_SIZE = 'CART::CHANGE_SIZE';
 export const CHANGE_COLOR = 'CART::CHANGE_COLOR';
+export const RECIEVE_DELIVERY_PRICE = 'CART::RECIEVE_DELIVERY_PRICE';
+export const RESET_DELIVERY_PRICE = 'CART::RESET_DELIVERY_PRICE';
 
 export const addCardToCart = (cardInfo, color, size, quantity) => ({
     type: ADD_CARD_TO_CART,
@@ -50,3 +52,11 @@ export const changeColor = (cardId, color) => ({
         color: color
     }
 })
+
+export const recieveDeliveryPrice = {
+    type: RECIEVE_DELIVERY_PRICE
+}
+
+export const resetDeliveryPrice = {
+    type: RESET_DELIVERY_PRICE
+}

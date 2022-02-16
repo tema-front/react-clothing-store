@@ -36,7 +36,6 @@ export const Filter = () => {
     }
 
     const onCloseFilter = () => {
-        debugger
         if (filter.current) filter.current.classList.add('filter-disable')
         else return
         for (let key in filters) {
@@ -139,12 +138,11 @@ export const Filter = () => {
 
     useEffect(() => {
         debugger
-        if ((filters.category || filters.brand || filters.designer) && !searchLinearProgress && Object.values(cardsListSearched.current).length) {
-            handleCleaningFilter();
-            dispatch(cleanFiltredList);
-            dispatch(cleanFilter);  
-        } 
-    }, [searchLinearProgress])
+        if ((!filters.category && !filters.brand && !filters.designer) && searchLinearProgress) handleCleaningFilter();
+        // if ((filters.category || filters.brand || filters.designer) && !searchLinearProgress && Object.values(cardsListSearched.current).length) {
+        //     handleCleaningFilter();
+        // } 
+    }, [filters])
 
     const handleCleaningFilter = () => {
         // navigate(`/catalog/1`);

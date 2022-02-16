@@ -11,6 +11,7 @@ export const CheckoutWindow = ({onCloseCheckoutWindow}) => {
     const [email, setEmail] = useState('');
     const [address, setAddress] = useState('');
     const cartList = useSelector(getCartList);
+    const [orderRegistred, setOrderRegistred] = useState(false)
 
     const handleFirstName = (event) => {
         let newFirstName = ''
@@ -79,6 +80,7 @@ export const CheckoutWindow = ({onCloseCheckoutWindow}) => {
         for (let i = 0; i < cartList.length; i++) {
             set(ref(db, `orders/artemsokolov/${orderId}/products/${i + 1}`), cartList[i])
         }
+        setOrderRegistred(true);
     }
 
     return (
@@ -102,8 +104,12 @@ export const CheckoutWindow = ({onCloseCheckoutWindow}) => {
 
                     <span className="checkout-window-subtitle">Your address</span>
                     <input onChange={event => handleAddress(event)} value={address} className="checkout-window-inputs" type='text' placeholder="Address" />
-                    {/* имя, фамилия, почта, номер телефона, адрес, комментарии и пожелания */}
-                    <input className="checkout-window-btn" type='submit' value='Checkout' />
+                    {(firstName && lastName && phoneNumber && email && address && !orderRegistred) 
+                        ? <input className="checkout-window-btn" type='submit' value='Checkout' />
+                        : <input disabled className="checkout-window-btn disable" type='submit' value='Checkout' />
+                    }
+                    {orderRegistred && <span className="checkout-window-order-done">Done! Your order has been placed. Our manager will contact you shortly to clarify the order</span>}
+                    {/* <input className="checkout-window-btn" type='submit' value='Checkout' /> */}
                 </form>
             </section>
         </div>

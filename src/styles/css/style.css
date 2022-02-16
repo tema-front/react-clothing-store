@@ -2256,6 +2256,16 @@ body {
           box-sizing: border-box;
 }
 
+.products-added-btn:hover {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+.products-added-btn:active {
+  -webkit-transform: scale(103%);
+          transform: scale(103%);
+}
+
 .products-btn-clear-cart {
   margin: 72px 16px 0 0;
 }
@@ -2266,6 +2276,15 @@ body {
   position: absolute;
   top: 28px;
   right: 22px;
+}
+
+.products-added-item-cross:hover {
+  fill: black;
+}
+
+.products-added-item-cross:active {
+  -webkit-transform: scale(125%);
+          transform: scale(125%);
 }
 
 .cross-catalog-filter {
@@ -2344,6 +2363,16 @@ body {
   background-color: transparent;
   border: 1px solid #a4a4a4;
   cursor: pointer;
+}
+
+.products-delivery-form-submit-btn:hover {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+.products-delivery-form-submit-btn:active {
+  -webkit-transform: scale(105%);
+          transform: scale(105%);
 }
 
 .products-making-order {
@@ -2436,14 +2465,29 @@ body {
   background-color: #f16d7f;
   padding: 15px 43px;
   border: none;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   cursor: pointer;
+}
+
+.products-making-order-btn:hover {
+  background-color: #fb8f8f;
+}
+
+.products-making-order-btn:active {
+  -webkit-transform: scale(103%);
+          transform: scale(103%);
+}
+
+.disable {
+  cursor: not-allowed;
 }
 
 .checkout-window {
   position: fixed;
   max-width: 420px;
   width: 100%;
-  max-height: 600px;
+  max-height: 640px;
   background-color: white;
   padding: 20px 30px;
   -webkit-box-sizing: border-box;
@@ -2520,6 +2564,28 @@ body {
   padding: 15px 43px;
   border: none;
   cursor: pointer;
+}
+
+.checkout-window-btn:hover {
+  background-color: #fb8f8f;
+}
+
+.checkout-window-btn:active {
+  -webkit-transform: scale(103%);
+          transform: scale(103%);
+}
+
+.checkout-window-order-done {
+  font-family: lato, sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  text-align: center;
+  color: green;
+  margin: 10px 0 0 0;
+}
+
+.checkout-window-order-done ~ .checkout-window {
+  max-height: 900px;
 }
 
 .checkout-window-overlay {

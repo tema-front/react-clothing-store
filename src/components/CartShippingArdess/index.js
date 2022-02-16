@@ -39,9 +39,7 @@ export const CartShippingAdress = () => {
                 <input onChange={event => handleCountry(event)} value={country} className="products-delivery-form-item"type="text" placeholder="Country" />
                 <input onChange={event => handleSity(event)} value={sity} className="products-delivery-form-item" type="text" placeholder="Sity"/>
                 <input onChange={event => handlePostcode(event)} value={postcode} className="products-delivery-form-item"type="number" placeholder="Postcode / Zip" />
-                <div className="products-delivery-price-wrp">
-                    <input className="products-delivery-form-submit-btn"type="submit" value="get a quote" />
-                </div>
+                <input className="products-delivery-form-submit-btn"type="submit" value="get a quote" />
             </form>
         </section>
         </>

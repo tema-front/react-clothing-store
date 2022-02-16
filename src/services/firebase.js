@@ -2,7 +2,6 @@ import { initializeApp } from "firebase/app";
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut as firebaseSingOut, getAuth } from "firebase/auth";
 import { getDatabase } from "firebase/database";
 
-
 const firebaseConfig = {
     apiKey: "AIzaSyDwp3rg5I-MSLoLxyyTUJfVWB6pWIzD3Ik",
     authDomain: "clothing-store-c681d.firebaseapp.com",

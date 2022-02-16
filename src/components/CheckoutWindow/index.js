@@ -66,8 +66,8 @@ export const CheckoutWindow = ({onCloseCheckoutWindow}) => {
 
     const handleCheckoutSubmit = (event) => {
         event.preventDefault();
-        debugger
         console.log(cartList);
+        debugger
         let orderId = `artemsokolov${Date.now()}`
         set(ref(db, `orders/artemsokolov/${orderId}/userdata`), {
             FirstName: firstName,

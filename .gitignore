@@ -13,6 +13,8 @@
 Supplements.txt
 /src/styles/css/style.css.map
 /src/services/firebase.js
+/src/services
+/src/utils
 
 
 # testing

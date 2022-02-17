@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { onAuthStateChanged } from "firebase/auth";
 import { singOut, auth, db } from "../../services/firebase";
-import { offAuth, onAuth, setName } from "../../store/profile/actions";
+import { offAuth, onAuth, resetName } from "../../store/profile/actions";
 import { getAuthed, getName } from "../../store/profile/selectors";
 import { Feedback } from "../Feedback";
 import { Footer } from "../Footer";
@@ -18,16 +18,6 @@ export const PageProfile = () => {
     const name = useSelector(getName);
     const [registration, setRegistration] = useState(true)
 
-    const handleLogout = async () => {
-        dispatch(offAuth)
-        dispatch(setName(''))
-        try {
-            await singOut();
-        } catch (error) {
-            console.log(error);
-        }
-    }
-
     useEffect(() => {
         const subscribe = onAuthStateChanged(auth, (user) => {
             debugger
@@ -37,7 +27,7 @@ export const PageProfile = () => {
                 onValue(usersDbRef, (snapshot) => {
                     const datas = snapshot.val();
                     
-                    dispatch(setName(datas?.name))
+                    dispatch(resetName(datas?.name))
                 })
                 dispatch(onAuth);
             } else {
@@ -57,16 +47,15 @@ export const PageProfile = () => {
 
     return (
         <>
-        {name ? <Header isCatalog={true} title={name}/> : 
+        {name ? <Header isCatalog={true} title={name} auth={true}/> : 
             registration ? <Header isCatalog={true} title={'registration'} /> : <Header isCatalog={true} title={'login'} />
         }
-        <main class="content-account">
-            {/* <div class="content-account-wrp"> */}
-                <section class="registration"> 
-                    {!authed ? 
-                        registration ? <Registration goToLogin={goToLogin} /> : <ProfileLogin goToRegistration={goToRegistration} />
-                        : 
-                        <button onClick={handleLogout}>Logout</button>
+        <main className="content-account">
+
+            {/* <div className="content-account-wrp"> */}
+                <section className="registration"> 
+                    {!authed &&
+                        (registration ? <Registration goToLogin={goToLogin} /> : <ProfileLogin goToRegistration={goToRegistration} />)
                     }
                     <RegistrationPrivileges />
                 </section>

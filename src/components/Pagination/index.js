@@ -91,16 +91,16 @@ export const Pagination = ({pageId}) => {
                             </li>
                             {paginationNumbers?.map((number, i) => (
                                 <li key={i}>
-                                    <input type="radio" class="pagination-radio" name="registration-radio-btn" id={`pagination-label-${number}`} value={number} />
-                                    <Link onClick={() => goTopPage(number)} to={`/catalog/${number}`} class="pagination-label products-pagination-numbers-list-item">{number}</Link>
+                                    <input type="radio" className="pagination-radio" name="registration-radio-btn" id={`pagination-label-${number}`} value={number} />
+                                    <Link onClick={() => goTopPage(number)} to={`/catalog/${number}`} className="pagination-label products-pagination-numbers-list-item">{number}</Link>
                                 </li>
                             ))}
                             </>
                             :
                             paginationNumbers?.map((number, i) => (
                                 <li key={i}>
-                                    <input type="radio" class="pagination-radio" name="registration-radio-btn" id={`pagination-label-${number}`} value={number} />
-                                    <Link onClick={() => goTopPage(number)} to={`/catalog/${number}`} class="pagination-label products-pagination-numbers-list-item">{number}</Link>
+                                    <input type="radio" className="pagination-radio" name="registration-radio-btn" id={`pagination-label-${number}`} value={number} />
+                                    <Link onClick={() => goTopPage(number)} to={`/catalog/${number}`} className="pagination-label products-pagination-numbers-list-item">{number}</Link>
                                 </li>
                             ))
                         }

@@ -113,6 +113,23 @@ body {
   padding: 0 16px;
 }
 
+.header-bottom-logout-btn {
+  fill: #f16d7f;
+  position: absolute;
+  top: 2px;
+  right: -38px;
+  cursor: pointer;
+}
+
+.header-bottom-logout-btn:hover {
+  fill: #ffacb7;
+}
+
+.header-bottom-logout-btn:active {
+  -webkit-transform: scale(110%);
+          transform: scale(110%);
+}
+
 .header-page-top {
   background-color: #222222;
   -webkit-box-sizing: border-box;
@@ -328,17 +345,17 @@ body {
   cursor: pointer;
 }
 
+.menu-sublist-item-txt:hover {
+  -webkit-transform: scale(103%);
+          transform: scale(103%);
+}
+
 .menu-sublist-item-txt:active {
   color: black;
 }
 
 .menu-sublist-item:first-child {
   margin: 0;
-}
-
-.menu-sublist-item:hover {
-  -webkit-transform: scale(103%);
-          transform: scale(103%);
 }
 
 .header-homepage-bottom {
@@ -460,6 +477,7 @@ body {
   line-height: 29px;
   color: #f16d7f;
   text-transform: uppercase;
+  position: relative;
 }
 
 /* ============================ <main> ============================ */
@@ -981,6 +999,21 @@ body {
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
+}
+
+.products-item-btn-done {
+  cursor: not-allowed;
+}
+
+.products-item-btn-done > svg:first-of-type {
+  fill: green;
+  width: 17px;
+}
+
+.products-item-btn-done > svg:last-of-type {
+  width: 13px;
+  top: -17px;
+  right: -12px;
 }
 
 .products-item-btn {
@@ -2014,15 +2047,15 @@ body {
           justify-content: flex-start;
 }
 
-.product-selected-btn-done > svg:nth-child(2) {
+.product-selected-btn-done > svg:nth-child(1) {
   fill: green;
   position: absolute;
-  top: 8px;
+  top: 10px;
   left: 34px;
 }
 
 .product-selected-btn-done > span {
-  margin: 0 0 0 35px;
+  margin: 0 auto;
 }
 
 .product-selected-btn-done-cross {
@@ -2187,11 +2220,21 @@ body {
   font-weight: 400;
   font-style: normal;
   text-transform: uppercase;
-  font-size: 18px;
+  font-size: 17px;
   line-height: 22px;
   display: block;
   color: #222222;
   margin: 0 20px 42px 0;
+  text-decoration: none;
+}
+
+.products-added-item-heading:hover {
+  color: #535353;
+}
+
+.products-added-item-heading:active {
+  -webkit-transform: scale(102%);
+          transform: scale(102%);
 }
 
 .products-added-item-list-settings {
@@ -2483,6 +2526,98 @@ body {
   cursor: not-allowed;
 }
 
+.modal-window {
+  position: fixed;
+  max-width: 520px;
+  width: 100%;
+  max-height: 160px;
+  background-color: white;
+  padding: 20px 30px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  margin: auto;
+}
+
+.modal-window-logout-wrp {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.modal-window-logout-txt {
+  font-family: lato, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  color: #f16d7f;
+  font-size: 22px;
+  text-align: center;
+  margin: 0 0 15px 0;
+}
+
+.modal-window-logout-btn {
+  min-width: 60px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  text-align: center;
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 19px;
+  padding: 7px 15px;
+  background-color: transparent;
+  color: #f26376;
+  border: 1px solid #ff6a6a;
+}
+
+.modal-window-logout-btn-cancel {
+  min-width: 60px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  text-align: center;
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 19px;
+  padding: 7px 15px;
+  background-color: transparent;
+  color: #f26376;
+  border: 1px solid #ff6a6a;
+  margin: 15px 0 0 0;
+}
+
+.modal-window-logout-btn-cancel:hover {
+  background-color: #ff6a6a;
+  color: #ffffff;
+}
+
+.modal-window-logout-btn-cancel:active {
+  -webkit-transform: scale(105%);
+          transform: scale(105%);
+}
+
+.modal-window-logout-btn:first-of-type {
+  margin: 0 45px 0 0;
+}
+
+.modal-window-logout-btn:hover {
+  background-color: #ff6a6a;
+  color: #ffffff;
+}
+
+.modal-window-logout-btn:active {
+  -webkit-transform: scale(105%);
+          transform: scale(105%);
+}
+
 .checkout-window {
   position: fixed;
   max-width: 420px;
@@ -2588,8 +2723,62 @@ body {
   max-height: 900px;
 }
 
+.checkout-window-false {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.checkout-window-false-title {
+  font-family: lato, sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 40px;
+  color: #f16d7f;
+  margin: 40px 0 15px 0;
+}
+
+.checkout-window-false-txt {
+  font-family: lato, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 20px;
+  color: #f16d7f;
+  text-align: center;
+}
+
+.checkout-window-false-link {
+  margin: 15px 0 0 0;
+  font-size: 20px;
+  padding: 5px;
+  color: #f16d7f;
+  cursor: pointer;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  text-decoration: none;
+  border-bottom: 2px solid #f16d7f;
+}
+
+.checkout-window-false-link:hover {
+  -webkit-transform: scale(103%);
+          transform: scale(103%);
+}
+
+.checkout-window-false-link:active {
+  color: red;
+  border-bottom: 2px solid red;
+}
+
 .checkout-window-overlay {
   position: fixed;
+  z-index: 50;
   left: 0;
   top: 0;
   bottom: 0;
@@ -2599,8 +2788,6 @@ body {
 }
 
 .registration {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
   max-width: 1140px;
   width: 100%;
   display: -webkit-box;
@@ -2686,6 +2873,15 @@ body {
   width: 167px;
   background-color: #f16d7f;
   position: relative;
+}
+
+.registration-form-datas-submit:hover {
+  background-color: #fb8f8f;
+}
+
+.registration-form-datas-submit:acitve {
+  -webkit-transform: scale(103%);
+          transform: scale(103%);
 }
 
 .registration-form-datas-submit:after {

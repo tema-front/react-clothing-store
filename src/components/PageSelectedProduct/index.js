@@ -51,7 +51,7 @@ export const PageSelectedProduct = () => {
     return (
         <>
         <Header isCatalog={true} title={card.brand}/>
-        <main class="content-product">
+        <main className="content-product">
             {/* <SliderSelectedProduct cardId={cardsList?.[+productId - 1]?.id}/>
             <SelectedProductInfo cardInfo={cardsList?.[+productId - 1]} />
             <AdditionalProducts cardInfo={cardsList?.[+productId - 1]} /> */}

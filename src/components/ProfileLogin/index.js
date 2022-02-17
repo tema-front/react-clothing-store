@@ -2,7 +2,7 @@ import { useDispatch } from "react-redux";
 import { onValue, ref } from "firebase/database";
 import { useState } from "react";
 import { db, login as firebaseLogin} from "../../services/firebase";
-import { setName } from "../../store/profile/actions";
+import { resetName } from "../../store/profile/actions";
 
 export const ProfileLogin = ({goToRegistration}) => {
     const [email, setEmail] = useState('');
@@ -36,14 +36,14 @@ export const ProfileLogin = ({goToRegistration}) => {
 
 
     return (
-        <form class="registration-form-datas">
+        <form className="registration-form-datas">
             <p className="registration-have-account-txt">Don't have an account yet? <button onClick={handleGoToRegistration} className="registration-have-account-btn">Sing up</button> </p>
-            <div class="registration-login-details">
-                <span class="registration-login-details-title">Login details</span>
-                <input onChange={handleEmail} value={email} type="email" class="registration-form-inputs registration-login-email" placeholder="Email" />
-                <input onChange={handlePassword} value={password}type="password" class="registration-form-inputs registration-login-password" placeholder="Password" />
+            <div className="registration-login-details">
+                <span className="registration-login-details-title">Login details</span>
+                <input onChange={handleEmail} value={email} type="email" className="registration-form-inputs registration-login-email" placeholder="Email" />
+                <input onChange={handlePassword} value={password}type="password" className="registration-form-inputs registration-login-password" placeholder="Password" />
             </div>
-            <button onClick={handleLogin} class="registration-form-datas-submit">Login</button>
+            <button onClick={handleLogin} className="registration-form-datas-submit">Login</button>
         </form>
     );
 }

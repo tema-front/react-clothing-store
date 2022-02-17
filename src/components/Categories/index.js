@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { addCategory } from "../../store/filter/actions";
+import { addCategory, cleanFilter } from "../../store/filter/actions";
 import { getFilters } from "../../store/filter/selectors";
 import { cleanFiltredList } from "../../store/cards/actions";
 
@@ -21,6 +21,7 @@ export const Categories = () => {
         // if (category)
         if (category.split(' ')[1] === filters.category || category === filters.category) return;
         dispatch(cleanFiltredList);
+        dispatch(cleanFilter);
 
         if (!category.split(' ')[1]) {
             dispatch(addCategory(category));

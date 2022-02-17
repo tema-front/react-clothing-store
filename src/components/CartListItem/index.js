@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux'
+import { Link } from 'react-router-dom';
 import { changeColor, changeSize, decreaseQuantity, increaseQuantity, removeCardFromCart } from '../../store/cart/actions';
 
 
@@ -43,7 +44,9 @@ export const CartListItem = ({cards}) => {
                 {/* <img src="./img/.jpg/main_product_3.jpg" className="products-added-item-img" alt="products-item" height="306"> */}
                 <div className="products-added-item-info">
                     <div className="products-added-item-txt">
-                    <span className="products-added-item-heading">{card.title}</span>
+                    <Link className="products-added-item-heading" to={`/product/${card.id}`}>
+                        <span className="products-added-item-heading">{card.title}</span>
+                    </Link>
                         <ul className="products-added-item-list-settings">
                             <li>Price: <span className="products-added-item-price">${card.price}.00</span></li>
                             <li>Color: 

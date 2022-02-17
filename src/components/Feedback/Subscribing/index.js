@@ -34,7 +34,8 @@ export const Subscribing = () => {
                 })
                 dispatch(onAuth);
             } else {
-                dispatch(offAuth)
+                dispatch(offAuth);
+                setSubscribingExist(false);
             }
         })
         return subscribe;

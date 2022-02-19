@@ -285,24 +285,44 @@ export const requestSelectedCard = (cardId) => async (dispatch) => {
 export const requestRandomCard = (selectedCardCategory) => async (dispatch) => {
     // for (let i = 1; i <= 3; i++) {
             // const randomCardId = Math.floor(Math.random() * (4 - 1) + 1);
-    
+                debugger
                 const additionalProductDbRef = ref(db, `categories/${selectedCardCategory}/`);
                 // const additionalProductDbRef = ref(db, `catalog/category${selectedCardCategory}/page${randomPageId}/${randomCardId}`);
                 onValue(additionalProductDbRef, (snapshot) => {
-                    
+                    let additionalCardsList = [];
                     let datasAdditionalCard = snapshot.val();
                     let randomProductId = null;
-                    for (let i = 1; i <= 3; i++) {
+
+                    while (additionalCardsList.length < 3) {
                         let randomPageId =  (Math.floor(Math.random() * (Object.keys(datasAdditionalCard).length - 1) + 1));
                         randomPageId = `page${randomPageId}`
-                        let newRandomProductId = (Math.floor(Math.random() * (datasAdditionalCard[randomPageId].length - 2) + 1));
-                        if (newRandomProductId === randomProductId) {
-                            i--;
-                            continue;
-                        }
-                        randomProductId = newRandomProductId
-                        dispatch(addRandomCard(datasAdditionalCard[randomPageId][randomProductId]));
+
+                        
+                        let newRandomProductId = (Math.floor(Math.random() * (datasAdditionalCard[randomPageId].length - 1) + 1));
+
+                        if (additionalCardsList.includes(newRandomProductId)) continue;
+                        additionalCardsList.push(newRandomProductId);
+                        dispatch(addRandomCard(datasAdditionalCard[randomPageId][newRandomProductId]));
+                        // randomProductId = newRandomProductId
                     }
+                    
+
+                    //  Рабоет, но допускает потор 1-3
+                    // for (let i = 1; i <= 3; i++) {
+                    //     let randomPageId =  (Math.floor(Math.random() * (Object.keys(datasAdditionalCard).length - 1) + 1));
+                    //     randomPageId = `page${randomPageId}`
+                    //     let newRandomProductId = (Math.floor(Math.random() * (datasAdditionalCard[randomPageId].length - 2) + 1));
+                    //     if (newRandomProductId === randomProductId) {
+                    //         i--;
+                    //         continue;
+                    //     }
+                    //     randomProductId = newRandomProductId
+                    //     dispatch(addRandomCard(datasAdditionalCard[randomPageId][randomProductId]));
+                    // }
+
+
+
+
                     // if (datasAdditionalCard?.category === selectedCardCategory && i !== 3) {
                         // let randomPageId =  (Math.floor(Math.random() * (Object.keys(datasAdditionalCard).length - 1) + 1));
                         // randomPageId = `page${randomPageId}`

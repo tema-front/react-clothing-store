@@ -36,9 +36,9 @@ export const AdditionalProductsItem = ({cards}) => {
             {cards?.map(card =>
             <Link to={`/product/${card.id}`} state={{ cardInfo: card }} onClick={goTopPage} className="products-item others-products-item" key={card.id}>
                     <div className="products-item-preview">
-                        <img className="products-item-img" src={`https://picsum.photos/id/${card.id + 8}/360/420`} alt="products-item" height="420" />
+                        <img className="products-item-img" src={`https://picsum.photos/id/${card.id + 8}/360/420`} alt="products-item" height="410" />
 
-                        {(cartList?.find(card => card.id === card.id))
+                        {(cartList?.find(cardCart => cardCart.id === card.id))
                             ? 
                         
                             <button onClick={(event) => stopEffect(event)} className="products-item-btn-done products-item-btn">
@@ -62,7 +62,7 @@ export const AdditionalProductsItem = ({cards}) => {
 
                     </div>
                     <div className="products-item-info">
-                        <span className="products-item-title">{card.title}</span>
+                        <h2 className="products-item-title">{card.title}</h2>
                         <p className="products-item-txt">{card.description}</p>
                         <span className="products-item-price">${card.price}.00</span>
                     </div>

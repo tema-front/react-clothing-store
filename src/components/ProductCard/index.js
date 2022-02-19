@@ -64,7 +64,7 @@ export const ProductCard = ({cards}) => {
                     </div>
                     <div className="products-item-info">
                         <div className="products-item-info-wrp">
-                            <span className="products-item-title">{item.title}</span>
+                            <h2 className="products-item-title">{item.title}</h2>
                             <p className="products-item-txt">{item.description}</p>
                         </div>
                         <span className="products-item-price">${item.price}.00</span>

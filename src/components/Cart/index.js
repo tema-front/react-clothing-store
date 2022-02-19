@@ -35,12 +35,12 @@ export const Cart = () => {
                     </section>
                 </div>
                 :
-                <div className="content-cart-empty">
+                <section className="content-cart-empty">
                     <img className="content-cart-empty-img" src={cartIsEmpty} alt='cart-is-empty' height='266'></img>
-                    <span className="content-cart-empty-txt">Your Cart is Empty!</span>
+                    <h2 className="content-cart-empty-txt">Your Cart is Empty!</h2>
                     <button onClick={handleGoingCatalog} className="content-cart-empty-btn">Start Shopping</button>
                     {/* <Link to={'/catalog/1'} className="content-cart-empty-btn">Start Shopping</Link> */}
-                </div>
+                </section>
             }
             <Feedback />
         </main>

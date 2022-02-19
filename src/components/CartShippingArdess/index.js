@@ -34,7 +34,7 @@ export const CartShippingAdress = () => {
     return (
         <>
         <section className="products-delivery-adress">
-            <span className="products-delivery-adress-heading">shipping adress</span>
+            <h3 className="products-delivery-adress-heading">shipping adress</h3>
             <form onSubmit={event => handleSubmit(event)} className="products-delivery-form">
                 <input onChange={event => handleCountry(event)} value={country} className="products-delivery-form-item"type="text" placeholder="Country" />
                 <input onChange={event => handleSity(event)} value={sity} className="products-delivery-form-item" type="text" placeholder="Sity"/>

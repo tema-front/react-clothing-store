@@ -56,7 +56,7 @@ export const HomePage = () => {
             <Categories />
             <section className="products">
                 <div className="products-info">
-                    <span className="products-title">Fetured Items</span>
+                    <h2 className="products-title">Fetured Items</h2>
                     <p className="products-txt">Shop for items based on what we featured in this week</p>
                 </div>
                 {/* <ProductCard cards={firebaseCardsList?.[1]?.slice(0, 6)}/> */}

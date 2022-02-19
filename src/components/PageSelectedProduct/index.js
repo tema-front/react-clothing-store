@@ -23,11 +23,12 @@ export const PageSelectedProduct = () => {
     // const selectedCard = useSelector(getSelectedCard(+productId, cardsList))
     
     useEffect(() => {
-        
+        debugger
         if (cardInfoProp) {
             setCard(cardInfoProp);
             dispatch(addSelectedCard(cardInfoProp))
-        } else if (!Object.keys(card).length) {
+        // } else if (!Object.keys(card).length) {
+        } else {
             dispatch(requestSelectedCard(+productId));
             setCard(selectedCard);
         }
@@ -57,7 +58,7 @@ export const PageSelectedProduct = () => {
             <AdditionalProducts cardInfo={cardsList?.[+productId - 1]} /> */}
             <SliderSelectedProduct cardId={card?.id}/>
             <SelectedProductInfo cardInfo={card} />
-            <AdditionalProducts cardInfo={card} />
+            <AdditionalProducts />
             <Feedback />
         </main>
         <Footer />

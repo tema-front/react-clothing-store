@@ -47,7 +47,7 @@ export const SelectedProductInfo = ({ cardInfo }) => {
         <section className="product-selected-info">
             <div className="product-selected-info-wrp">
                 <span className="product-selected-category-name">{cardInfo.category} collection,  {cardInfo.brand}, by {cardInfo.designer}</span>
-                <span className="product-selected-title">{cardInfo?.title}</span>
+                <h2 className="product-selected-title">{cardInfo?.title}</h2>
                 <p className="product-selected-info-txt">{cardInfo?.description}</p>
                 <span className="product-selected-price">${cardInfo?.price}.00</span>
                 <hr className="product-selected-info-trait" />

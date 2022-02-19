@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 
 export const SliderSelectedProduct = ({ cardId }) => {
+
     return (
     <section className="product-selected-slider">
         <button className="slide-btn slide-btn-left">

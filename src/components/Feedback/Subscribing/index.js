@@ -50,7 +50,7 @@ export const Subscribing = () => {
 
     return (
         <div className="subscribing">
-            <span className="subscribing-title">subscribe</span>
+            <h3 className="subscribing-title">subscribe</h3>
             <span className="subscribing-subtitle">for our newletter and promotion</span>
             <div className="subscribing-wrap">
                 <form onSubmit={(event) => handleSubcribing(event)} className="subscribing-form">

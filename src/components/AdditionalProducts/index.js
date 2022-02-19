@@ -84,7 +84,7 @@ export const AdditionalProducts = () => {
     return (
         <>
         <section className="others-products">
-            <span className='others-products-title'>You may also like</span>
+            <h3 className='others-products-title'>You may also like</h3>
                     {!additionalCardsList.length && <div className="circular-progress-wrp"><CircularProgress color="secondary" size={100} className="circular-progress" /></div>}
             <AdditionalProductsItem cards={additionalCardsList} />
         </section>

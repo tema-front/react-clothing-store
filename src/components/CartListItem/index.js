@@ -45,7 +45,7 @@ export const CartListItem = ({cards}) => {
                 <div className="products-added-item-info">
                     <div className="products-added-item-txt">
                     <Link className="products-added-item-heading" to={`/product/${card.id}`}>
-                        <span className="products-added-item-heading">{card.title}</span>
+                        <h2 className="products-added-item-heading">{card.title}</h2>
                     </Link>
                         <ul className="products-added-item-list-settings">
                             <li>Price: <span className="products-added-item-price">${card.price}.00</span></li>

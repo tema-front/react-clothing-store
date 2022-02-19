@@ -36,7 +36,7 @@ export const Categories = () => {
             {categories?.map(category => 
                 <Link to={'/catalog/1'} onClick={() => handleAddCategory(category.title)} className="category-item" key={category.id}>
                     <span className="category-item-subtitle">{category.subtitle}</span>
-                    <span className="category-item-title">{category.title}</span>
+                    <h3 className="category-item-title">{category.title}</h3>
                 </Link>
                 // <Link to={'/catalog/1'} className="category-item" key={category.id} onClick={() => openProductsCategory(category.id)}>
                 //     <span className="category-item-subtitle">{category.subtitle}</span>

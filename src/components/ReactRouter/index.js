@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+import { HashRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { Cart } from '../Cart';
 import { Catalog } from '../Catalog';
 import { HomePage } from '../HomePage';
@@ -8,7 +8,7 @@ import { PageProfile } from '../PageProfile';
 
 export const ReactRouter = () => {
     return (
-        <BrowserRouter>
+        <HashRouter>
         <Routes>
             <Route path='/home' element={<HomePage />} />
             <Route path='/catalog' element={<Catalog />}>
@@ -28,6 +28,6 @@ export const ReactRouter = () => {
             <Route path="/" element={<Navigate replace to="/home" />} />
             <Route path='*'  element={<NotFound />} />
         </Routes>
-        </BrowserRouter>
+        </HashRouter>
     );
 }

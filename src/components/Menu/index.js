@@ -1,11 +1,9 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { singOut } from "../../services/firebase";
 import { cleanFiltredList, cleanSearchedList } from "../../store/cards/actions";
 import { addCategory, cleanFilter } from "../../store/filter/actions";
 import { getFilters } from "../../store/filter/selectors";
-import { offAuth, resetName } from "../../store/profile/actions";
 import { ModalWindow } from "../ModalWindow";
 
 export const Menu = ({ onCloseMenu }) => {
@@ -25,7 +23,6 @@ export const Menu = ({ onCloseMenu }) => {
     }, [])
 
     const handleClick = (event) => {
-        console.log(visibilityModalWindow);
         const menuExist = event.composedPath().find(element => element.id === 'menu' || element.id === 'modalwindow')
         if (!menuExist) onCloseMenu();
     }
@@ -75,7 +72,6 @@ export const Menu = ({ onCloseMenu }) => {
                     <li className="menu-sublist-item" onClick={() => handleAddCategory('Accessories')} ><span className="menu-sublist-item-txt">Accessories</span></li>
                 </ul>
 
-
                 <input type="checkbox" id="menu-list-item-account" className="menu-list-item-checkbox"/>
                 <label htmlFor="menu-list-item-account">
                     <li className="menu-list-item"><h4>account</h4></li>
@@ -84,7 +80,6 @@ export const Menu = ({ onCloseMenu }) => {
                     <Link to={'/profile'} className="menu-sublist-item-txt"><li className="menu-sublist-item"><span className="menu-sublist-item-txt">Profile</span></li></Link>
                     <li className="menu-sublist-item" onClick={() => handleOpenModalWindow('logout')} ><span className="menu-sublist-item-txt">Logout</span></li>
                 </ul>
-                
 
                 <input type="checkbox" id="menu-list-item-cart" className="menu-list-item-checkbox"/>
                 <label htmlFor="menu-list-item-cart">

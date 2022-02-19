@@ -1,13 +1,9 @@
-import { useDispatch } from "react-redux";
-import { onValue, ref } from "firebase/database";
 import { useState } from "react";
-import { db, login as firebaseLogin} from "../../services/firebase";
-import { resetName } from "../../store/profile/actions";
+import { login as firebaseLogin} from "../../services/firebase";
 
 export const ProfileLogin = ({goToRegistration}) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const dispatch = useDispatch();
 
     const handleEmail = (event) => {
         setEmail(event.target.value)

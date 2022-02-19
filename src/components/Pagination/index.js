@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { getCardsListFiltred, getCardsListSearched, getSearchStatus } from "../../store/cards/selectors";
 
 export const Pagination = ({pageId}) => {
@@ -11,10 +11,8 @@ export const Pagination = ({pageId}) => {
     const [lastPage, setLastPage] = useState(20);
     const nothingFound = useSelector(getSearchStatus)
     const listRef = useRef();
-    const navigate = useNavigate();
     
     useEffect(() => {
-        
         if (Object.keys(cardsListFiltred).length || Object.keys(cardsListSearched).length) {
             setLastPage(Object.keys(cardsListFiltred).length || Object.keys(cardsListSearched).length)
         } else {
@@ -53,8 +51,8 @@ export const Pagination = ({pageId}) => {
 
     const goTopPage = (moveNumber) => {
         if (+moveNumber === +pageId) return;
-        document.body.scrollTop = 0; // For Safari
-        document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
     }
 
     useEffect(() => {

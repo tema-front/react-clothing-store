@@ -1,13 +1,11 @@
 import { useState } from 'react';
 import {useSelector} from 'react-redux'
 import { getCartPrice, getDeliveryPrice } from "../../store/cart/selectors";
-import { getAuthed } from '../../store/profile/selectors';
 import { CheckoutWindow } from '../CheckoutWindow';
 
 export const SubproceedCheckout = () => {
     const cartPrice = useSelector(getCartPrice);
     const deliveryPrice = useSelector(getDeliveryPrice);
-    const authed = useSelector(getAuthed);
     const [visibilityCheckoutWindow, setVisibilityCheckoutWindow] = useState(false);
 
     const handleProceedCheckout = () => {

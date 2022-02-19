@@ -23,7 +23,7 @@ export const singUp = async (email, password) => {
 }
 
 export const login = async (email, password) => {
-    debugger
+    
     await signInWithEmailAndPassword(auth, email, password)
 }
 

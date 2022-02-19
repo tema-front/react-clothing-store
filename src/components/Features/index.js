@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Feature } from "./Feature";
 
 export const Features = () => {
-    const [featuresList, setFeaturesList] = useState([
+    const [featuresList] = useState([
         {
             feature: 'delivery', 
             title: 'Free Delivery', 

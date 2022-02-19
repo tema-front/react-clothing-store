@@ -19,7 +19,6 @@ export const HeaderBottom = ({isHomePage, isCatalog, isNavigate, title, auth}) =
         <>
             {isHomePage && 
                 <section className="header-homepage-bottom">
-                    {/* <img className="header-preview-img-man" src={headerPhoto} alt="header-photo" height="724" /> */}
                     <div className="header-preview-img-man"></div>
                     <div className="header-brand-name">
                         <h1 className="header-brand-name-wrp">

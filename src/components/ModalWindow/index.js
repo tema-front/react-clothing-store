@@ -24,7 +24,6 @@ export const ModalWindow = ({onCloseModalWindow, reason, visibilityModalWindow})
     const handleLogout = async () => {
         dispatch(offAuth);
         dispatch(resetName(''));
-        // onCloseModalWindow();
         try {
             await singOut();
         } catch (error) {
@@ -40,37 +39,41 @@ export const ModalWindow = ({onCloseModalWindow, reason, visibilityModalWindow})
         <div className="checkout-window-overlay">
             <section id="modalwindow" className="modal-window">
                 {(reason === 'logout') &&
-(                    authed 
-                        ?   <div className="modal-window-logout-wrp">
-                                <span className="modal-window-logout-txt">Are you sure you want to log out of your account?</span>
-                                <div className="modal-window-logout-btns"> 
-                                    <button onClick={onCloseModalWindow} className="modal-window-logout-btn">No</button>
-                                    <button onClick={handleLogout} className="modal-window-logout-btn">Yes</button>
-                                </div>
-                            </div>  
-                        :   <div className="modal-window-logout-wrp">
-                                <span className="modal-window-logout-txt">You are not logged in</span>
-                                <div className="modal-window-logout-btns"> 
-                                    <button onClick={onCloseModalWindow} className="modal-window-logout-btn-cancel">Cancel</button>
-                                </div>
-                            </div>)       
+                    (authed ?
+                        <div className="modal-window-logout-wrp">
+                            <span className="modal-window-logout-txt">Are you sure you want to log out of your account?</span>
+                            <div className="modal-window-logout-btns"> 
+                                <button onClick={onCloseModalWindow} className="modal-window-logout-btn">No</button>
+                                <button onClick={handleLogout} className="modal-window-logout-btn">Yes</button>
+                            </div>
+                        </div>  
+                        :
+                        <div className="modal-window-logout-wrp">
+                            <span className="modal-window-logout-txt">You are not logged in</span>
+                            <div className="modal-window-logout-btns"> 
+                                <button onClick={onCloseModalWindow} className="modal-window-logout-btn-cancel">Cancel</button>
+                            </div>
+                        </div>
+                    )       
                 }
 
                 {(reason === 'cleancart') &&
-                    (cartList.length
-                        ?   <div className="modal-window-logout-wrp">
-                                <span className="modal-window-logout-txt">Are you sure you want to clean your shopping cart?</span>
-                                <div className="modal-window-logout-btns"> 
-                                    <button onClick={onCloseModalWindow} className="modal-window-logout-btn">No</button>
-                                    <button onClick={handleEmptyCart} className="modal-window-logout-btn">Yes</button>
-                                </div>
-                            </div>  
-                        :   <div className="modal-window-logout-wrp">
-                                <span className="modal-window-logout-txt">Your shopping cart is empty</span>
-                                <div className="modal-window-logout-btns"> 
-                                    <button onClick={onCloseModalWindow} className="modal-window-logout-btn-cancel">Cancel</button>
-                                </div>
-                            </div>) 
+                    (cartList.length ?
+                        <div className="modal-window-logout-wrp">
+                            <span className="modal-window-logout-txt">Are you sure you want to clean your shopping cart?</span>
+                            <div className="modal-window-logout-btns"> 
+                                <button onClick={onCloseModalWindow} className="modal-window-logout-btn">No</button>
+                                <button onClick={handleEmptyCart} className="modal-window-logout-btn">Yes</button>
+                            </div>
+                        </div>  
+                        :
+                        <div className="modal-window-logout-wrp">
+                            <span className="modal-window-logout-txt">Your shopping cart is empty</span>
+                            <div className="modal-window-logout-btns"> 
+                                <button onClick={onCloseModalWindow} className="modal-window-logout-btn-cancel">Cancel</button>
+                            </div>
+                        </div>
+                    ) 
                 }
             </section>
         </div>

@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import { useSelector } from "react-redux";
 import { Link } from 'react-router-dom';
 import logo from '../../../img/.png/logo.png'

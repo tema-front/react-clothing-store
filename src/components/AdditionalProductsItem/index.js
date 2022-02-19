@@ -3,15 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { addCardToCart, removeCardFromCart } from "../../store/cart/actions";
 import { getCartList } from "../../store/cart/selectors";
 
-
 export const AdditionalProductsItem = ({cards}) => {
     const dispatch = useDispatch();
     const cartList = useSelector(getCartList);
 
     const goTopPage = () => {
-        
-        document.body.scrollTop = 0; // For Safari
-        document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
     }
 
     const handleAddProductToCart = (event, cardInfo) => {
@@ -37,10 +35,8 @@ export const AdditionalProductsItem = ({cards}) => {
             <Link to={`/product/${card.id}`} state={{ cardInfo: card }} onClick={goTopPage} className="products-item others-products-item" key={card.id}>
                     <div className="products-item-preview">
                         <img className="products-item-img" src={`https://picsum.photos/id/${card.id + 8}/360/420`} alt="products-item" height="410" />
-
                         {(cartList?.find(cardCart => cardCart.id === card.id))
                             ? 
-                        
                             <button onClick={(event) => stopEffect(event)} className="products-item-btn-done products-item-btn">
                                 <svg width="20" height="16" viewBox="0 0 20 16" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M19.8035 0H18.0904C17.8502 0 17.6222 0.111827 17.4752 0.303176L7.3702 13.2826L2.52481 7.05754C2.45151 6.96318 2.35808 6.88688 2.25153 6.83438C2.14499 6.78187 2.0281 6.75451 1.90963 6.75437H0.196467C0.032258 6.75437 -0.0584248 6.94572 0.0420614 7.07494L6.75503 15.6981C7.06874 16.1006 7.67166 16.1006 7.98782 15.6981L19.9579 0.318087C20.0584 0.191349 19.9677 0 19.8035 0Z" />
@@ -50,7 +46,6 @@ export const AdditionalProductsItem = ({cards}) => {
                                 </svg> 
                                 <span className="products-item-btn-txt">Done</span>
                             </button>
-
                             :
                             <button className="products-item-btn" onClick={(event) => handleAddProductToCart(event, card)}>
                                 <svg width="32" height="29" viewBox="0 0 32 29" xmlns="http://www.w3.org/2000/svg">
@@ -59,7 +54,6 @@ export const AdditionalProductsItem = ({cards}) => {
                                 <span className="products-item-btn-txt">Add to Cart</span>
                             </button>
                         }
-
                     </div>
                     <div className="products-item-info">
                         <h2 className="products-item-title">{card.title}</h2>
@@ -67,8 +61,6 @@ export const AdditionalProductsItem = ({cards}) => {
                         <span className="products-item-price">${card.price}.00</span>
                     </div>
                 </Link>
-
-
             )}
         </div>
         </>

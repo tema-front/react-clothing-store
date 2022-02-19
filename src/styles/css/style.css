@@ -1,4 +1,3 @@
-@charset "UTF-8";
 @font-face {
   font-family: "lato";
   src: url(../../fonts/lato-light.ttf);
@@ -68,16 +67,12 @@ body {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   width: 12px;
-  /* ширина для вертикального скролла */
   height: 12px;
-  /* высота для горизонтального скролла */
   background-color: #222222;
 }
 
-/* ползунок скроллбара */
 ::-webkit-scrollbar-thumb {
   background-color: #f16d7f;
-  /* box-shadow: inset 1px 1px 10px #f3faf7; */
 }
 
 ::-webkit-scrollbar-thumb:hover {
@@ -92,7 +87,6 @@ body {
   display: none;
 }
 
-/* ======================== <header> ======================== */
 .header-page-product-bottom {
   background-color: #f8f3f4;
 }
@@ -149,7 +143,6 @@ body {
   max-width: 1140px;
   margin: 0 auto;
   padding: 18px 32px;
-  /* border: 1px solid red; */
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -480,7 +473,6 @@ body {
   position: relative;
 }
 
-/* ============================ <main> ============================ */
 .content-home {
   max-width: 100%;
   padding: 65px 0 0 0;
@@ -912,15 +904,6 @@ body {
   fill: #f16d7f;
 }
 
-/* .products-item:nth-child(3) > div.products-item-preview {
-        display: flex;
-        justify-content: center;
-      } */
-/* 
-      .products-item:nth-child(3) > div.products-item-preview {
-        display: flex;
-        justify-content: center;
-      } */
 .products-item-info {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
@@ -1576,6 +1559,7 @@ body {
   color: #ef5b70;
   text-transform: uppercase;
   margin: 0 0 0 -14px;
+  display: inline;
 }
 
 .catalog-filter-title svg {
@@ -3050,7 +3034,6 @@ body {
   font-weight: 700;
 }
 
-/* =============================== <footer> =============================== */
 .footer-page {
   width: 100%;
   padding: 24px 0;

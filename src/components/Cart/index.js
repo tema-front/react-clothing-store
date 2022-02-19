@@ -7,7 +7,7 @@ import { Footer } from "../Footer";
 import { Feedback } from "../Feedback";
 import { SubproceedCheckout } from "../SubproceedCheckout";
 import { getCartListLength } from "../../store/cart/selectors";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { cleanFilter } from "../../store/filter/actions";
 import { cleanFiltredList } from "../../store/cards/actions";
 
@@ -26,7 +26,8 @@ export const Cart = () => {
         <>
         <Header isCatalog={true} title={'shopping cart'}/>
         <main className="content-cart">
-            {!!cartListLength ? 
+            {!!cartListLength 
+                ? 
                 <div className="content-cart-wrp">
                     <CartList />
                     <section className="products-delivery">
@@ -39,7 +40,6 @@ export const Cart = () => {
                     <img className="content-cart-empty-img" src={cartIsEmpty} alt='cart-is-empty' height='266'></img>
                     <h2 className="content-cart-empty-txt">Your Cart is Empty!</h2>
                     <button onClick={handleGoingCatalog} className="content-cart-empty-btn">Start Shopping</button>
-                    {/* <Link to={'/catalog/1'} className="content-cart-empty-btn">Start Shopping</Link> */}
                 </section>
             }
             <Feedback />

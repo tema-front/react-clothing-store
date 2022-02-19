@@ -1,4 +1,4 @@
-import { onValue, ref, set } from "firebase/database";
+import { onValue, ref } from "firebase/database";
 import { db } from "../../services/firebase";
 
 export const ADD_CARD = 'CARDS::ADD_CARD';
@@ -38,7 +38,6 @@ const addSearchedCard = (cardInfo, pageId) => ({
         pageId
     }
 })
-
 
 const addRandomCard = (cardInfo) => ({
     type: ADD_RANDOM_CARD,
@@ -87,63 +86,6 @@ export const searchDelayEnd = {
     type: SEARCH_DELAY_END
 }
 
-
-// export const requestCardsDatas = (pageId) => async (dispatch, getState) => {
-//     
-//     let cardsStart = 12 * pageId - 12 + 1
-//     if (pageId === 1) cardsStart = 1;
-//     for (let id = cardsStart; id < cardsStart + 12; id++) {
-
-//         try {
-//             const request = await fetch(`https://jsonplaceholder.typicode.com/comments/${id}`);
-//             if (!request.ok) {
-//                 throw new Error('Error request.ok');
-//             }
-//             const result = await request.json()
-//             dispatch(addCard(result, pageId))
-//         } catch(error) {
-//             console.log(error);
-//             // dispatch()
-//         }
-//     }
-// }
-
-// export const requestRandomCard = () => async (dispatch) => {
-//     
-//     for (let i = 1; i <= 3; i++) {
-//         const randomCardId = Math.floor(Math.random() * (240 - 1) + 1);
-//         try {
-//             const request = await fetch(`https://jsonplaceholder.typicode.com/comments/${randomCardId}`);
-//             if (!request.ok) {
-//                 throw new Error('Error request.ok');
-//             }
-//             const result = await request.json()
-//             dispatch(addRandomCard(result))
-//         } catch(error) {
-//             console.log(error);
-//             // dispatch()
-//         }
-//     }
-// }
-
-// export const requestSelectedCard = (cardId) => async (dispatch) => {
-//     try {
-//         const request = await fetch(`https://jsonplaceholder.typicode.com/comments/${cardId}`);
-//         if (!request.ok) {
-//             throw new Error('Error request.ok');
-//         }
-//         const result = await request.json()
-//         dispatch(addSelectedCard(result))
-//     } catch(error) {
-//         console.log(error);
-//         // dispatch()
-//     }
-// }
-
-
-
-// FIREBASE
-
 export const requestCardsDatas = (pageId) => async (dispatch, getState) => {
     try {
         const catalogDbRef = ref(db, `catalog/page${pageId}`);
@@ -155,7 +97,6 @@ export const requestCardsDatas = (pageId) => async (dispatch, getState) => {
         })
     } catch(error) {
         console.log(error);
-        // dispatch()
     }
 }
 
@@ -164,26 +105,15 @@ export const cardsFilter = () => (dispatch, getState) => {
     const cardsList = Object.values(getState().stateCards.cardsList);
     let filtredList = []
     const { category, brand, designer } = getState().stateFilter.filters;
-    debugger
+    
     for (let i = 0; i < 20; i++) {
         cardsList[i].forEach(card => {
-            // if (card.category === category) {
             let rexExp = new RegExp(`\\b${category}\\b`)
-            console.log('women'.match(rexExp));
             if ((category || brand || designer) && 
                 (card.category.match(rexExp)) && (card.brand.includes(brand)) && (card.designer.includes(designer))
             ) {
                 filtredList = [...filtredList, card]
             }
-
-
-            // Общий
-            // if ((category || brand || designer) && 
-            //     (card.category === category) || (card.brand === brand) || (card.designer === designer)
-            // ) {
-            //     filtredList = [...filtredList, card]
-            // }
-
         })
     }
     for (let i = 1; i <= Math.ceil(filtredList.length / 12); i++) {
@@ -200,11 +130,7 @@ export const cardsSearch = (searchValue) => (dispatch, getState) => {
     let searchedList = [];
     for (let i = 0; i < 20; i++) {
         cardsList[i].forEach(card => {
-            // if (card.id === 47) {
-            //     Boolean((card.title.replace(/\r?\n/g, " ").toLowerCase()).includes(searchValue.toLowerCase()))
-            // }
             if (
-                // что за говнокод? Надо нормально переписать
                 ((card.description.replace(/\r?\n/g, " ").toLowerCase()).includes(searchValue.toLowerCase())) || 
                 ((card.title.replace(/\r?\n/g, " ").toLowerCase()).includes(searchValue.toLowerCase())) ||
                 ((card.category.toLowerCase()).includes(searchValue.toLowerCase())) ||
@@ -235,107 +161,45 @@ export const requestAllCardsDatas = () => async (dispatch, getState) => {
         const catalogDbRef = ref(db, `catalog/`);
         await onValue(catalogDbRef, (snapshot) => {
             const datas = snapshot.val();
-            // const datasArr = Object.values(datas || {})
             for (let i = 1; i <= 20; i++) {
                 dispatch(addCard(Object.values(datas[`page${i}`]), i));
-                // dispatch(addCard(Object.values(datasArr[i - 1]), i));
                 if (i === 20) dispatch(allProductsLoaded);
             }
         })
     } catch(error) {
         console.log(error);
-        // dispatch()
     }
 }
 
-
-// export const requestAllCardsDatas = () => async (dispatch, getState) => {
-//     try {
-//         const catalogDbRef = ref(db, `catalog/page${pageId}`);
-//         await onValue(catalogDbRef, (snapshot) => {
-            
-//             const datas = snapshot.val();
-//             const datasArr = Object.values(datas || {})
-//             dispatch(addCard(datasArr, pageId))
-//         })
-//     } catch(error) {
-//         console.log(error);
-//         // dispatch()
-//     }
-// }
 
 export const requestSelectedCard = (cardId) => async (dispatch) => {
     const pageId = Math.ceil(cardId / 12);
     let cardSerialNumber = cardId - (Math.floor(cardId / 12) * 12);
     if (cardId <= 12) cardSerialNumber = cardId;
     try {
-        
         const selectedProductDbRef = ref(db, `catalog/page${pageId}/${cardSerialNumber || 12}`);
         await onValue(selectedProductDbRef, (snapshot) => {
-            
             const datasSelectedCard = snapshot.val();
             dispatch(addSelectedCard(datasSelectedCard))
         })
     } catch(error) {
         console.log(error);
-        // dispatch()
     }
 }
 
 export const requestRandomCard = (selectedCardCategory) => async (dispatch) => {
-    // for (let i = 1; i <= 3; i++) {
-            // const randomCardId = Math.floor(Math.random() * (4 - 1) + 1);
-                debugger
-                const additionalProductDbRef = ref(db, `categories/${selectedCardCategory}/`);
-                // const additionalProductDbRef = ref(db, `catalog/category${selectedCardCategory}/page${randomPageId}/${randomCardId}`);
-                onValue(additionalProductDbRef, (snapshot) => {
-                    let additionalCardsList = [];
-                    let datasAdditionalCard = snapshot.val();
-                    let randomProductId = null;
+    const additionalProductDbRef = ref(db, `categories/${selectedCardCategory}/`);
+    onValue(additionalProductDbRef, (snapshot) => {
+        let additionalCardsList = [];
+        let datasAdditionalCard = snapshot.val();
 
-                    while (additionalCardsList.length < 3) {
-                        let randomPageId =  (Math.floor(Math.random() * (Object.keys(datasAdditionalCard).length - 1) + 1));
-                        randomPageId = `page${randomPageId}`
-
-                        
-                        let newRandomProductId = (Math.floor(Math.random() * (datasAdditionalCard[randomPageId].length - 1) + 1));
-
-                        if (additionalCardsList.includes(newRandomProductId)) continue;
-                        additionalCardsList.push(newRandomProductId);
-                        dispatch(addRandomCard(datasAdditionalCard[randomPageId][newRandomProductId]));
-                        // randomProductId = newRandomProductId
-                    }
-                    
-
-                    //  Рабоет, но допускает потор 1-3
-                    // for (let i = 1; i <= 3; i++) {
-                    //     let randomPageId =  (Math.floor(Math.random() * (Object.keys(datasAdditionalCard).length - 1) + 1));
-                    //     randomPageId = `page${randomPageId}`
-                    //     let newRandomProductId = (Math.floor(Math.random() * (datasAdditionalCard[randomPageId].length - 2) + 1));
-                    //     if (newRandomProductId === randomProductId) {
-                    //         i--;
-                    //         continue;
-                    //     }
-                    //     randomProductId = newRandomProductId
-                    //     dispatch(addRandomCard(datasAdditionalCard[randomPageId][randomProductId]));
-                    // }
-
-
-
-
-                    // if (datasAdditionalCard?.category === selectedCardCategory && i !== 3) {
-                        // let randomPageId =  (Math.floor(Math.random() * (Object.keys(datasAdditionalCard).length - 1) + 1));
-                        // randomPageId = `page${randomPageId}`
-                        // // const randomPageId =  (Math.floor(Math.random() * (datasAdditionalCard.length - 1) + 1));
-                        // const randomProductId = (Math.floor(Math.random() * (datasAdditionalCard[randomPageId].length - 2) + 1));
-                        // console.log(datasAdditionalCard[randomPageId]);
-                        // dispatch(addRandomCard(datasAdditionalCard[randomPageId][randomProductId]));
-                        // i++;
-                    // } else {
-                        // requestRandomCard(selectedCardCategory);
-                    // }
-                })
-
-    // }
-
+        while (additionalCardsList.length < 3) {
+            let randomPageId =  (Math.floor(Math.random() * (Object.keys(datasAdditionalCard).length - 1) + 1));
+            randomPageId = `page${randomPageId}`
+            let newRandomProductId = (Math.floor(Math.random() * (datasAdditionalCard[randomPageId].length - 1) + 1));
+            if (additionalCardsList.includes(newRandomProductId)) continue;
+            additionalCardsList.push(newRandomProductId);
+            dispatch(addRandomCard(datasAdditionalCard[randomPageId][newRandomProductId]));
+        }
+    })
 }

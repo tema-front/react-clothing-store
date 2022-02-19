@@ -10,19 +10,12 @@ export const ReactRouter = () => {
     return (
         <BrowserRouter>
         <Routes>
-            {/* <Route path='/' redirect='/homepage' element={<HomePage />} /> */}
             <Route path='/home' element={<HomePage />} />
             <Route path='/catalog' element={<Catalog />}>
                     <Route path=':pageId' element={<Catalog />} />
 
                     <Route path=':category' element={<Catalog />}> 
                         <Route path=':pageId' element={<Catalog />} />
-                        {/* <Route path=':brand' element={<Catalog />}>
-                            <Route path=':pageId' element={<Catalog />} />
-                            <Route path=':designer' element={<Catalog />}>
-                                <Route path=':pageId' element={<Catalog />} />
-                            </Route>
-                        </Route> */}
                     </Route>
 
             </Route>
@@ -34,11 +27,6 @@ export const ReactRouter = () => {
 
             <Route path="/" element={<Navigate replace to="/home" />} />
             <Route path='*'  element={<NotFound />} />
-            {/* <Route path='/product' element={}>
-                <Route path=':productId' element={}></Route>
-            </Route> */}
-
-
         </Routes>
         </BrowserRouter>
     );

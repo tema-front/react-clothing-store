@@ -56,17 +56,14 @@ export const CheckoutWindow = ({onCloseCheckoutWindow}) => {
     
     const handleClick = (event) => {
         const checkoutWindowExist = event.composedPath().find(element => element.id === 'checkoutwindow')
-        if (event.target.id != 'checkoutwindow' && !checkoutWindowExist) onCloseCheckoutWindow();
+        if (event.target.id !== 'checkoutwindow' && !checkoutWindowExist) onCloseCheckoutWindow();
     }
 
 
     const handleCheckoutSubmit = (event) => {
         event.preventDefault();
-        console.log(cartList);
-        debugger
         let login = '';
         let orderId = ``
-        debugger
 
         const subscribe = onAuthStateChanged(auth, (user) => {
             if (user) {
@@ -85,9 +82,6 @@ export const CheckoutWindow = ({onCloseCheckoutWindow}) => {
                 setOrderRegistred(true);
             }
         })
-
-        
-
         return subscribe;
     }
 
@@ -117,7 +111,6 @@ export const CheckoutWindow = ({onCloseCheckoutWindow}) => {
                         : <input disabled className="checkout-window-btn disable" type='submit' value='Checkout' />
                     }
                     {orderRegistred && <span className="checkout-window-order-done">Done! Your order has been placed. Our manager will contact you shortly to clarify the order</span>}
-                    {/* <input className="checkout-window-btn" type='submit' value='Checkout' /> */}
                 </form>
                 :   
                 <div className="checkout-window-false">

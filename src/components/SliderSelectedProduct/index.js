@@ -1,7 +1,4 @@
-import { useEffect } from "react";
-
 export const SliderSelectedProduct = ({ cardId }) => {
-
     return (
     <section className="product-selected-slider">
         <button className="slide-btn slide-btn-left">
@@ -10,7 +7,7 @@ export const SliderSelectedProduct = ({ cardId }) => {
             </svg>                
         </button>
         <div className="product-selected-wrp">
-            <img className="product-selected-img" src={`https://picsum.photos/id/${cardId + 8}/600/724`} height='724' alt="Product photo" />
+            <img className="product-selected-img" src={`https://picsum.photos/id/${cardId + 8}/600/724`} height='724' alt="product" />
         </div>
         <button className="slide-btn slide-btn-right">
             <svg width="31" height="31" viewBox="0 0 31 31" xmlns="http://www.w3.org/2000/svg">

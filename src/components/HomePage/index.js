@@ -1,50 +1,31 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import CircularProgress from "@material-ui/core/CircularProgress" 
 import { useSelector } from "react-redux";
-
 import { Categories } from "../Categories";
 import { Header } from "../Header";
 import { ProductCard } from "../ProductCard";
 import { Features } from "../Features";
-
-
 import { Feedback } from "../Feedback";
 import { Footer } from "../Footer";
-import { getCardsList, getHomeCardsList } from "../../store/cards/selectors";
+import { getCardsList } from "../../store/cards/selectors";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { cleanFiltredList, requestCardsDatas } from "../../store/cards/actions";
-import { onValue, ref } from "firebase/database";
-import { db } from "../../services/firebase";
 import { cleanFilter } from "../../store/filter/actions";
 
 export const HomePage = () => {
     const cardsList = useSelector(getCardsList);
-
     const dispatch = useDispatch();
 
     useEffect(() => {
-        // if (firebaseCardsList?.[1]?.length === 12) return;
-        // dispatch(requestCardsDatas(1));
-
         if (cardsList?.[1]?.length === 12) return;
         dispatch(requestCardsDatas(1));
-
-
-
-        // const catalogDbRef = ref(db, `catalog/page1`);
-        // onValue(catalogDbRef, (snapshot) => {
-        //     
-        //     const datas = snapshot.val();
-        //     const datasArr = Object.values(datas || {})
-        //     setFirebaseCardsList([datasArr]);
-        // })
     }, [])
 
 
     const goTopPage = () => {
-        document.body.scrollTop = 0; // For Safari
-        document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
         dispatch(cleanFiltredList);
         dispatch(cleanFilter);  
     }
@@ -59,7 +40,6 @@ export const HomePage = () => {
                     <h2 className="products-title">Fetured Items</h2>
                     <p className="products-txt">Shop for items based on what we featured in this week</p>
                 </div>
-                {/* <ProductCard cards={firebaseCardsList?.[1]?.slice(0, 6)}/> */}
                 {!cardsList?.[1] && <div className="circular-progress-wrp"><CircularProgress color="secondary" size={100} className="circular-progress" /></div>}
                 <ProductCard cards={cardsList?.[1]?.slice(0, 6)}/>
             <div className="products-btn-wrap">

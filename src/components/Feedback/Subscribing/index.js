@@ -11,7 +11,7 @@ export const Subscribing = () => {
     const dispatch = useDispatch();
 
     const handleSubcribing = (event) => {
-        debugger
+        
         event.preventDefault();
         if (subscribingExist) return;
         setSubscribingExist(true);
@@ -64,7 +64,7 @@ export const Subscribing = () => {
                         />
                         <button onClick={handleUnsubcribing} className="subscribing-btn">Unsubscribe</button>
                         </>
-                    :
+                        :
                         <>
                         <input 
                             className="subscribing-input-email" 

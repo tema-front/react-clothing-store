@@ -62,7 +62,6 @@ export const cartReducer = (state = initialState, { type, payload}) => {
         }
 
         case CHANGE_COLOR: {
-            // попробовать не присваивать новый массив, а изменять основной
             const indexProduct = state.cartList.findIndex(card => card.id === payload.cardId);
             let newCartList = [...state.cartList]
             newCartList[indexProduct].color = payload.color

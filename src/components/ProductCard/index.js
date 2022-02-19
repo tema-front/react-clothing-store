@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom';
 import { addCardToCart, removeCardFromCart } from '../../store/cart/actions';
@@ -7,7 +6,6 @@ import { getCartList } from '../../store/cart/selectors';
 export const ProductCard = ({cards}) => {
     const dispatch = useDispatch();
     const cartList = useSelector(getCartList);
-    // const [productAdded, setProductAdded] = useState(false)
 
     const stopEffect = (event) => {
         event.stopPropagation();
@@ -15,12 +13,8 @@ export const ProductCard = ({cards}) => {
     }
 
     const handleAddProductToCart = (event, cardInfo) => {
-        
         stopEffect(event);
         dispatch(addCardToCart(cardInfo));
-        // setProductAdded(true);
-        // setButtonDisabled(true);
-        // console.log(buttonDisabled);
     }
 
     const handleRemoveCardFromCart = (event, cardId) => {
@@ -28,18 +22,12 @@ export const ProductCard = ({cards}) => {
         dispatch(removeCardFromCart(cardId));
     }
 
-    // const goTopPage = () => {
-        // document.body.scrollTop = 0; // For Safari
-        // document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-    // }
-
     return (
         <div className="products-wrap">
             {cards?.map(item => (
                 <Link to={`/product/${item.id}`} state={{ cardInfo: item }} className="products-item" key={item.id}>
                     <div className="products-item-preview">
                         <img className="products-item-img" src={`https://picsum.photos/id/${item.id + 8}/360/420`} alt="products-item" height="420" />
-                        {/* <img className="products-item-img" src={`https://picsum.photos/id/${item.id + 8}/200/233`} alt="products-item" height="420" /> */}
                         {(cartList.find(card => card.id === item.id))
                             ? 
                         

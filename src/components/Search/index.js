@@ -1,11 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { cardsSearch, cleanFiltredList, cleanSearchedList, nothingFound, requestAllCardsDatas, searchDelayEnd, searchDelayStart, searchResultTrue } from "../../store/cards/actions";
-import { getAllCatalogLoaded, getCardsListSearched, getSearchCircular, getSearchStatus } from "../../store/cards/selectors";
+import { cardsSearch, cleanFiltredList, cleanSearchedList, requestAllCardsDatas, searchDelayEnd, searchDelayStart, searchResultTrue } from "../../store/cards/actions";
+import { getAllCatalogLoaded, getCardsListSearched } from "../../store/cards/selectors";
 import { cleanFilter } from "../../store/filter/actions";
 import { getFilters } from "../../store/filter/selectors";
-import { Filter } from "../Filter";
 
 export const Search = () => {
     const [searchValue, setSearchValue] = useState('');
@@ -20,14 +19,12 @@ export const Search = () => {
     const handleSearch = () => {
         clearTimeout(timer.current);
         dispatch(searchDelayStart)
-        console.log(Filter);
         timer.current = setTimeout(() => {
-            debugger
+            
             navigate(`/catalog/1`);
             dispatch(cleanFiltredList);
             dispatch(cleanFilter);
             dispatch(searchDelayEnd);
-            // handleCleaningFilter();
             if (searchValue[searchValue.length - 1] === ' ') {
                 dispatch(cardsSearch(searchValue.slice(0, -1)))
             } else dispatch(cardsSearch(searchValue))
@@ -35,29 +32,13 @@ export const Search = () => {
 
     }
 
-    // useEffect(() => {
-    //     searchRef.current.focus();  
-    // })
-
     useEffect(() => {
-        debugger
-        // Не отрабатывает, потому что cardsListSearched в рефе. Надо что-то придумать...
         if (!cardsListSearched.length) setSearchValue('');
         if (!searchValue) {
             dispatch(searchResultTrue);
             dispatch(cleanSearchedList);
         }  
     }, [cardsListSearched])
-
-
-
-
-
-    // useEffect(() => {
-    //     if (searchValue)
-    // }, [searchValue])
-
-
 
     useEffect(() => {
         if (catalogLoaded && searchValue) handleSearch();
@@ -68,7 +49,6 @@ export const Search = () => {
     }
 
     useEffect(() => {
-        debugger
         if (!searchValue) {
             dispatch(searchResultTrue);
             dispatch(cleanSearchedList);
@@ -83,7 +63,7 @@ export const Search = () => {
     }, [searchValue])
 
     useEffect(() => {
-        debugger
+        
         if (!Object.values(filters)[0] && !Object.values(filters)[1] && !Object.values(filters)[2]) return
         if (searchValue && !Object.values(cardsListSearched.current).length) {
             setSearchValue('');
@@ -92,7 +72,6 @@ export const Search = () => {
 
     const handleClearSearch = () => {
         setSearchValue('');
-        // ПОПРОБУЙ СДЕЛАТЬ ФИЛЬТР, ПОТОМ ПОИСК, ПОТОМ CLEAN SEARCH
         dispatch(searchResultTrue);
         dispatch(cleanSearchedList);
         clearTimeout(timer.current);

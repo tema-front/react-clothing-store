@@ -1,5 +1,4 @@
-import { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { getCartList } from "../../store/cart/selectors";
 import { CartBtns } from "../CartBtns";
 import { CartListItem } from "../CartListItem";

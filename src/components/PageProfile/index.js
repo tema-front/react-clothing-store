@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { onAuthStateChanged } from "firebase/auth";
-import { singOut, auth, db } from "../../services/firebase";
+import { auth, db } from "../../services/firebase";
 import { offAuth, onAuth, resetName } from "../../store/profile/actions";
 import { getAuthed, getName } from "../../store/profile/selectors";
 import { Feedback } from "../Feedback";
@@ -20,7 +20,6 @@ export const PageProfile = () => {
 
     useEffect(() => {
         const subscribe = onAuthStateChanged(auth, (user) => {
-            debugger
             if (user) {
                 const login = user.email.split('@')[0];
                 const usersDbRef = ref(db, `users/${login}`);
@@ -51,15 +50,12 @@ export const PageProfile = () => {
             registration ? <Header isCatalog={true} title={'registration'} /> : <Header isCatalog={true} title={'login'} />
         }
         <main className="content-account">
-
-            {/* <div className="content-account-wrp"> */}
-                <section className="registration"> 
-                    {!authed &&
-                        (registration ? <Registration goToLogin={goToLogin} /> : <ProfileLogin goToRegistration={goToRegistration} />)
-                    }
-                    <RegistrationPrivileges />
-                </section>
-            {/* </div> */}
+            <section className="registration"> 
+                {!authed &&
+                    (registration ? <Registration goToLogin={goToLogin} /> : <ProfileLogin goToRegistration={goToRegistration} />)
+                }
+                <RegistrationPrivileges />
+            </section>
             <Feedback />
         </main>
         <Footer />

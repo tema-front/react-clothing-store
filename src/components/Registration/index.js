@@ -1,8 +1,6 @@
-import { ref, set, onValue } from "firebase/database";
-import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { db, auth, singUp, login } from "../../services/firebase";
-import { resetName } from "../../store/profile/actions";
+import { ref, set } from "firebase/database";
+import { useState } from "react";
+import { db, singUp } from "../../services/firebase";
 
 export const Registration = ({goToLogin}) => {
     const [email, setEmail] = useState('');
@@ -10,8 +8,6 @@ export const Registration = ({goToLogin}) => {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [gender, setGender] = useState('');
-    const dispatch = useDispatch();
-    const [onLogin, setOnLogin] = useState(false);
 
     const handleFirstName = (event) => {
         let newFirstName = ''
@@ -51,13 +47,6 @@ export const Registration = ({goToLogin}) => {
 
         try {
             await singUp(email, password);
-            // 
-            // const usersDbRef = ref(db, `users/${login}`);
-            // onValue(usersDbRef, (snapshot) => {
-            //     const datas = snapshot.val();
-            //     
-            //     dispatch(resetName(datas?.name))
-            // })
         } catch (error) {
             console.log(error);
         }
@@ -66,38 +55,6 @@ export const Registration = ({goToLogin}) => {
         setEmail('');
         setPassword('');
     }
-
-    // const handleLogin = async (event) => {
-    //     
-    //     event.preventDefault();
-    //     const login = email.split('@')[0];
-
-    //     setEmail('');
-    //     setPassword('');
-    //     try {
-    //         await login(email, password)
-    //         const usersDbRef = ref(db, `users/${login}`);
-    //         onValue(usersDbRef, (snapshot) => {
-    //             const datas = snapshot.val();
-    //             
-    //             dispatch(resetName(datas?.name))
-    //         })
-    //     } catch (error) {
-    //         console.log(error);
-    //     }
-    // }
-
-
-    // useEffect(() => {
-    //     
-    //     const login = email.split('@')[0];
-    //     const usersDbRef = ref(db, `users/${login}`);
-    //     onValue(usersDbRef, (snapshot) => {
-    //         const datas = snapshot.val();
-    //         
-    //         dispatch(resetName(datas?.name))
-    //     })
-    // }, [])
 
     const handleGoToLogin = (event) => {
         event.preventDefault();
@@ -126,14 +83,11 @@ export const Registration = ({goToLogin}) => {
             </div>
             <div className="registration-login-details">
                 <span className="registration-login-details-title">Sign up details</span>
-                {/* <span className="registration-login-details-title">Login details</span> */}
                 <input onChange={handleEmail} value={email} type="email" className="registration-form-inputs registration-login-email" placeholder="Email" />
                 <input onChange={handlePassword} value={password}type="password" className="registration-form-inputs registration-login-password" placeholder="Password" />
                 <p className="registration-login-details-txt">Please use 8 or more characters, with at least 1 number and a mixture of uppercase and lowercase letters</p>
             </div>
             <button onClick={event => handleSignUp(event)} className="registration-form-datas-submit" type={'submit'}>Join now</button>
-            {/* <input onClick={event => handleSignUp(event)} className="registration-form-datas-submit" type={'submit'} value='Join now' /> */}
-            {/* <button onClick={handleLogin} className="registration-form-datas-submit">Login</button> */}
         </form>
 
     );

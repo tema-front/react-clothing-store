@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/react-clothing-store/static/css/main.275bbfe7.chunk.css",
+    "main.js": "/react-clothing-store/static/js/main.684787ec.chunk.js",
+    "main.js.map": "/react-clothing-store/static/js/main.684787ec.chunk.js.map",
+    "runtime-main.js": "/react-clothing-store/static/js/runtime-main.c9e51c47.js",
+    "runtime-main.js.map": "/react-clothing-store/static/js/runtime-main.c9e51c47.js.map",
+    "static/js/2.7e222efe.chunk.js": "/react-clothing-store/static/js/2.7e222efe.chunk.js",
+    "static/js/2.7e222efe.chunk.js.map": "/react-clothing-store/static/js/2.7e222efe.chunk.js.map",
+    "index.html": "/react-clothing-store/index.html",
+    "static/css/main.275bbfe7.chunk.css.map": "/react-clothing-store/static/css/main.275bbfe7.chunk.css.map",
+    "static/js/2.7e222efe.chunk.js.LICENSE.txt": "/react-clothing-store/static/js/2.7e222efe.chunk.js.LICENSE.txt",
+    "static/media/style.css": "/react-clothing-store/static/media/main-bottom-bgi.341fab4c.jpg",
+    "static/media/cart_is_empty.999b329c.png": "/react-clothing-store/static/media/cart_is_empty.999b329c.png",
+    "static/media/notfound.faa6b867.png": "/react-clothing-store/static/media/notfound.faa6b867.png",
+    "static/media/nothing-found.5d033e46.png": "/react-clothing-store/static/media/nothing-found.5d033e46.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.c9e51c47.js",
+    "static/js/2.7e222efe.chunk.js",
+    "static/css/main.275bbfe7.chunk.css",
+    "static/js/main.684787ec.chunk.js"
+  ]
+}

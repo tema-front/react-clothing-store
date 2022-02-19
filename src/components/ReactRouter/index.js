@@ -8,7 +8,7 @@ import { PageProfile } from '../PageProfile';
 
 export const ReactRouter = () => {
     return (
-        <BrowserRouter basename="/react-clothing-store" >
+        <BrowserRouter basename={process.env.PUBLIC_URL} >
         <Routes>
             <Route path='/home' element={<HomePage />} />
             <Route path='/catalog' element={<Catalog />}>

@@ -2,7 +2,7 @@
   "name": "clothing-store",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://tema-front.github.io",
+  "homepage": "https://tema-front.github.io/react-clothing-store",
   "dependencies": {
     "-": "0.0.1",
     "@material-ui/core": "^4.12.3",

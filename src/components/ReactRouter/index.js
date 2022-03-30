@@ -9,25 +9,25 @@ import { PageProfile } from '../PageProfile';
 export const ReactRouter = () => {
     return (
         <HashRouter>
-        <Routes>
-            <Route path='/home' element={<HomePage />} />
-            <Route path='/catalog' element={<Catalog />}>
-                    <Route path=':pageId' element={<Catalog />} />
-
-                    <Route path=':category' element={<Catalog />}> 
+            <Routes>
+                <Route path='/home' element={<HomePage />} />
+                <Route path='/catalog' element={<Catalog />}>
                         <Route path=':pageId' element={<Catalog />} />
-                    </Route>
 
-            </Route>
-            <Route path='/profile' element={<PageProfile />} />
-            <Route path='/cart' element={<Cart />} />
-            <Route path='/product' element={<PageSelectedProduct />}>
-                    <Route path=':productId' element={<PageSelectedProduct />}/>
-            </Route>
+                        <Route path=':category' element={<Catalog />}> 
+                            <Route path=':pageId' element={<Catalog />} />
+                        </Route>
 
-            <Route path="/" element={<Navigate replace to="/home" />} />
-            <Route path='*'  element={<NotFound />} />
-        </Routes>
+                </Route>
+                <Route path='/profile' element={<PageProfile />} />
+                <Route path='/cart' element={<Cart />} />
+                <Route path='/product' element={<PageSelectedProduct />}>
+                        <Route path=':productId' element={<PageSelectedProduct />}/>
+                </Route>
+
+                <Route path="/" element={<Navigate replace to="/home" />} />
+                <Route path='*'  element={<NotFound />} />
+            </Routes>
         </HashRouter>
     );
 }
